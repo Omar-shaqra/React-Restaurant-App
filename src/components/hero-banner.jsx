@@ -1,47 +1,73 @@
-import { useEffect, useState } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+
 import { heroSlides } from "../utils/constants";
 
+const responsive = {
+  desktop: {
+    breakpoint: {
+      max: 3000,
+      min: 1024,
+    },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: {
+      max: 464,
+      min: 0,
+    },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: {
+      max: 1024,
+      min: 464,
+    },
+    items: 1,
+  },
+};
+
 const HeroBanner = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((currentIndex + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
-
   return (
     <div className="relative flex flex-col overflow-hidden">
-      <img
-        src={heroSlides[currentIndex]}
-        alt="Images"
-        className="w-11/12 self-center"
-      />
-      <div className="flex flex-col absolute bottom-4 self-center">
-        <div className="flex flex-col justify-center items-center text-white ">
-          <div className="flex flex-row mt-4 ">
-            {heroSlides.map((slide, slideIndex) => (
-              <div
-                key={slideIndex}
-                onClick={() => goToSlide(slideIndex)}
-                className="text-2xl cursor-pointer">
-                <div
-                  className={`mx-2 rounded-full h-2 w-2  ${
-                    slideIndex === currentIndex
-                      ? "bg-neutral-800 animate-bounce"
-                      : "bg-neutral-400"
-                  }`}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Carousel
+        additionalTransfrom={0}
+        autoPlay
+        arrows={false}
+        autoPlaySpeed={4000}
+        centerMode={false}
+        className=""
+        containerClass="container-with-dots"
+        dotListClass="si"
+        draggable
+        focusOnSelect={false}
+        infinite
+        itemClass=""
+        keyBoardControl
+        minimumTouchDrag={80}
+        pauseOnHover
+        renderArrowsWhenDisabled={false}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
+        responsive={responsive}
+        rewind
+        rewindWithAnimation={false}
+        rtl={false}
+        shouldResetAutoplay
+        showDots
+        sliderClass=""
+        slidesToSlide={1}
+        swipeable>
+        {heroSlides.map((slide, slideIndex) => (
+          <img
+            src={heroSlides[slideIndex]}
+            alt="banner-img"
+            key={slideIndex}
+            className="pb-6"
+          />
+        ))}
+      </Carousel>
     </div>
   );
 };
