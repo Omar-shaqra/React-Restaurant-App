@@ -6,10 +6,13 @@ html,
 body,
 :root {
   height: 100%;
+  background-color: rgba(252, 231, 187, 0.6);
 }
 
 @layer base {
   :root {
+    scroll-behavior: smooth;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
