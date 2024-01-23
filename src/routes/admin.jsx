@@ -1,6 +1,6 @@
 import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
 
-export default function ExternalDataPage() {
+const AdminPage = () => {
   const { isLoaded, isSignedIn } = useAuth();
 
   if (!isLoaded || !isSignedIn) {
@@ -8,4 +8,5 @@ export default function ExternalDataPage() {
   }
 
   return <div>Logged in</div>;
-}
+};
+export default AdminPage;
