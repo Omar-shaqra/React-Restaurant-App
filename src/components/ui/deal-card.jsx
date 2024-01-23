@@ -16,28 +16,28 @@ const DealCard = ({ data }) => {
   };
 
   return (
-    <section className="relative" onClick={handleClick}>
+    <section className="relative w-fit p-4" onClick={handleClick}>
       <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4">
         {/* Image & actions */}
-        <div className="w-60 rounded-xl relative">
+        <div className="w-60 rounded-xl mx-auto">
           <img
             src="/src/assets/75-Combo.png"
             alt="combos images"
-            className="abslouteaspect-square object-cover rounded-md"
+            className="absloute aspect-square object-cover rounded-md"
           />
           <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5"></div>
         </div>
         {/* Description */}
-        <div>
-          <p className="font-semibold text-lg">name</p>
-          <p className="text-sm text-gray-500">category</p>
-        </div>
-        {/* Price & Reiew */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col gap-1">
+            <p className="font-semibold text-lg">name</p>
+            <p className="text-sm text-gray-500">category</p>
+          </div>
           <Currency value={data?.price} />
         </div>
+        {/* Price & Reiew */}
       </div>
-      <div className="absolute group w-fit p-2 bottom-0 translate-x-3/4 mx-1 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
+      <div className="absolute group p-2 -bottom-2 ml-20 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
         <button
           onClick={addToCart}
           className="flex items-center gap-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition duration-200">

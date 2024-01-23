@@ -18,7 +18,7 @@ function Navbar() {
 
   return (
     <div className="border-b bg-[#ffe3a6] border-b-orange-700 z-10 mx-auto w-full ">
-      <div className="flex h-16 items-center px-4 ml-12 container">
+      <div className="flex h-16 items-center px-4 ml-6 container">
         <a href="/">
           <img src="/src/assets/logo.png" className="w-16 h-auto mr-8" />
         </a>

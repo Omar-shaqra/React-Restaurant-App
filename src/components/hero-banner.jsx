@@ -64,7 +64,7 @@ const HeroBanner = () => {
             src={heroSlides[slideIndex]}
             alt="banner-img"
             key={slideIndex}
-            className="pb-6"
+            className="pb-6 rounded-md"
           />
         ))}
       </Carousel>
