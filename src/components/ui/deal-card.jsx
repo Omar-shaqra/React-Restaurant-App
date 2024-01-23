@@ -21,7 +21,7 @@ const DealCard = ({ data }) => {
         {/* Image & actions */}
         <div className="w-60 rounded-xl mx-auto">
           <img
-            src="/src/assets/75-Combo.png"
+            src="/assets/75-Combo.png"
             alt="combos images"
             className="absloute aspect-square object-cover rounded-md"
           />
