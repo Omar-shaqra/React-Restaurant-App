@@ -16,7 +16,7 @@ const DealCard = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col relative" onClick={handleClick}>
+    <section className="relative" onClick={handleClick}>
       <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4">
         {/* Image & actions */}
         <div className="w-60 rounded-xl relative">
@@ -40,12 +40,12 @@ const DealCard = ({ data }) => {
       <div className="absolute group w-fit p-2 bottom-0 translate-x-3/4 mx-1 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
         <button
           onClick={addToCart}
-          className="flex items-center gap-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition ">
+          className="flex items-center gap-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition duration-200">
           Add to Cart
           <ShoppingBag className="group-hover:animate-bounce" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

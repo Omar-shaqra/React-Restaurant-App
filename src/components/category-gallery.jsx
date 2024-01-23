@@ -6,32 +6,29 @@ import CategoryCard from "./ui/category-card";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
+    breakpoint: { max: 3500, min: 2000 },
     items: 6,
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 2000, min: 1024 },
     items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 4,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
+    items: 1,
   },
 };
 
 const CategoryGallery = () => {
   return (
-    <div>
+    <section>
       <h1 className="font-semibold text-xl mb-2">Our Categories</h1>
       <Carousel
-        className="bg-orange-200 rounded-md py-3 px-2 justify-center"
-        dotListClass=""
-        itemClass=""
-        sliderClass=""
+        className="bg-orange-200 rounded-md py-3 items-center px-2"
         additionalTransfrom={0}
         minimumTouchDrag={80}
         autoPlaySpeed={3000}
@@ -60,7 +57,7 @@ const CategoryGallery = () => {
         <CategoryCard />
         <CategoryCard />
       </Carousel>
-    </div>
+    </section>
   );
 };
 
