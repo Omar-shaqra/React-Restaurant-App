@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+
 import Container from "../components/ui/Container";
 import CartItem from "../components/cart/cart-item";
 import Summary from "../components/cart/summary";
@@ -25,9 +26,8 @@ function CartPage() {
         <div className="lg:col-span-7">
           {cart.items.length === 0 && <p>No items added to cart</p>}
           <ul>
-            {cart.items.map((item) => (
-              <CartItem key={item.id} data={item} />
-            ))}
+            {cart &&
+              cart.items.map((item) => <CartItem key={item.id} data={item} />)}
           </ul>
         </div>
         <Summary />
