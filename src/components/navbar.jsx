@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { UserRoundPlus } from "lucide-react";
 import { UserButton, useUser, SignedIn } from "@clerk/clerk-react";
 
-// import Container from "./ui/Container";
 import NavCart from "./cart/nav-cart";
 import { useEffect, useState } from "react";
 function Navbar() {

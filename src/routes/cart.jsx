@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-// import Container from "../components/ui/Container";
 import CartItem from "../components/cart/cart-item";
 import Summary from "../components/cart/summary";
 import useCart from "../hooks/use-cart";

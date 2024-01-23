@@ -5,7 +5,6 @@ import CategoryCard from "./ui/category-card";
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 3500, min: 2000 },
     items: 6,
   },
