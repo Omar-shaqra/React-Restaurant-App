@@ -8,7 +8,7 @@ const BestDeals = () => {
       <h1 className="pb-2 border-b-2 border-b-red-300 font-semibold text-2xl">
         Our Best Deals
       </h1>
-      <div className="w-fit grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-3 pt-5">
+      <div className="container w-full grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-3 pt-5">
         <DealCard />
         <DealCard />
         <DealCard />
