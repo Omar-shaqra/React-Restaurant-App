@@ -32,7 +32,6 @@ const CategoryGallery = () => {
         dotListClass=""
         itemClass=""
         sliderClass=""
-        containerClass="container"
         additionalTransfrom={0}
         minimumTouchDrag={80}
         autoPlaySpeed={3000}

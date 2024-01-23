@@ -5,13 +5,13 @@ import Container from "../components/ui/Container";
 
 function Home() {
   return (
-    <Container>
-      <div className="flex flex-col gap-14">
+    <div className="flex flex-col gap-14">
+      <Container>
         <HeroBanner />
         <CategoryGallery />
         <BestDeals />
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
