@@ -2,7 +2,9 @@ import DealCard from "./ui/deal-card";
 
 const BestDeals = () => {
   return (
-    <div id="deals" className="flex flex-col items-center">
+    <div
+      id="deals"
+      className="flex flex-col items-center border-t pt-2 border-t-red-300">
       <h1 className="pb-2 border-b-2 border-b-red-300 font-semibold text-2xl">
         Our Best Deals
       </h1>

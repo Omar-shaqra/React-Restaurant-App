@@ -8,7 +8,7 @@ function Navbar() {
   const { isSignedIn } = useUser();
 
   return (
-    <div className="border-b border-b-orange-700 mb-2 relative">
+    <div className="border-b bg-[#fce7bb] border-b-orange-700 relative z-10">
       <Container>
         <div className="flex h-16 items-center px-4">
           <a href="/">

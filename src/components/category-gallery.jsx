@@ -26,9 +26,9 @@ const responsive = {
 const CategoryGallery = () => {
   return (
     <div>
-      <h1 className="font-semibold text-xl">Our Categories</h1>
+      <h1 className="font-semibold text-xl mb-2">Our Categories</h1>
       <Carousel
-        className=""
+        className="bg-orange-200 rounded-md py-3 px-2 justify-center"
         dotListClass=""
         itemClass=""
         sliderClass=""
