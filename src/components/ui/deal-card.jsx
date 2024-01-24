@@ -1,5 +1,6 @@
 import Currency from "./currency";
 import { ShoppingBag } from "lucide-react";
+import combImg from "/src/assets/75-Combo.png";
 // import { useNavigate } from "react-router-dom";
 
 import useCart from "../../hooks/use-cart";
@@ -21,7 +22,7 @@ const DealCard = ({ data }) => {
         {/* Image & actions */}
         <div className="w-60 rounded-xl mx-auto">
           <img
-            src="/src/assets/75-Combo.png"
+            src={combImg}
             alt="combos images"
             className="absloute aspect-square object-cover rounded-md"
           />
