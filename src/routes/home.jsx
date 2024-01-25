@@ -1,13 +1,15 @@
 import HeroBanner from "../components/hero-banner";
-import BestDeals from "../components/deals-gallery";
+import DealsGallery from "../components/deals-gallery";
 import CategoryGallery from "../components/category-gallery";
+import OffersGallery from "../components/offers-gallery";
 
 function Home() {
   return (
-    <div className="container mx-auto flex flex-col flex-1 space-y-12 p-3">
+    <div className="container mx-auto flex flex-col flex-1 space-y-14 p-3">
       <HeroBanner />
       <CategoryGallery />
-      <BestDeals />
+      <DealsGallery />
+      <OffersGallery />
     </div>
   );
 }
