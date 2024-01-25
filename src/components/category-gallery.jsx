@@ -24,10 +24,10 @@ const responsive = {
 
 const CategoryGallery = () => {
   return (
-    <section>
-      <h1 className="font-semibold text-xl mb-2">Our Categories</h1>
+    <section className="pt-10">
+      <h1 className="pb-2 font-semibold text-2xl font-mono">Categories</h1>
       <Carousel
-        className="bg-orange-200 rounded-md py-3 items-center px-2"
+        className="bg-orange-200 rounded-md py-4 items-center px-2"
         additionalTransfrom={0}
         minimumTouchDrag={80}
         autoPlaySpeed={3000}

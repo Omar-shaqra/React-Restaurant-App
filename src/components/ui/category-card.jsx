@@ -4,7 +4,7 @@ const CategoryCard = ({ img, title }) => {
   return (
     <div className="flex flex-col items-center">
       <img className="w-40" src={cateImg} alt="category img" />
-      <h3 className="font-semibold"> fresh drinks</h3>
+      <h3 className="font-semibold capitalize"> fresh drinks</h3>
     </div>
   );
 };

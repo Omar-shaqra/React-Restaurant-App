@@ -18,7 +18,7 @@ const DealCard = ({ data }) => {
 
   return (
     <section className="relative w-fit p-4" onClick={handleClick}>
-      <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4">
+      <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4 shadow-md">
         {/* Image & actions */}
         <div className="w-60 rounded-xl mx-auto">
           <img

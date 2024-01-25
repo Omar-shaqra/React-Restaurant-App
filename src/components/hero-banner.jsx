@@ -30,7 +30,7 @@ const responsive = {
 
 const HeroBanner = () => {
   return (
-    <div className="relative flex flex-col overflow-hidden">
+    <div className="pt-2">
       <Carousel
         additionalTransfrom={0}
         autoPlay
@@ -61,9 +61,9 @@ const HeroBanner = () => {
         swipeable>
         {heroSlides.map((slide, slideIndex) => (
           <img
+            key={slideIndex}
             src={heroSlides[slideIndex]}
             alt="banner-img"
-            key={slideIndex}
             className="pb-6 rounded-md"
           />
         ))}
