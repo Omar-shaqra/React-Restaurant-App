@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/subcategories" element={<Subcategory />} />
+          {/* <Route path="/subcategories" element={<Subcategory />} /> */}
         </Route>
         <Route path={`*`} element={<NotFound />} />
         <Route path="/admin" element={<Admin />} />
