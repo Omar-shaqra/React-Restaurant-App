@@ -7,7 +7,7 @@ import Layout from "./components/ui/layout";
 import Home from "./routes/home";
 import Cart from "./routes/cart";
 import Admin from "./routes/admin/admin";
-import Subcategory from "./routes/subcategory";
+// import Subcategory from "./routes/subcategory";
 import NotFound from "./components/ui/not-found";
 import AddCategory from "./routes/admin/add-category";
 import AddSubcategory from "./routes/admin/add-category";
