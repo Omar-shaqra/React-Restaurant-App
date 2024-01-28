@@ -7,7 +7,7 @@ function Layout() {
     <div className="flex flex-row h-screen w-screen overflow-hidden">
       <div className="flex flex-col flex-1">
         <Navbar />
-        <div className="flex-1 min-h-0 overflow-auto">
+        <div className="flex-1 h-screen overflow-auto scroll-smooth">
           <Outlet />
           <Footer />
         </div>

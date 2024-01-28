@@ -38,14 +38,14 @@ const DealCard = ({ data }) => {
         </div>
         {/* Price & Reiew */}
       </div>
-      <div className="absolute group p-2 -bottom-2 ml-20 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
-        <button
+      <button className="absolute group p-2 -bottom-2 ml-16 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
+        <div
           onClick={addToCart}
-          className="flex items-center gap-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition duration-200">
+          className="flex items-center gap-3 px-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition duration-200">
           Add to Cart
           <ShoppingBag className="group-hover:animate-bounce" />
-        </button>
-      </div>
+        </div>
+      </button>
     </section>
   );
 };

@@ -1,6 +1,5 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { ChevronRight, ChevronLeft } from "lucide-react";
 
 import { heroSlides } from "../utils/constants";
 

@@ -3,7 +3,9 @@ import footerLogo from "/src/assets/logo.png";
 
 const Footer = () => {
   return (
-    <section className=" mx-auto flex border-t-2 border-red-300 mt-10 bg-[#fce7bb]">
+    <section
+      id="footer"
+      className=" mx-auto flex border-t-2 border-red-300 mt-10 bg-[#fce7bb]">
       <div className="container grid md:grid-cols-3 py-5">
         {/* Logo & Description */}
         <div className="py-2 px-4 ">
