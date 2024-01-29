@@ -22,7 +22,7 @@ function App() {
     setIsMounted(true);
   }, [isSignedIn, isMounted, isSignedIn]);
 
-  if (!isMounted || !isSignedIn || !isSignedIn) {
+  if (!isMounted) {
     return null;
   }
 
@@ -33,13 +33,13 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path={`*`} element={<NotFound />} />
+          {/* <Route path={`*`} element={<NotFound />} /> */}
           {/* <Route path="/subcategories" element={<Subcategory />} /> */}
         </Route>
         <Route path="/admin" element={<Admin />}>
           {isMounted && isSignedIn && isLoaded && (
             <>
-              <Route path={`*`} element={<Admin />} />
+              {/* <Route path={`*`} element={<Admin />} /> */}
               <Route path="/admin/categories" element={<AddCategory />} />
               <Route path="/admin/subcategories" element={<AddSubcategory />} />
             </>
