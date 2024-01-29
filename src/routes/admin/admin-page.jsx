@@ -21,9 +21,9 @@ const AdminPage = () => {
           </Link>
           <ul className="flex gap-8 font-semibold">
             <Link
-              to="/admin/categories"
+              to="/admin"
               className={`${
-                pathname === "/admin/categories"
+                pathname === "/admin"
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
                   : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
