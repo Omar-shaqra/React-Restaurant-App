@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Phone, MapPin } from "lucide-react";
 import footerLogo from "/src/assets/logo.png";
-import pizza from "/src/assets/pizza3.jpg";
+// import pizza from "/src/assets/pizza3.jpg";
 
 const Footer = () => {
   return (

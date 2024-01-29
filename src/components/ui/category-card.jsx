@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import cateImg from "../../assets/cate1.png";
+// import cateImg from "../../assets/cate1.png";
 
 const CategoryCard = ({ data }) => {
   return (
