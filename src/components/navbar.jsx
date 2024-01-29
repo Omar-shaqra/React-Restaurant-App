@@ -19,18 +19,22 @@ function Navbar() {
   }
 
   return (
-    <div className="border-b bg-[#ffe3a6] border-b-orange-700 mx-auto w-full shadow-md shadow-orange-200 backdrop-filter backdrop-blur-lg bg-opacity-95">
+    <div className="border-b border-b-orange-400 mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
       <div className="container flex h-16 items-center justify-between px-4 ml-6">
-        <a href="/">
+        <Link to="/">
           <img src={logo} className="w-16 h-auto mr-8" />
-        </a>
-        <div className="flex items-center space-x-10 text-lg font-semibold font-serif text-orange-900">
-          <a href="#deals" className="hover:scale-105">
+        </Link>
+        <div className="flex items-center space-x-10 text-lg font-semibold font-serif text-white">
+          <a
+            href="#deals"
+            className="hover:scale-105 hover:text-red-200 transition">
             Deals
           </a>
+          <p className="hover:scale-105 hover:text-red-200 transition">Item</p>
           <p>Item</p>
-          <p>Item</p>
-          <a href="#footer" className="hover:scale-105">
+          <a
+            href="#footer"
+            className="hover:scale-105 hover:text-red-200 transition">
             Contact
           </a>
         </div>

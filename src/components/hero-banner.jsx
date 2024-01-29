@@ -29,17 +29,17 @@ const responsive = {
 
 const HeroBanner = () => {
   return (
-    <div className="pt-2">
+    <div className="pt-1">
       <Carousel
         additionalTransfrom={0}
         autoPlay
         arrows={false}
-        autoPlaySpeed={4000}
+        autoPlaySpeed={3000}
         centerMode={false}
         className=""
         containerClass="container-with-dots"
         dotListClass="si"
-        draggable
+        draggable={false}
         focusOnSelect={false}
         infinite
         itemClass=""
@@ -63,7 +63,7 @@ const HeroBanner = () => {
             key={slideIndex}
             src={heroSlides[slideIndex]}
             alt="banner-img"
-            className="pb-6 rounded-md"
+            className="pb-6 rounded-md h-[80vh] w-full"
           />
         ))}
       </Carousel>

@@ -10,7 +10,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 2000, min: 1024 },
-    items: 4,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -24,10 +24,12 @@ const responsive = {
 
 const CategoryGallery = () => {
   return (
-    <section className="pt-10">
-      <h1 className="pb-2 font-semibold text-2xl font-mono">Categories</h1>
+    <section className="pt-10 shadow-sm flex flex-col">
+      <h1 className="p-2 self-center font-semibold text-3xl font-mono text-white tracking-widest w-fit rounded-2xl">
+        Categories
+      </h1>
       <Carousel
-        className="bg-orange-200 rounded-md py-4 items-center px-2"
+        className="flex bg-[#000000] bg-opacity-70 rounded-md py-4 items-center px-2"
         additionalTransfrom={0}
         minimumTouchDrag={80}
         autoPlaySpeed={3000}

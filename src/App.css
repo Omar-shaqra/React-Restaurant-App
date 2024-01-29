@@ -6,7 +6,12 @@ html,
 body,
 :root {
   height: 100%;
-  background-color: rgba(252, 231, 187, 0.6);
+  background-color: #fff5e7;
+  background-image: url('../src/assets/pizza.jpg');
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-position: 0ex;
+  background-size: cover;
 }
 
 @layer base {

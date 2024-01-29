@@ -21,7 +21,7 @@ const NavCart = () => {
     <div className="ml-auto flex items-center gap-x-4">
       <Link
         to={"/cart"}
-        className="flex rounded-full bg-neutral-700 border-transparent p-2 
+        className="flex rounded-full bg-black border-transparent p-2 
     text-white font-semibold hover:opacity-75 transition">
         <ShoppingCart size={18} />
         <span className="ml-2 text-sm font-medium  text-white">

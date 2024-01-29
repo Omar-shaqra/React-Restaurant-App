@@ -19,10 +19,14 @@ function CartPage() {
   }
 
   return (
-    <div className="px-4 py-16 sm:px-4 md:px-6 lg:px-8 container mx-auto">
+    <div className="px-4 py-16 sm:px-4 md:px-6 lg:px-8 container mx-auto h-[80vh] text-white">
       <h1 className="text-3xl font-bold ">Shopping Cart</h1>
       <div className="lg:col-span-7">
-        {cart.items.length === 0 && <p>No items added to cart</p>}
+        {cart.items.length === 0 && (
+          <p className="tracking-widest font-extrabold p-1 bg-neutral-500 w-fit rounded-xl my-3">
+            No items added to cart
+          </p>
+        )}
         <ul>
           {cart &&
             cart.items.map((item) => <CartItem key={item.id} data={item} />)}

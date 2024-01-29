@@ -18,7 +18,7 @@ const DealCard = ({ data }) => {
 
   return (
     <section className="relative w-fit p-4" onClick={handleClick}>
-      <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4 shadow-md">
+      <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4 shadow-md text-white">
         {/* Image & actions */}
         <div className="w-60 rounded-xl mx-auto">
           <img
@@ -32,7 +32,7 @@ const DealCard = ({ data }) => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-col gap-1">
             <p className="font-semibold text-lg">name</p>
-            <p className="text-sm text-gray-500">category</p>
+            <p className="text-sm ">category</p>
           </div>
           <Currency value={data?.price} />
         </div>

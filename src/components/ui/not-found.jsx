@@ -1,6 +1,6 @@
 export default function NotFound() {
   return (
-    <div className="flex items-center flex-col justify-center bg-[rgba(252, 231, 187, 0.6)] h-screen lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
+    <div className="flex items-center flex-col justify-center bg-[rgba(252, 231, 187, 0.6)] h-screen lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28 text-white">
       <div className="w-full lg:w-1/2">
         <img
           className="hidden lg:block"
@@ -14,14 +14,14 @@ export default function NotFound() {
         />
       </div>
       <div className="w-full lg:w-1/2 text-lg m-5">
-        <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
+        <h1 className="py-4 text-3xl lg:text-4xl font-extrabold ">
           Looks like you&apos;ve found the doorway to the great nothing!
         </h1>
-        <p className="py-4 text-gray-800">
+        <p className="py-4 ">
           The content you’re looking for doesn’t exist. It was removed, or you
           mistyped the link.
         </p>
-        <p className="py-2 text-gray-800">
+        <p className="py-2 ">
           Sorry about that! Please visit our hompage to get where you need to
           go.
         </p>
