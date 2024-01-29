@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" },
+    { "source": "/cart", "destination": "/cart" },
+    { "source": "/admin", "destination": "/admin" },
+    { "source": "/admin/categories", "destination": "/admin/categories" }
+  ]
+}

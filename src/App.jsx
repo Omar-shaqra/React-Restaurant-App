@@ -35,7 +35,7 @@ function App() {
           <Route path={`/cart`} element={<Cart />} />
         </Route>
         <Route path={`/admin`} element={<Admin />}>
-          <Route path={`/admin/categories`} element={<AddCategory />} />
+          <Route path={`/admin`} element={<AddCategory />} />
           <Route path={`/admin/subcategories`} element={<AddSubcategory />} />
         </Route>
       </Routes>
