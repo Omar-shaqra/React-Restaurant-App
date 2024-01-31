@@ -107,7 +107,9 @@ const AddCategory = () => {
 
   return (
     <div className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
-      <h1 className="self-center">All Categories</h1>
+      <h1 className="self-center font-extrabold tracking-wider">
+        All Categories
+      </h1>
       <div className="flex gap-6 p-3 justify-around bg-black bg-opacity-75 text-base rounded-md">
         {categoryList ? categoryList : <div>Loading...</div>}
       </div>

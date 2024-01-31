@@ -3,14 +3,12 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 
-// const URL = import.meta.env.REACT_APP_BASE_URL;
-
 const AddSubcategory = () => {
   const [name, setName] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getSubcategories();
@@ -133,7 +131,9 @@ const AddSubcategory = () => {
 
   return (
     <div className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
-      <h1 className="self-center">All Subcategories</h1>
+      <h1 className="self-center font-extrabold tracking-wider">
+        All Subcategories
+      </h1>
       <div className="flex gap-6 p-3 justify-around bg-black bg-opacity-75 text-base rounded-md">
         {subCategoryList ? subCategoryList : <div>Loading...</div>}
       </div>
@@ -159,7 +159,7 @@ const AddSubcategory = () => {
             <option
               disabled
               selected
-              className="capitalize bg-neutral-300 text-white text-center">
+              className="capitalize bg-neutral-400 text-neutral-800">
               Select Category
             </option>
             {categoriesOptions}

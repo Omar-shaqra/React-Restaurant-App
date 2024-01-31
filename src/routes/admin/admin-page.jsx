@@ -13,9 +13,9 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="flex flex-row h-screen w-screen overflow-hidden">
-      <div className="flex flex-col flex-1">
-        <header className=" flex mx-auto w-full h-16 items-center justify-center p-4 backdrop-filter backdrop-blur-md bg-opacity-95 border-b border-b-orange-700">
+    <div className="flex flex-row h-screen w-screen overflow-hidden bg-black bg-opacity-15">
+      <div className="flex flex-col flex-1 ">
+        <header className="flex mx-auto w-full h-16 items-center justify-center p-4 backdrop-filter backdrop-blur-md bg-opacity-95 border-b border-b-[#d46622]">
           <Link to="/">
             <img src={logo} className="w-16 h-auto mr-8" />
           </Link>
@@ -24,6 +24,15 @@ const AdminPage = () => {
               to="/admin"
               className={`${
                 pathname === "/admin"
+                  ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
+                  : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+              }`}>
+              Products
+            </Link>
+            <Link
+              to="/admin/categories"
+              className={`${
+                pathname === "/admin/categories"
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
                   : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
@@ -43,7 +52,9 @@ const AdminPage = () => {
             <UserButton />
           </div>
         </header>
-        <Outlet />
+        <div className="overflow-auto">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
