@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -23,41 +25,44 @@ const responsive = {
 };
 
 const CategoryGallery = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const { data } = await axios.get(
+        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories`
+      );
+      setCategories(data);
+    };
+    getCategories();
+  }, []);
+
   return (
-    <section className="pt-10 shadow-sm flex flex-col">
-      <h1 className="p-2 self-center font-semibold text-3xl font-mono text-white tracking-widest w-fit rounded-2xl">
+    <section className="shadow-sm flex flex-col text-white">
+      <h1 className="p-2 self-center font-semibold text-3xl font-mono tracking-widest w-fit rounded-2xl">
         Categories
       </h1>
-      <Carousel
-        className="flex bg-[#000000] bg-opacity-70 rounded-md py-4 items-center px-2"
-        additionalTransfrom={0}
-        minimumTouchDrag={80}
-        autoPlaySpeed={3000}
-        arrows
-        draggable
-        keyBoardControl
-        pauseOnHover
-        centerMode={false}
-        infinite
-        focusOnSelect={false}
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-        rewind={false}
-        rewindWithAnimation={false}
-        rtl={false}
-        showDots={false}
-        shouldResetAutoplay
-        slidesToSlide={2}
-        swipeable
-        responsive={responsive}>
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-      </Carousel>
+      {categories && categories.data && (
+        <Carousel
+          className="flex flex-row bg-[#000000] bg-opacity-70 rounded-md py-4 items-center px-2"
+          slidesToSlide={1}
+          additionalTransfrom={0}
+          minimumTouchDrag={80}
+          autoPlaySpeed={3000}
+          arrows
+          keyBoardControl
+          pauseOnHover
+          infinite
+          shouldResetAutoplay
+          swipeable
+          responsive={responsive}>
+          {categories &&
+            categories.data &&
+            Object.values(categories.data).map((category, index) => (
+              <CategoryCard key={index} {...category} />
+            ))}
+        </Carousel>
+      )}
     </section>
   );
 };
