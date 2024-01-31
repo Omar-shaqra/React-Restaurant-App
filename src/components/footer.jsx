@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <section
       id="footer"
-      className="flex  mt-10 text-white  bg-gradient-to-t from-black  bg-opacity-30">
+      className="flex mt-10 text-white bg-gradient-to-t from-black bg-opacity-30">
       <div>
         {/* <img src={pizza} alt="" className="absolute max-w-md" /> */}
         <div className="container grid md:grid-cols-3 py-5">

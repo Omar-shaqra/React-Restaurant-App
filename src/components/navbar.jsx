@@ -19,22 +19,25 @@ function Navbar() {
   }
 
   return (
-    <div className="border-b border-b-orange-400 mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
+    <div className="border-b border-b-[#d46622] mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
       <div className="container flex h-16 items-center justify-between px-4 ml-6">
         <Link to="/">
           <img src={logo} className="w-16 h-auto mr-8" />
         </Link>
-        <div className="flex items-center space-x-10 text-lg font-semibold font-serif text-white">
+        <div className="flex items-center space-x-10 text-lg font-semibold font-serif text-[#fdf8ef]">
           <a
-            href="#deals"
-            className="hover:scale-105 hover:text-red-200 transition">
+            href="/#deals"
+            className="hover:scale-105 hover:text-[#efbe82] transition">
             Deals
           </a>
-          <p className="hover:scale-105 hover:text-red-200 transition">Item</p>
-          <p>Item</p>
+          <a
+            href="/#offers"
+            className="hover:scale-105 hover:text-[#efbe82] transition">
+            Offers
+          </a>
           <a
             href="#footer"
-            className="hover:scale-105 hover:text-red-200 transition">
+            className="hover:scale-105 hover:text-[#efbe82] transition">
             Contact
           </a>
         </div>

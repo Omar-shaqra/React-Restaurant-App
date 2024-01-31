@@ -17,7 +17,7 @@ const DealCard = ({ data }) => {
   };
 
   return (
-    <section className="relative w-fit p-4" onClick={handleClick}>
+    <section className="relative p-4 container" onClick={handleClick}>
       <div className="group cursor-pointer rounded-xl border border-rose-200 p-3 space-y-4 shadow-md text-white">
         {/* Image & actions */}
         <div className="w-60 rounded-xl mx-auto">
@@ -38,10 +38,10 @@ const DealCard = ({ data }) => {
         </div>
         {/* Price & Reiew */}
       </div>
-      <button className="absolute group p-2 -bottom-2 ml-16 my-2 bg-amber-300 hover:bg-orange-400 rounded-full transition duration-200">
+      <button className="absolute group p-2 -bottom-2 ml-16 my-2 bg-[#e89a4f] hover:bg-[#efbe82] rounded-full transition duration-200 text-[#3d190d]">
         <div
           onClick={addToCart}
-          className="flex items-center gap-3 px-2 font-serif font-semibold text-neutral-700 group-hover:text-white transition duration-200">
+          className="flex items-center gap-3 px-2 font-serif font-semibold text-neutral-700 transition duration-200">
           Add to Cart
           <ShoppingBag className="group-hover:animate-bounce" />
         </div>
