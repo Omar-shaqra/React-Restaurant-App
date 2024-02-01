@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import CategoryCard from "./ui/category-card";
+import { GetCategories } from "../actions/get-categories";
 
 const responsive = {
   superLargeDesktop: {
@@ -27,15 +28,7 @@ const responsive = {
 const CategoryGallery = () => {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const getCategories = async () => {
-      const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories`
-      );
-      setCategories(data);
-    };
-    getCategories();
-  }, []);
+  GetCategories({ setCategories: setCategories });
 
   return (
     <section className="shadow-sm flex flex-col text-white">
@@ -44,17 +37,13 @@ const CategoryGallery = () => {
       </h1>
       {categories && categories.data && (
         <Carousel
-          className="flex flex-row bg-[#000000] bg-opacity-70 rounded-md py-4 items-center px-2"
+          className="flex flex-row bg-[#000000] bg-opacity-70 rounded-md py-4 items-center justify-center px-2"
           slidesToSlide={1}
           additionalTransfrom={0}
           minimumTouchDrag={80}
-          autoPlaySpeed={3000}
           arrows
-          keyBoardControl
-          pauseOnHover
           infinite
-          shouldResetAutoplay
-          swipeable
+          rewind
           responsive={responsive}>
           {categories &&
             categories.data &&
