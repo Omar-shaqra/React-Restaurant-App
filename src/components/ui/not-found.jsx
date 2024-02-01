@@ -1,6 +1,6 @@
 export default function NotFound() {
   return (
-    <div className="flex items-center flex-col justify-center bg-[rgba(252, 231, 187, 0.6)] h-screen lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28 text-white">
+    <div className="flex items-center flex-col justify-center bg-black bg-opacity-50 h-screen lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28 text-white">
       <div className="w-full lg:w-1/2">
         <img
           className="hidden lg:block"
