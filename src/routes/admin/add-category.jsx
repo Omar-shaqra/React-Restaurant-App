@@ -2,29 +2,29 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { Trash2 } from "lucide-react";
+
+import { GetCategories } from "../../actions/get-categories";
 
 const AddCategory = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
   const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCategories();
+    setIsMounted(true);
   }, []);
 
-  const getCategories = async () => {
-    const { data } = await axios.get(
-      `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories`
-    );
-    setCategories(data);
-  };
+  const { isLoading, refetch } = GetCategories({
+    setCategories: setCategories,
+  });
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (name.length <= 2) {
       toast.error("Name is too short");
     } else {
-      setLoading(true);
       try {
         await axios.post(
           "https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories",
@@ -33,13 +33,11 @@ const AddCategory = () => {
             name,
           }
         );
+        refetch();
+        setName("");
         toast.success("Category added successfully");
-        setLoading(false);
       } catch (error) {
-        toast.error("Error" + error);
-      } finally {
-        setLoading(false);
-        getCategories();
+        toast.error("Error: " + error);
       }
     }
   };
@@ -73,7 +71,7 @@ const AddCategory = () => {
           background: "#292927",
           color: "#fff",
         });
-        getCategories();
+        refetch();
       })
       .catch(({ response: { data } }) => {
         Swal.fire({
@@ -82,6 +80,10 @@ const AddCategory = () => {
         });
       });
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   const categoryList =
     categories.data &&
@@ -96,9 +98,8 @@ const AddCategory = () => {
             <button
               onClick={() => deleteItem(item._id)}
               className="whitespace-nowrap rounded-full px-2 p-1 mt-3
-            bg-red-100 text-black text-md text-center
-            ">
-              Delete
+              text-md text-center bg-black/70 text-white border border-red-300 transition hover:border-red-800 hover:border-2">
+              <Trash2 size={20} />
             </button>
           </div>
         </div>
@@ -121,16 +122,15 @@ const AddCategory = () => {
         <div>
           <input
             required
-            className="text-sm border 2xl:w-[400px] lg:w-[300px] xl:h-12 h-10  border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+            className="text-lg capitalize border 2xl:w-[400px] lg:w-[300px] xl:h-12 h-10  border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
             placeholder={"Enter Category Name"}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <button
             type="submit"
-            disabled={loading}
+            disabled={isLoading}
             className="flex justify-center items-center p-1 my-5 2xl:w-[400px] lg:w-[300px] h-10 text-lg text-white bg-black bg-opacity-55 rounded-lg hover:bg-neutral-700 transition disabled:cursor-not-allowed disabled:bg-black">
-            {/* {loading ? <LoadingSpinner size={'35'} /> : 'Create'} */}
             create
           </button>
         </div>
