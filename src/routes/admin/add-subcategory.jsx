@@ -1,11 +1,11 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { GetCategories } from "../../actions/get-categories";
 import { GetSubCategories } from "../../actions/get-subcategories";
+import { deleteItem } from "../../actions/delete-item";
 
 const AddSubcategory = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,9 +29,23 @@ const AddSubcategory = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (categoryId === "") {
-      toast.error("select category first");
-    } else {
+    let valid = true;
+
+    if (name.length <= 2) {
+      toast.error("Name is too short");
+      valid = false;
+    } else if (categoryId === "") {
+      toast.error("Select Category First!");
+      valid = false;
+    } else
+      subcategories.data.forEach((subcategory) => {
+        if (name === subcategory.name) {
+          toast.error("Name Already Exists!");
+          valid = false;
+        }
+      });
+
+    if (valid == true) {
       try {
         await axios.post(
           "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories",
@@ -43,50 +57,11 @@ const AddSubcategory = () => {
         );
         refetch();
         setName("");
-        toast.success("Subcategory added successfully");
+        toast.success("Subcategory Added Successfully.");
       } catch (error) {
         toast.error("Error occurred" + error.message);
       }
     }
-  };
-
-  const deleteItem = async (id) => {
-    const isConfirm = await Swal.fire({
-      title: "Sure to Delete?",
-      text: "You won't be able to undo this operation",
-      icon: "warning",
-      showCancelButton: true,
-      background: "#292927",
-      color: "#fff",
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "yes, Delete",
-    }).then((result) => {
-      return result.isConfirmed;
-    });
-
-    if (!isConfirm) {
-      return;
-    }
-    await axios
-      .delete(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories/${id}`
-      )
-      .then(() => {
-        Swal.fire({
-          title: "Deleted Successfully",
-          icon: "success",
-          background: "#292927",
-          color: "#fff",
-        });
-        refetch();
-      })
-      .catch(({ response: { data } }) => {
-        Swal.fire({
-          text: "Error :" + data.message,
-          icon: "error",
-        });
-      });
   };
 
   const subCategoryList =
@@ -98,19 +73,26 @@ const AddSubcategory = () => {
           className="flex justify-center items-center p-2 capitalize bg-red-800/70 rounded-full whitespace-nowrap transition cursor-default duration-300 hover:scale-110 hover:border hover:border-red-300 relative group"
           key={item.id}>
           {item.name}
-          <div className="absolute bottom-full text-sm opacity-0 group-hover:opacity-100 transition duration-500">
+          <div className="absolute top-full text-sm opacity-0 group-hover:opacity-100 transition duration-500">
             <p
-              className="whitespace-nowrap rounded-full px-2 p-1 mb-3 text-white w-fit border border-red-300
+              className="whitespace-nowrap rounded-full px-2 p-1 mt-3 text-white w-fit border border-red-300
           bg-black text-md text-center bg-opacity-70">
               {item.category.name}
             </p>
           </div>
           <div className="absolute top-full text-sm opacity-0 group-hover:opacity-100 transition duration-500">
             <button
-              onClick={() => deleteItem(item._id)}
-              className="whitespace-nowrap rounded-full px-2 p-1 mt-3
-           text-md text-center bg-black/70 text-white border border-red-300 transition hover:border-red-800 hover:border-2
-          ">
+              type="button"
+              autoFocus={false}
+              onClick={() =>
+                deleteItem({ id: item._id, routeName: "subcategories" }).then(
+                  () => {
+                    refetch();
+                  }
+                )
+              }
+              className="whitespace-nowrap rounded-full px-2 p-1 mt-12
+           text-md text-center bg-black/70 text-white border border-red-300 transition hover:border-red-800 hover:border-2">
               <Trash2 size={20} />
             </button>
           </div>
@@ -145,7 +127,7 @@ const AddSubcategory = () => {
       <div className="flex flex-col">
         <form
           onSubmit={onSubmit}
-          className="mt-14 gap-4 flex flex-col ml-auto mx-16">
+          className="mt-16 gap-4 flex flex-col ml-auto mx-16">
           <h1 className="font-extrabold tracking-wider">
             Add New Sub Category
           </h1>

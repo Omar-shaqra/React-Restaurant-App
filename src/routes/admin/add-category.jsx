@@ -1,10 +1,10 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
 
 import { GetCategories } from "../../actions/get-categories";
+import { deleteItem } from "../../actions/delete-item";
 
 const AddCategory = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,63 +22,34 @@ const AddCategory = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let valid = true;
+
     if (name.length <= 2) {
-      toast.error("Name is too short");
-    } else {
+      toast.error("Name Is Too Short!");
+      valid = false;
+    } else
+      categories.data.forEach((category) => {
+        if (name === category.name) {
+          toast.error("Name Already Exists!");
+          valid = false;
+        }
+      });
+
+    if (valid == true) {
       try {
         await axios.post(
           "https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories",
-
           {
             name,
           }
         );
         refetch();
         setName("");
-        toast.success("Category added successfully");
+        toast.success("Category Added Successfully.");
       } catch (error) {
         toast.error("Error: " + error);
       }
     }
-  };
-
-  const deleteItem = async (id) => {
-    const isConfirm = await Swal.fire({
-      title: "Sure to Delete?",
-      text: "You won't be able to undo this operation",
-      icon: "warning",
-      showCancelButton: true,
-      background: "#292927",
-      color: "#fff",
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "yes, Delete",
-    }).then((result) => {
-      return result.isConfirmed;
-    });
-
-    if (!isConfirm) {
-      return;
-    }
-    await axios
-      .delete(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories/${id}`
-      )
-      .then(() => {
-        Swal.fire({
-          title: "Deleted Successfully",
-          icon: "success",
-          background: "#292927",
-          color: "#fff",
-        });
-        refetch();
-      })
-      .catch(({ response: { data } }) => {
-        Swal.fire({
-          text: "Error :" + data.message,
-          icon: "error",
-        });
-      });
   };
 
   if (!isMounted) {
@@ -96,7 +67,13 @@ const AddCategory = () => {
           {item.name}
           <div className="absolute top-full text-sm opacity-0 group-hover:opacity-100">
             <button
-              onClick={() => deleteItem(item._id)}
+              onClick={() =>
+                deleteItem({ id: item._id, routeName: "categories" }).then(
+                  () => {
+                    refetch();
+                  }
+                )
+              }
               className="whitespace-nowrap rounded-full px-2 p-1 mt-3
               text-md text-center bg-black/70 text-white border border-red-300 transition hover:border-red-800 hover:border-2">
               <Trash2 size={20} />
