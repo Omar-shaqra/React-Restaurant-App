@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import { Wallet } from "lucide-react";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
 
 import useCart from "../../hooks/use-cart";
 import Currency from "../ui/currency";
@@ -23,23 +23,45 @@ function Summary() {
   }, [searchParams, removeAll]);
 
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
+    return (
+      total +
+      Number(
+        item.price.find((price) => price.size === item.selectedSize)?.pr *
+          item.quantity || item.price[0].pr * item.quantity
+      )
+    );
   }, 0);
 
   return (
-    <div className="mt-16 rounded-lg bg-black bg-opacity-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8 text-white">
-      <h2 className="text-lg font-medium ">Order summary</h2>
-      <div className="mt-6 space-y-4">
+    <div className="mt-8 rounded-xl bg-black/90 px-4 py-6 text-white w-full self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+      <h2 className="text-2xl font-medium mb-1">Order Summary</h2>
+      {items.map((item) => (
+        <div key={item.id} className="flex gap-1 mb-1 items-center">
+          <p className="font-bold tracking-widest p-1">{item.title}</p>{" "}
+          <p className="bg-orange-800 rounded-full p-1 text-sm">
+            {item.selectedSize}
+          </p>
+          <p className="bg-white/10 rounded-full p-1 text-sm">
+            x{item.quantity}
+          </p>
+        </div>
+      ))}
+      <div className="mt-3 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium ">Order total</div>
+          <div className="text-base font-medium">Order Total</div>
           <Currency value={totalPrice} />
         </div>
       </div>
       <button
-        onClick={() => {}}
+        onClick={() => {
+          toast.error("Not Working yet");
+        }}
         disabled={items.length === 0}
-        className="w-full flex justify-center items-center gap-2 rounded-full p-3 text-white font-semibold mt-6 bg-neutral-500 hover:bg-green-600 transition duration-500 disabled:cursor-not-allowed">
-        Checkout <Wallet size={20} />
+        className="w-full flex justify-center items-center gap-2 rounded-full p-3 text-white font-semibold mt-6 bg-neutral-500 hover:bg-green-600 transition duration-500 disabled:cursor-not-allowed group">
+        <p className="group-hover:-translate-x-3 transition tracking-wider uppercase">
+          Checkout
+        </p>
+        <Wallet size={20} className="group-hover:translate-x-3 transition" />
       </button>
     </div>
   );

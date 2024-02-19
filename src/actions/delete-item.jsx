@@ -1,6 +1,6 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 export const deleteItem = async ({ id, routeName }) => {
   const isConfirm = await Swal.fire({
@@ -22,7 +22,8 @@ export const deleteItem = async ({ id, routeName }) => {
   }
   await axios
     .delete(
-      `https://restaurant-menue-ordering-v1.onrender.com/api/v1/${routeName}/${id}`
+      // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/${routeName}/${id}`
+      `http://localhost:8000/api/v1/${routeName}/${id}`
     )
     .then(() => {
       toast.success("Delete Successfully.");

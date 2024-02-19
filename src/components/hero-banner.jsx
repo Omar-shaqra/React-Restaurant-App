@@ -29,12 +29,12 @@ const responsive = {
 
 const HeroBanner = () => {
   return (
-    <div className="pt-1">
+    <div className="pt-1 w-11/12 self-center">
       <Carousel
         additionalTransfrom={0}
         autoPlay
         arrows={false}
-        autoPlaySpeed={3000}
+        autoPlaySpeed={4000}
         centerMode={false}
         className=""
         containerClass="container-with-dots"

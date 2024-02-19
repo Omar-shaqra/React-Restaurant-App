@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
+import empty_cart from "../assets/empty_cart.png";
 import CartItem from "../components/cart/cart-item";
 import Summary from "../components/cart/summary";
 import useCart from "../hooks/use-cart";
@@ -19,29 +18,29 @@ function CartPage() {
   }
 
   return (
-    <div className="px-4 py-16 sm:px-4 md:px-6 lg:px-8 container mx-auto h-[80vh] text-white">
-      <h1 className="text-3xl font-bold ">Shopping Cart</h1>
-      <div className="lg:col-span-7">
+    <div className="container px-4 pt-10 mx-auto text-white flex flex-col gap-5">
+      <h1 className="flex flex-col mb-2 self-center font-semibold text-3xl bg-white/30 p-2 tracking-widest w-fit rounded-2xl">
+        Shopping Cart
+      </h1>
+      <div className="flex flex-col items-center px-4">
         {cart.items.length === 0 && (
-          <p className="tracking-widest font-extrabold p-1 bg-neutral-500 w-fit rounded-xl my-3">
-            No items added to cart
-          </p>
+          <div className="h-screen flex flex-col items-center">
+            <img
+              src={empty_cart}
+              className="w-80 mt-8 rounded-full bg-white/10 p-4"
+              alt=""
+            />
+          </div>
         )}
-        <ul>
-          {cart &&
-            cart.items.map((item) => <CartItem key={item.id} data={item} />)}
+        <ul className="flex flex-col justify-center items-center gap-2 w-full self-center">
+          {cart.items.map((item) => (
+            <CartItem key={item.id} data={item} />
+          ))}
         </ul>
       </div>
-      <Summary />
-      <Link to={"/"}>
-        <button
-          onClick={() => {}}
-          className="flex justify-center w-28 gap-2 p-3 mt-20 rounded-full translate-x-0
-            text-white font-semibold bg-neutral-400 hover:bg-red-600 transition duration-500 group">
-          Back
-          <ArrowRight className="group-hover:translate-x-2 transition-all" />
-        </button>
-      </Link>
+      <div className="w-5/6 self-center flex-col flex justify-center">
+        {cart.items.length > 0 && <Summary />}
+      </div>
     </div>
   );
 }

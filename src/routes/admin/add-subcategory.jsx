@@ -1,11 +1,11 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
+import { deleteItem } from "../../actions/delete-item";
 import { GetCategories } from "../../actions/get-categories";
 import { GetSubCategories } from "../../actions/get-subcategories";
-import { deleteItem } from "../../actions/delete-item";
 
 const AddSubcategory = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,8 +29,9 @@ const AddSubcategory = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    let valid = true;
+    toast.dismiss();
 
+    let valid = true;
     if (name.length <= 2) {
       toast.error("Name is too short");
       valid = false;
@@ -48,8 +49,8 @@ const AddSubcategory = () => {
     if (valid == true) {
       try {
         await axios.post(
-          "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories",
-
+          // "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories",
+          "http://localhost:8000/api/v1/subcategories",
           {
             name,
             category: categoryId,
@@ -67,10 +68,10 @@ const AddSubcategory = () => {
   const subCategoryList =
     subcategories.data &&
     subcategories.data.length > 0 &&
-    Object.values(subcategories.data).map((item) => {
+    subcategories.data.map((item) => {
       return (
         <div
-          className="flex justify-center items-center p-2 capitalize bg-red-800/70 rounded-full whitespace-nowrap transition cursor-default duration-300 hover:scale-110 hover:border hover:border-red-300 relative group"
+          className="flex justify-center items-center p-2 capitalize bg-red-800/70 rounded-full whitespace-nowrap transition cursor-default duration-300 hover:scale-110 relative group"
           key={item.id}>
           {item.name}
           <div className="absolute top-full text-sm opacity-0 group-hover:opacity-100 transition duration-500">
@@ -93,7 +94,7 @@ const AddSubcategory = () => {
               }
               className="whitespace-nowrap rounded-full px-2 p-1 mt-12
            text-md text-center bg-black/70 text-white border border-red-300 transition hover:border-red-800 hover:border-2">
-              <Trash2 size={20} />
+              <Trash2 size={18} />
             </button>
           </div>
         </div>
@@ -102,7 +103,7 @@ const AddSubcategory = () => {
 
   const categoryOptions =
     categories.data &&
-    Object.values(categories.data).map((item, index) => (
+    categories.data.map((item, index) => (
       <option
         className="capitalize text-lg p-2 m-2 bg-black text-center"
         key={index}
@@ -116,11 +117,11 @@ const AddSubcategory = () => {
   }
 
   return (
-    <div className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
+    <section className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
       <h1 className="self-center font-extrabold tracking-wider">
         All Subcategories
       </h1>
-      <div className="flex gap-6 p-3 justify-around bg-black bg-opacity-75 text-base rounded-md">
+      <div className="flex gap-6 p-3 justify-around bg-black bg-opacity-75 text-base border-t-[#d46622] border-t rounded-md">
         {subCategoryList ? subCategoryList : <div>Loading...</div>}
       </div>
       {/* Add Form */}
@@ -133,7 +134,7 @@ const AddSubcategory = () => {
           </h1>
           <input
             required
-            className="text-lg capitalize border 2xl:w-[400px] lg:w-[300px] xl:h-12 h-10 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+            className="text-base capitalize border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
             placeholder={"Enter Sub Category Name"}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -141,7 +142,7 @@ const AddSubcategory = () => {
           <h1 className="font-extrabold tracking-wider">Select Category</h1>
           <select
             onChange={(e) => setCategoryId(e.target.value)}
-            className="text-base border 2xl:w-[400px] lg:w-[300px] xl:h-12 h-10 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg capitalize">
+            className="text-base border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg capitalize">
             <option
               disabled
               selected
@@ -153,13 +154,12 @@ const AddSubcategory = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="flex justify-center items-center p-1 my-5 2xl:w-[400px] lg:w-[300px] h-10 text-lg text-white bg-black bg-opacity-55 rounded-lg hover:bg-neutral-700 transition disabled:cursor-not-allowed disabled:bg-black">
-            {/* {loading ? <LoadingSpinner size={'35'} /> : 'Create'} */}
-            create
+            className="self-center p-1 my-5 w-3/6 h-10 text-lg text-white bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 transition disabled:cursor-not-allowed disabled:bg-black">
+            Create
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

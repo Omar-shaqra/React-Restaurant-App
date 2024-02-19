@@ -1,4 +1,5 @@
 import offerImg from "/src/assets/offer1.jpg";
+
 const OfferCard = () => {
   return (
     <div className="container relative">

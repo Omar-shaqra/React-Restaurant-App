@@ -6,15 +6,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Layout from "./components/ui/layout";
-import Home from "./routes/home";
-import Cart from "./routes/cart";
-// import Subcategory from "./routes/subcategory";
-import Admin from "./routes/admin/admin-page";
 import NotFound from "./components/ui/not-found";
 import AddCategory from "./routes/admin/add-category";
-import AddSubcategory from "./routes/admin/add-subcategory";
-// import Subcategory from "./routes/subcategory";
 import AddProduct from "./routes/admin/add-product";
+import AddSubcategory from "./routes/admin/add-subcategory";
+import Admin from "./routes/admin/admin-page";
+import Cart from "./routes/cart";
+import Home from "./routes/home";
+import OurNew from "./routes/ourNew";
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path={`/cart`} element={<Cart />} />
-          {/* <Route path={`/subcategory/:id`} element={<Subcategory />} /> */}
+          <Route path={`/our-new`} element={<OurNew />} />
         </Route>
         <Route path={`/admin`} element={<Admin />}>
           <Route path={`/admin`} element={<AddProduct />} />

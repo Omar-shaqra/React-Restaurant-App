@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "react-hot-toast";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 const useCart = create(
   persist(
@@ -8,19 +8,54 @@ const useCart = create(
       items: [],
       addItem: (data) => {
         const currentItems = get().items;
-        const existingItem = currentItems.find((item) => item.id === data.id);
+        const existingItem = currentItems.find((item) => item.id === data._id);
 
         if (existingItem) {
-          return toast("Item already in cart.");
+          return toast.dismiss(), toast("Item already in cart!");
         }
 
-        set({ items: [...get().items, data] });
-        toast.success("Item added to cart.");
+        const newItem = {
+          ...data,
+          // selectedSize: selectedSize,
+          quantity: 1,
+        };
+
+        set({ items: [...get().items, newItem] });
+        toast.success(`${data.title} Added to Cart.`);
       },
+
+      increaseQuantity: (id) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+          ),
+        }));
+      },
+
+      decreaseQuantity: (id) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id && item.quantity > 1
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }));
+      },
+
+      size: (id, size) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, selectedSize: size } : item
+          ),
+        }));
+      },
+
       removeItem: (id) => {
-        set({ items: [...get().items.filter((item) => item.id !== id)] });
-        toast.success("Item removed from cart.");
+        set({
+          items: [...get().items.filter((item) => item.id !== id)],
+        });
       },
+
       removeAll: () => set({ items: [] }),
     }),
     {

@@ -1,6 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { RedirectToSignIn, useAuth, UserButton } from "@clerk/clerk-react";
+import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+
 import logo from "../../assets/logo.png";
 
 const AdminPage = () => {
@@ -13,13 +13,13 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="flex flex-row h-screen w-screen overflow-hidden bg-black bg-opacity-15">
-      <div className="flex flex-col flex-1 ">
+    <div className="flex flex-row h-screen w-screen overflow-hidden bg-neutral-950/80">
+      <div className="flex flex-col flex-1 p-0 m-0">
         <header className="flex mx-auto w-full h-16 items-center justify-center p-4 backdrop-filter backdrop-blur-md bg-opacity-95 border-b border-b-[#d46622]">
-          <Link to="/">
-            <img src={logo} className="w-16 h-auto mr-8" />
+          <Link to="/admin" className="mr-auto">
+            <img src={logo} className="w-16 h-auto" />
           </Link>
-          <ul className="flex gap-8 font-semibold">
+          <ul className="flex gap-8 font-semibold mr-auto">
             <Link
               to="/admin"
               className={`${
@@ -48,9 +48,9 @@ const AdminPage = () => {
               SubCategories
             </Link>
           </ul>
-          <div className="ml-auto">
-            <UserButton />
-          </div>
+          {/* <div className="ml-auto"> */}
+          {/* <UserButton /> */}
+          {/* </div> */}
         </header>
         <div className="overflow-auto">
           <Outlet />
