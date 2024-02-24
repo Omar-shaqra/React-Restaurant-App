@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ImagePlus, Trash2 } from "lucide-react";
-import { set } from "mongoose";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
