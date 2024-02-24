@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const GetProducts = ({ setProducts }) => {
   return useQuery({
-    queryKey: ["products"],
+    queryKey: [setProducts, "products"],
     queryFn: async () => {
       const { data } = await axios.get(
         // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products`
@@ -17,7 +17,7 @@ export const GetProducts = ({ setProducts }) => {
 
 export const GetProductsWithCategoryId = ({ setProducts, id }) => {
   return useQuery({
-    queryKey: [id],
+    queryKey: [id, setProducts, "category"],
     queryFn: async () => {
       const { data } = await axios.get(
         // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?subcategories=${id}`
@@ -31,7 +31,7 @@ export const GetProductsWithCategoryId = ({ setProducts, id }) => {
 
 export const GetProductsWithSubcategoryId = ({ setProducts, id }) => {
   return useQuery({
-    queryKey: [id],
+    queryKey: [id, setProducts, "subcategory"],
     queryFn: async () => {
       const { data } = await axios.get(
         // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?subcategories=${id}`
