@@ -33,7 +33,7 @@ const responsive = {
 
 const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
   const [subcategories, setSubcategories] = useState([]);
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(false);
 
   if (selected_Category == null) {
     GetSubCategories({ setSubcategories: setSubcategories });
@@ -62,7 +62,7 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
           <SubcategoryCard
             {...subcategory}
             onClick={() => handleOnClick(subcategory._id)}
-            selected={selected === subcategory._id}
+            selected={selected_Category && selected === subcategory._id}
           />
         </div>
       ))
