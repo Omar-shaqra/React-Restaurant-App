@@ -1,4 +1,3 @@
-import HeroBanner from "../components/hero-banner";
 import OffersGallery from "../components/offers-gallery";
 import ProductList from "../components/product-list";
 

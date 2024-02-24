@@ -25,7 +25,7 @@ function Navbar() {
   }
 
   return (
-    <div className="border-b px-2 border-b-[#d46622] mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
+    <div className="border-b border-b-[#d46622] mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
       <div className="flex h-16 items-center justify-between">
         <Link to="/">
           <img src={logo} className="w-16 h-auto mr-auto" />
@@ -52,7 +52,7 @@ function Navbar() {
             Our New
           </Link>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 px-1">
           <NavCart />
           {isSignedIn ? (
             <SignedIn>

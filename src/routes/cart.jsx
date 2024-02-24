@@ -18,11 +18,11 @@ function CartPage() {
   }
 
   return (
-    <div className="container px-4 pt-10 mx-auto text-white flex flex-col gap-5">
+    <div className="container w-full px-4 pt-10 mx-auto text-white flex flex-col gap-5">
       <h1 className="flex flex-col mb-2 self-center font-semibold text-3xl bg-white/30 p-2 tracking-widest w-fit rounded-2xl">
         Shopping Cart
       </h1>
-      <div className="flex flex-col items-center px-4">
+      <div className="flex flex-col justify-center items-center px-4">
         {cart.items.length === 0 && (
           <div className="h-screen flex flex-col items-center">
             <img
@@ -32,13 +32,11 @@ function CartPage() {
             />
           </div>
         )}
-        <ul className="flex flex-col justify-center items-center gap-2 w-full self-center">
+        <ul className="flex flex-col justify-center  items-center gap-2 w-full self-center">
           {cart.items.map((item) => (
             <CartItem key={item.id} data={item} />
           ))}
         </ul>
-      </div>
-      <div className="w-5/6 self-center flex-col flex justify-center">
         {cart.items.length > 0 && <Summary />}
       </div>
     </div>
