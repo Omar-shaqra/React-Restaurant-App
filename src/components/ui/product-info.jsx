@@ -6,13 +6,14 @@ import { useState } from "react";
 
 const ProductInfo = ({ data }) => {
   const [selectedSize, setSelectedSize] = useState(data.price[0].size);
+  const [selectedDough, setSelectedDough] = useState("");
 
-  const { addItem } = useCart();
-  const { size } = useCart();
+  const { addItem, size, dough } = useCart();
 
   const addToCart = () => {
     addItem(data);
     size(data._id, selectedSize);
+    dough(data._id, selectedDough);
   };
 
   return (
@@ -105,35 +106,43 @@ const ProductInfo = ({ data }) => {
             </div>
           )}
           {/* Dough Type */}
-          <div className="flex space-x-8 gap-x-2 container">
-            <h3 className="font-semibold ">Dough:</h3>
-            <div className="flex space-x-5 gap-1 font-semibold font-mono ">
-              <input
-                type="radio"
-                name="dough"
-                value="classic"
-                className="hover:cursor-pointer"
-              />
-              Classic
-              <input
-                type="radio"
-                name="dough"
-                value="crust "
-                className="hover:cursor-pointer"
-              />
-              Crust
-              <input
-                type="radio"
-                name="dough"
-                value="thin"
-                className="hover:cursor-pointer"
-              />
-              Thin
-            </div>
-          </div>
+          {data.category?.name === "Pizza" ||
+            (data.category?.name === "pizza" && (
+              <div className="flex space-x-8 gap-x-2 container">
+                <h3 className="font-semibold">Dough:</h3>
+                <div className="flex space-x-5 gap-1 font-semibold font-mono ">
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="classic"
+                    className="hover:cursor-pointer"
+                    onChange={() => setSelectedDough("classic")}
+                  />
+                  Classic
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="crust"
+                    className="hover:cursor-pointer"
+                    onChange={() => setSelectedDough("crust")}
+                  />
+                  Crust
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="thin"
+                    className="hover:cursor-pointer"
+                    onChange={() => setSelectedDough("thin")}
+                  />
+                  Thin
+                </div>
+              </div>
+            ))}
+
           <button
             onClick={addToCart}
-            className="w-fit flex self-center gap-2 bg-white/20 hover:bg-white/40 transition p-2 rounded-xl">
+            disabled={!selectedDough}
+            className="w-fit flex self-center gap-2 bg-white/20 hover:bg-white/40 transition p-2 rounded-xl disabled:cursor-not-allowed">
             Add To Cart
             <ShoppingCart size={20} />
           </button>

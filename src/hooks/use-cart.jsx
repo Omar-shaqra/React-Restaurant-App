@@ -16,7 +16,6 @@ const useCart = create(
 
         const newItem = {
           ...data,
-          // selectedSize: selectedSize,
           quantity: 1,
         };
 
@@ -46,6 +45,14 @@ const useCart = create(
         set((state) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, selectedSize: size } : item
+          ),
+        }));
+      },
+
+      dough: (id, dough) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, selectedDough: dough } : item
           ),
         }));
       },
