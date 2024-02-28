@@ -19,7 +19,7 @@ const PreviewModal = () => {
             "undefined",
             "http://localhost:8000/"
           )}
-          className="aspect-square self-center xl:h-64 lg:h-60  xs:h-56 rounded"
+          className="aspect-square self-center xl:h-64 lg:h-60 xs:h-52 rounded"
         />
         <div className="mt-5 container sm:col-span-8 lg:col-span-7 xs:col-span-10">
           <ProductInfo data={product} />

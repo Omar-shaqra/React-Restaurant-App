@@ -25,7 +25,7 @@ const AdminPage = () => {
               className={`${
                 pathname === "/admin"
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
-                  : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
               Products
             </Link>
@@ -34,7 +34,7 @@ const AdminPage = () => {
               className={`${
                 pathname === "/admin/categories"
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
-                  : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
               Categories
             </Link>
@@ -43,9 +43,18 @@ const AdminPage = () => {
               className={`${
                 pathname === "/admin/subcategories"
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
-                  : "font-bold hover:bg-red-800 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
               SubCategories
+            </Link>
+            <Link
+              to="/admin/offers"
+              className={`${
+                pathname === "/admin/offers"
+                  ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+              }`}>
+              Offers
             </Link>
           </ul>
           {/* <div className="ml-auto"> */}

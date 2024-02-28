@@ -28,7 +28,7 @@ const ProductCard = ({
 
   return (
     <section className="m-1 flex justify-center text-white" onClick={onPreview}>
-      <div className="p-1 w-full bg-white/30 rounded-lg group cursor-pointer border border-opacity-50 border-orange-200 ">
+      <div className="p-1 w-full bg-white/30 rounded-lg group cursor-pointer border border-opacity-50 border-orange-200">
         {image == "visible" && (
           <img
             src={imgSrc}
@@ -50,7 +50,7 @@ const ProductCard = ({
         </div>
         {/* Prices & Button */}
         <div className="flex items-center justify-between">
-          <div className="flex justify-between mt-1 md:text-sm xs:text-[10px] xs:gap-1 ">
+          <div className="flex justify-between mt-1 md:text-sm xs:text-[10px] xs:gap-1">
             <div className="flex flex-col items-center p-1 bg-white/20 rounded">
               <p className="text-gray-300">Basic</p>
               <Currency value={price[0] ? price[0].pr : ""} />

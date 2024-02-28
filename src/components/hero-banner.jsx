@@ -29,7 +29,7 @@ const responsive = {
 
 const HeroBanner = () => {
   return (
-    <div className="pt-1 w-11/12 self-center">
+    <div className="pt-1 w-full self-center">
       <Carousel
         additionalTransfrom={0}
         autoPlay
@@ -55,7 +55,6 @@ const HeroBanner = () => {
         rtl={false}
         shouldResetAutoplay
         showDots
-        sliderClass=""
         slidesToSlide={1}
         swipeable>
         {heroSlides.map((slide, slideIndex) => (
@@ -63,7 +62,7 @@ const HeroBanner = () => {
             key={slideIndex}
             src={heroSlides[slideIndex]}
             alt="banner-img"
-            className="pb-6 rounded-md h-[80vh] w-full"
+            className="pb-6 rounded-md md:h-[80vh] w-full"
           />
         ))}
       </Carousel>

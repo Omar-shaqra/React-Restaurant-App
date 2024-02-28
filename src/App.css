@@ -22,6 +22,16 @@ body,
   background-size: cover;
 }
 
+.multiSelectContainer li {
+  background-color: #fce2bf;
+  color: black;
+}
+
+li.groupChildEle {
+  background-color: #030303;
+  color: white;
+}
+
 @layer base {
   :root {
     scroll-behavior: smooth;
