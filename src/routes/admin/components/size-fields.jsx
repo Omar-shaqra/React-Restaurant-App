@@ -23,12 +23,14 @@ const SizeFields = ({
   return (
     <div className="flex flex-col gap-6">
       <div>
+        {/* Basic size */}
         <div className="relative flex gap-2">
           <input
             required
             name="price_basic"
             type="number"
             min={1}
+            step={0.01}
             value={price_basic}
             placeholder="Price for basic..."
             onChange={(e) => handlePriceChange(e, "basic")}
@@ -37,6 +39,7 @@ const SizeFields = ({
           <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
         </div>
       </div>
+      {/* Mid size */}
       {sizes === "2" && (
         <div>
           <div className="relative flex gap-2">
@@ -45,6 +48,7 @@ const SizeFields = ({
               name="price_md"
               type="number"
               min={1}
+              step={0.01}
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
@@ -54,6 +58,7 @@ const SizeFields = ({
           </div>
         </div>
       )}
+      {/* Lg size */}
       {sizes === "3" && (
         <div>
           <div className="relative flex gap-2">
@@ -62,6 +67,7 @@ const SizeFields = ({
               name="price_md"
               type="number"
               min={1}
+              step={0.01}
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
@@ -79,6 +85,7 @@ const SizeFields = ({
               name="price_lg"
               type="number"
               min={1}
+              step={0.01}
               value={price_lg}
               placeholder="Price for lg..."
               onChange={(e) => handlePriceChange(e, "lg")}

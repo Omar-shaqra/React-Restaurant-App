@@ -11,13 +11,13 @@ const ProductInfo = ({ data }) => {
   const { addItem, size, dough } = useCart();
 
   const addToCart = () => {
-    addItem(data);
+    addItem(data, selectedSize, selectedDough);
     size(data._id, selectedSize);
     dough(data._id, selectedDough);
   };
 
   return (
-    <section className="flex flex-col container">
+    <section className="flex flex-col container gap-4">
       <div className="my-3 flex items-end justify-between">
         <div className="text-2xl">{data.title}</div>
         <Currency
@@ -32,7 +32,7 @@ const ProductInfo = ({ data }) => {
         {data.description}
       </p>
       <hr className="my-4" />
-      <div className="flex flex-row gap-6 items-center ">
+      <div className="flex flex-row gap-6">
         <div className="flex flex-col gap-y-6 ">
           {/* Sizes */}
           {data.price[1] && data.price[1].size && (
@@ -115,7 +115,7 @@ const ProductInfo = ({ data }) => {
                     type="radio"
                     name="dough"
                     value="classic"
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer "
                     onChange={() => setSelectedDough("classic")}
                   />
                   Classic
@@ -138,16 +138,16 @@ const ProductInfo = ({ data }) => {
                 </div>
               </div>
             ))}
-
-          <button
-            onClick={addToCart}
-            disabled={!selectedDough}
-            className="w-fit flex self-center gap-2 bg-white/20 hover:bg-white/40 transition p-2 rounded-xl disabled:cursor-not-allowed">
-            Add To Cart
-            <ShoppingCart size={20} />
-          </button>
+          {/* Add Button */}
         </div>
       </div>
+      <button
+        onClick={addToCart}
+        disabled={data.category?.name === "pizza" && !selectedDough}
+        className="w-fit flex self-center gap-2 bg-white/20 hover:bg-white/40 transition p-2 border border-opacity-40 hover:border-orange-500 border-white rounded-xl disabled:cursor-not-allowed">
+        Add To Cart
+        <ShoppingCart size={20} />
+      </button>
     </section>
   );
 };

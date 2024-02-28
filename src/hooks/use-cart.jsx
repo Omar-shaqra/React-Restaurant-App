@@ -6,9 +6,14 @@ const useCart = create(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (data) => {
+      addItem: (data, selectedSize, selectedDough) => {
         const currentItems = get().items;
-        const existingItem = currentItems.find((item) => item.id === data._id);
+        const existingItem = currentItems.find(
+          (item) =>
+            item.id === data._id &&
+            item.selectedSize === selectedSize &&
+            item.selectedDough === selectedDough
+        );
 
         if (existingItem) {
           return toast.dismiss(), toast("Item already in cart!");
@@ -16,10 +21,14 @@ const useCart = create(
 
         const newItem = {
           ...data,
+          selectedSize,
+          selectedDough,
           quantity: 1,
         };
 
-        set({ items: [...get().items, newItem] });
+        set((state) => ({
+          items: [...state.items, newItem],
+        }));
         toast.success(`${data.title} Added to Cart.`);
       },
 
