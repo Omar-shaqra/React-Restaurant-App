@@ -95,9 +95,6 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
         </option>
       ));
 
-  console.log("categoryId: ", categoryId);
-  console.log(Subcategories_Options);
-
   return (
     <form
       onSubmit={onSubmit}
