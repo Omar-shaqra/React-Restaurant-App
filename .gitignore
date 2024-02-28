@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .env
 /menu-restaurant-ordering.postman_collection.json
+/.env
