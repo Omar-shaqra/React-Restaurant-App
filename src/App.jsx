@@ -14,6 +14,7 @@ import Admin from "./routes/admin/admin-page";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
 import OurNew from "./routes/ourNew";
+import AddOffer from "./routes/admin/add-offer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path={`/admin`} element={<AddProduct />} />
           <Route path={`/admin/categories`} element={<AddCategory />} />
           <Route path={`/admin/subcategories`} element={<AddSubcategory />} />
+          <Route path={`/admin/offers`} element={<AddOffer />} />
         </Route>
       </Routes>
       <Toaster />
