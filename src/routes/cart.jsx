@@ -6,7 +6,7 @@ import Summary from "../components/cart/summary";
 import useCart from "../hooks/use-cart";
 
 function CartPage() {
-  const cart = useCart();
+  const { items } = useCart();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function CartPage() {
         Shopping Cart
       </h1>
       <div className="flex flex-col justify-center items-center px-4">
-        {cart.items.length === 0 && (
+        {items.length === 0 && (
           <div className="h-screen flex flex-col items-center">
             <img
               src={empty_cart}
@@ -32,12 +32,15 @@ function CartPage() {
             />
           </div>
         )}
-        <ul className="flex flex-col justify-center  items-center gap-2 w-full self-center">
-          {cart.items.map((item) => (
-            <CartItem key={item.id} data={item} />
+        <ul className="flex flex-col justify-center items-center gap-2 w-full self-center">
+          {items.map((item) => (
+            <CartItem
+              key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}
+              data={item}
+            />
           ))}
         </ul>
-        {cart.items.length > 0 && <Summary />}
+        {items.length > 0 && <Summary />}
       </div>
     </div>
   );

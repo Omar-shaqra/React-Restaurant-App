@@ -5,20 +5,19 @@ import Currency from "../ui/currency";
 import IconButton from "../ui/icon-button";
 
 function CartItem({ data }) {
-  const cart = useCart();
+  const { increaseQuantity, decreaseQuantity, removeItem } = useCart();
 
   const onIncrease = () => {
-    cart.increaseQuantity(data.id);
+    increaseQuantity(data.id, data.selectedSize, data.selectedDough);
   };
   const onDecrease = () => {
-    cart.decreaseQuantity(data.id);
+    decreaseQuantity(data.id, data.selectedSize, data.selectedDough);
   };
   const onRemove = () => {
-    cart.removeItem(data.id);
+    removeItem(data.id, data.selectedSize, data.selectedDough);
   };
 
-  const imgSrc =
-    data && data.imageCover.replace("undefined", "http://localhost:8000");
+  const imgSrc = data?.imageCover.replace("undefined", "http://localhost:8000");
 
   return (
     <li className="flex sm:flex-row xs:flex-col w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">

@@ -36,11 +36,18 @@ function Summary() {
     <div className="mt-5 rounded-xl bg-black/90 px-4 py-4 text-white w-full self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       <h2 className="text-2xl font-medium mb-1">Order Summary</h2>
       {items.map((item) => (
-        <div key={item.id} className="flex gap-1 mb-1 items-center">
+        <div
+          key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}
+          className="flex gap-1 mb-1 items-center">
           <p className="font-bold tracking-widest p-1">{item.title}</p>
-          <p className="bg-orange-800 rounded-full p-1 text-sm">
+          <p className="bg-orange-800/90 rounded-full p-1 text-sm">
             {item.selectedSize}
           </p>
+          {item.selectedDough && (
+            <p className="bg-orange-800/70 rounded-full p-1 text-sm">
+              {item.selectedDough}
+            </p>
+          )}
           <p className="bg-white/10 rounded-full p-1 text-sm">
             x{item.quantity}
           </p>

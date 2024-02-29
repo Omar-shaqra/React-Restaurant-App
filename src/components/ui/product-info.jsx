@@ -8,12 +8,10 @@ const ProductInfo = ({ data }) => {
   const [selectedSize, setSelectedSize] = useState(data.price[0].size);
   const [selectedDough, setSelectedDough] = useState("");
 
-  const { addItem, size, dough } = useCart();
+  const { addItem } = useCart();
 
   const addToCart = () => {
     addItem(data, selectedSize, selectedDough);
-    size(data._id, selectedSize);
-    dough(data._id, selectedDough);
   };
 
   return (
@@ -35,12 +33,12 @@ const ProductInfo = ({ data }) => {
       <div className="flex flex-row gap-6">
         <div className="flex flex-col gap-y-6 ">
           {/* Sizes */}
-          {data.price[1] && data.price[1].size && (
+          {data.price[1]?.size && (
             <div className="flex space-x-8 items-center gap-x-2 ">
               <h3 className="font-semibold ">Size:</h3>
               <div className="flex space-x-6 gap-1 font-semibold font-mono">
                 {/* Basic */}
-                {data.price && data.price[0] && (
+                {data?.price[0] && (
                   <div
                     className={`flex items-center gap-1 p-1 rounded cursor-pointer bg-white/20  ${
                       selectedSize === data.price[0].size ? "selected-size" : ""
@@ -61,7 +59,7 @@ const ProductInfo = ({ data }) => {
                   </div>
                 )}
                 {/* Mid */}
-                {data.price[1] && data.price[1].size && (
+                {data.price[1]?.size && (
                   <div
                     className={`flex items-center gap-1 p-1 rounded cursor-pointer bg-white/20 ${
                       selectedSize === data.price[1].size ? "selected-size" : ""
@@ -82,7 +80,7 @@ const ProductInfo = ({ data }) => {
                   </div>
                 )}
                 {/* Large */}
-                {data.price[2] && data.price[2].size && (
+                {data.price[2]?.size && (
                   <div
                     className={`flex items-center gap-1 p-1 rounded cursor-pointer bg-white/20 ${
                       selectedSize === data.price[2].size ? "selected-size" : ""
