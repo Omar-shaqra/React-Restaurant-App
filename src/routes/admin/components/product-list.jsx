@@ -27,7 +27,7 @@ const responsive = {
 
 const ProductList = ({ products, refetch }) => {
   const productList =
-    products.data && products.data.length > 0 ? (
+    products.data?.length > 0 ? (
       products.data.map((product, index) => (
         <ProductCard
           key={index}
@@ -38,7 +38,7 @@ const ProductList = ({ products, refetch }) => {
         />
       ))
     ) : (
-      <p>Loading...</p>
+      <p>No Products Found</p>
     );
 
   return (
@@ -50,7 +50,7 @@ const ProductList = ({ products, refetch }) => {
       keyBoardControl={true}
       arrows
       responsive={responsive}>
-      {productList ? productList : <></>}
+      {productList}
     </Carousel>
   );
 };

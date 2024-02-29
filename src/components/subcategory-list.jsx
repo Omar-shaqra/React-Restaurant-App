@@ -51,7 +51,7 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
   }
 
   const subcategoryList =
-    subcategories && subcategories.data && subcategories.data.length > 0 ? (
+    subcategories.data?.length > 0 ? (
       subcategories.data.map((subcategory, index) => (
         <div
           className="w-fit"
@@ -67,14 +67,14 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
         </div>
       ))
     ) : (
-      <div className="py-2 flex text-nowrap md:text-base xs:text-xs">
-        No Subcategory Found
+      <div className="self-center text-base text-center">
+        No Subcategories Found
       </div>
     );
 
   return (
     <section className="shadow-sm flex flex-col text-white mb-2">
-      {subcategories.data ? (
+      {subcategoryList && (
         <Carousel
           className="flex flex-row rounded-lg bg-white/10 p-2 mx-3"
           slidesToSlide={1}
@@ -87,11 +87,6 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
           responsive={responsive}>
           {subcategoryList}
         </Carousel>
-      ) : (
-        // <div className="flex flex-row justify-start gap-3 rounded bg-[#000000]/20 px-2 py-1">
-        //   {subcategoryList}
-        // </div>
-        <div className="self-center text-base text-center">Loading...</div>
       )}
     </section>
   );

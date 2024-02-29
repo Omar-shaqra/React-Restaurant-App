@@ -41,7 +41,7 @@ const CategoryList = ({ categoryFilter }) => {
   }
 
   const categoryList =
-    categories && categories.data && categories.data.length > 0 ? (
+    categories.data?.length > 0 ? (
       categories.data.map((category, index) => (
         <div
           className="w-fit"
@@ -57,26 +57,27 @@ const CategoryList = ({ categoryFilter }) => {
         </div>
       ))
     ) : (
-      <div className="">No Results Found</div>
+      <div className="self-center text-base text-center">
+        No Categories Found
+      </div>
     );
 
   return (
     <section className="shadow-sm flex flex-col text-white mt-1">
-      <Carousel
-        className="flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1 mx-3"
-        slidesToSlide={2}
-        additionalTransfrom={0}
-        minimumTouchDrag={80}
-        centerMode={true}
-        arrows
-        infinite
-        rewind
-        responsive={responsive}>
-        {categoryList}
-      </Carousel>
-      {/* <div className="flex flex-row justify-start gap-3 rounded px-2 py-1">
-        {categoryList}
-      </div> */}
+      {categoryList && (
+        <Carousel
+          className="flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1 mx-3"
+          slidesToSlide={2}
+          additionalTransfrom={0}
+          minimumTouchDrag={80}
+          centerMode={true}
+          arrows
+          infinite
+          rewind
+          responsive={responsive}>
+          {categoryList}
+        </Carousel>
+      )}
     </section>
   );
 };

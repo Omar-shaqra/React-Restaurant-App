@@ -129,9 +129,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
                 Select Sub-Category
               </option>
             )}
-            {Subcategories_Options &&
-              Subcategories_Options.length > 0 &&
-              Subcategories_Options}
+            {Subcategories_Options?.length > 0 && Subcategories_Options}
           </select>
           {/* Title */}
           <div className="relative">
