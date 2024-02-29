@@ -1,6 +1,6 @@
 const OfferCard = ({ data }) => {
   return (
-    <div className="container relative">
+    <div className="container relative  w-fit">
       <h1 className="absolute font-semibold font-serif md:text-2xl sm:text-lg xs:text-sm bg-black/90 rounded text-white left-0 p-1 ">
         {data.name}
       </h1>

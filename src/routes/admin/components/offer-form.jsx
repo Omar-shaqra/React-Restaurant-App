@@ -53,17 +53,6 @@ const OfferForm = ({ products, refetch }) => {
     }
   };
 
-  // const productOptions =
-  //   products &&
-  //   products.map((item, index) => (
-  //     <option
-  //       className="capitalize text-lg p-2 m-2 bg-black text-center"
-  //       key={index}
-  //       value={products[index]._id}>
-  //       {products[index].title}
-  //     </option>
-  //   ));
-
   return (
     <form
       onSubmit={onSubmit}
@@ -80,21 +69,8 @@ const OfferForm = ({ products, refetch }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          {/* Products */}
 
-          {/* <select
-            onChange={(e) => setProductId(e.target.value)}
-            className="text-base border w-fit h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg capitalize">
-            {productId === "" && ( // Add this condition to show "Select Category" by default
-              <option
-                disabled
-                selected
-                className="capitalize bg-neutral-400 text-neutral-800">
-                Select Products
-              </option>
-            )}
-            {productOptions}
-          </select> */}
+          {/* Products */}
           <Multiselect
             onSelect={(selectedList) => {
               setProductId(selectedList);
@@ -119,6 +95,7 @@ const OfferForm = ({ products, refetch }) => {
             showArrow
             className="text-base capitalize pt-2 w-fit border border-red-300 focus:border-white text-black bg-black bg-opacity-70 rounded-lg"
           />
+
           {/* Price */}
           <div className="relative self-end flex gap-2">
             <input
@@ -134,13 +111,13 @@ const OfferForm = ({ products, refetch }) => {
             <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
           </div>
         </div>
+
         {/* Second Column (Image) */}
         <div className="flex flex-col gap-6 items-center">
           <div
             className="flex items-center justify-start px-2 border-red-300 cursor-pointer text-base text-gray-300 border min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-black bg-opacity-70 rounded-lg group"
             onClick={() => document.querySelector(".image").click()}>
             <input
-              // required
               type="file"
               accept="image/*"
               value={""}
@@ -163,7 +140,7 @@ const OfferForm = ({ products, refetch }) => {
                   {image.name !== "" && image.name}
                 </p>
                 <Trash2
-                  key={image ? image.name : "empty"}
+                  key={image?.name}
                   className="hover:text-red-400 overflow-visible "
                   onClick={() => {
                     setImage(null);
