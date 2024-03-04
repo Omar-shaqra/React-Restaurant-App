@@ -15,7 +15,9 @@ const OffersList = () => {
         <OfferCard key={index} data={offers.data[index]} />
       ))
     ) : (
-      <p className="text-white col-span-5 mx-auto">No Offers Found</p>
+      <p className="text-white col-span-5 mx-auto text-nowrap">
+        No Offers Found
+      </p>
     );
 
   return (

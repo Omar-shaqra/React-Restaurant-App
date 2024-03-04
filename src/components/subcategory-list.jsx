@@ -67,7 +67,7 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
         </div>
       ))
     ) : (
-      <div className="self-center text-base text-center">
+      <div className="self-center text-base text-center text-nowrap">
         No Subcategories Found
       </div>
     );

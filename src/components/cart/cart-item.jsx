@@ -49,7 +49,7 @@ function CartItem({ data }) {
           </div>
           {/* X Button */}
           <IconButton
-            className="hover:bg-red-600 xs:m-4 text-white border-2 rounded-full"
+            className="hover:bg-red-600 h-fit self-center text-white border-2 rounded-full"
             onClick={onRemove}
             icon={<X size={15} />}
           />

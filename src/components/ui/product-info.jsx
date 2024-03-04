@@ -10,12 +10,12 @@ const ProductInfo = ({ data }) => {
 
   const { addItem } = useCart();
 
-  const addToCart = () => {
-    addItem(data, selectedSize, selectedDough);
-  };
+  // const addToCart = () => {
+  //   addItem(data, selectedSize, selectedDough);
+  // };
 
   return (
-    <section className="flex flex-col container gap-4">
+    <section className="flex flex-col container gap-2 w-full">
       <div className="my-3 flex items-end justify-between">
         <div className="text-2xl">{data.title}</div>
         <Currency
@@ -29,9 +29,9 @@ const ProductInfo = ({ data }) => {
       <p className="text-sm text-gray-300 w-5/6 text-wrap">
         {data.description}
       </p>
-      <hr className="my-4" />
-      <div className="flex flex-row gap-6">
-        <div className="flex flex-col gap-y-6 ">
+      <hr className="my-2" />
+      <div className="flex sm:flex-row xs:flex-col sm:gap-6 xs:gap-3 sm:mb-4 sm:justify-between items-end">
+        <div className="flex flex-col self-center gap-y-6 ">
           {/* Sizes */}
           {data.price[1]?.size && (
             <div className="flex space-x-8 items-center gap-x-2 ">
@@ -136,16 +136,16 @@ const ProductInfo = ({ data }) => {
                 </div>
               </div>
             ))}
-          {/* Add Button */}
         </div>
+        {/* Add Button */}
+        <button
+          onClick={() => addItem(data, selectedSize, selectedDough)}
+          disabled={data.category?.name === "pizza" && !selectedDough}
+          className="flex items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition duration-300 rounded-xl disabled:cursor-not-allowed">
+          Add To Cart
+          <ShoppingCart size={20} />
+        </button>
       </div>
-      <button
-        onClick={addToCart}
-        disabled={data.category?.name === "pizza" && !selectedDough}
-        className="w-fit flex self-center gap-2 bg-white/20 hover:bg-white/40 transition p-2 border border-opacity-40 hover:border-orange-500 border-white rounded-xl disabled:cursor-not-allowed">
-        Add To Cart
-        <ShoppingCart size={20} />
-      </button>
     </section>
   );
 };

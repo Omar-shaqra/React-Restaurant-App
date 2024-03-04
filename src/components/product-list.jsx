@@ -15,27 +15,33 @@ const ProductList = () => {
   const [selected_Category, setSelected_Category] = useState(null);
   const [selected_Subcategory, setSelected_Subcategory] = useState(null);
 
+  // Category filter only
   if (selected_Category && !selected_Subcategory) {
     GetProductsWithCategoryId({
       setProducts: setProducts,
       id: selected_Category,
     });
-  } else if (selected_Category && selected_Subcategory) {
+  }
+  // Category & Subcategory filter
+  else if (selected_Category && selected_Subcategory) {
     GetProductsWithSubcategoryId({
       setProducts: setProducts,
       id: selected_Subcategory,
     });
-  } else {
+  }
+  // No filter
+  else {
     GetProducts({ setProducts: setProducts });
   }
 
+  // Update Categories UI when selected
   function categoryFilter(selected) {
     if (selected_Category != selected) {
       setSelected_Category(selected);
       setSelected_Subcategory(null);
     } else setSelected_Category(null);
   }
-
+  // Update Categories UI when selected
   function subcategoryFilter(selected) {
     if (selected_Subcategory != selected || !selected_Category) {
       setSelected_Subcategory(selected);
@@ -45,7 +51,7 @@ const ProductList = () => {
   const productList =
     products.data?.length > 0 &&
     products.data.map((product, index) => (
-      <ProductCard key={index} {...product} data={products.data[index]} />
+      <ProductCard key={index} data={products.data[index]} {...product} />
     ));
 
   return (
@@ -71,3 +77,39 @@ const ProductList = () => {
 };
 
 export default ProductList;
+//TODO use js to filter instead of server requests
+// const productList = () => {
+//   // ✅ When category only is selected
+//   if (selected_Category && !selected_Subcategory) {
+//     return (
+//       products.data?.length > 0 &&
+//       products.data
+//         .filter((product) => product.category.name === selected_Category)
+//         .map((product, index) => (
+//           <ProductCard key={index} data={products.data[index]} {...product} />
+//         ))
+//     );
+//   } // When category & subcategory are selected
+//   else if (selected_Category && selected_Subcategory) {
+//     return (
+//       products.data?.length > 0 &&
+//       products.data.subcategories &&
+//       products.data
+//         .filter(
+//           (product) =>
+//             product.subcategories &&
+//             product.subcategories === selected_Subcategory
+//         )
+//         .map((product, index) => (
+//           <ProductCard key={index} data={products.data[index]} {...product} />
+//         ))
+//     );
+//   } // when No category or subcategory are selected
+//   else
+//     return (
+//       products.data?.length > 0 &&
+//       products.data.map((product, index) => (
+//         <ProductCard key={index} data={products.data[index]} {...product} />
+//       ))
+//     );
+// };

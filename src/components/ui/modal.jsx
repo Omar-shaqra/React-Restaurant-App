@@ -10,7 +10,7 @@ const Modal = ({ open, onClose, children }) => {
       <Dialog as="div" onClose={onClose} className="relative z-20">
         <div className="fixed inset-0 bg-black bg-opacity-70 transition" />
         <div className="fixed inset-0 overflow-y-auto text-white">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full sm:items-center xs:items-start xs:mt-8 justify-center text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -19,8 +19,8 @@ const Modal = ({ open, onClose, children }) => {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <Dialog.Panel className="w-full max-w-3xl text-left align-middle">
-                <div className="relative flex w-full items-center pt-4 pb-2 m-2 px-4 overflow-hidden text-wrap bg-zinc-950 shadow-2xl rounded-md border border-orange-300 border-opacity-40">
+              <Dialog.Panel className="max-w-4xl text-left align-middle ">
+                <div className="relative flex w-fit items-center pt-4 pb-2 m-2 px-4 overflow-hidden text-wrap bg-zinc-950 shadow-2xl rounded-md border border-orange-300 border-opacity-40">
                   <div className="absolute z-10 right-4 top-4">
                     <IconButton
                       className="hover:bg-red-400 text-white border-2 rounded-full"

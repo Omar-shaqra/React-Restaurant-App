@@ -19,14 +19,15 @@ const ProductCard = ({
 
   const onPreview = (e) => {
     e.preventDefault();
-
     previewModal.onOpen(data);
   };
 
   const imgSrc = imageCover?.replace("undefined", "http://localhost:8000");
 
   return (
-    <section className="m-1 flex justify-center text-white" onClick={onPreview}>
+    <section
+      className="m-1 flex justify-center text-white capitalize"
+      onClick={onPreview}>
       <div className="p-1 w-full bg-white/30 rounded-lg group cursor-pointer border border-opacity-50 border-orange-200">
         {image == "visible" && (
           <img
@@ -37,7 +38,7 @@ const ProductCard = ({
         )}
         {/* Title & Cateogry */}
         <div className="flex md:flex-row xs:flex-col md:items-center justify-start md:gap-4 xs:gap-1 mt-2">
-          <h5 className="xl:text-xl md:text-base sm:text-sm xs:text-xs xs:text-wrap font-semibold text-nowrap">
+          <h5 className=" xl:text-xl md:text-base sm:text-sm xs:text-xs xs:text-wrap font-semibold text-nowrap">
             {title}
           </h5>
           <div className="flex justify-between items-center">

@@ -34,6 +34,7 @@ const CategoryList = ({ categoryFilter }) => {
 
   GetCategories({ setCategories: setCategories });
 
+  // to change ui when selecting a category
   function handleOnClick(categoryId) {
     if (selected == categoryId) {
       setSelected(null);
@@ -46,6 +47,7 @@ const CategoryList = ({ categoryFilter }) => {
         <div
           className="w-fit"
           onClick={() => {
+            // categoryFilter(category.name);
             categoryFilter(category._id);
           }}
           key={index}>
