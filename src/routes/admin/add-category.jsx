@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { deleteItem } from "../../actions/delete-item";
 import { GetCategories } from "../../actions/get-categories";
-import CategoryForm from "./components/category-form";
-import CategoryList from "./components/category-list";
+import CategoryForm from "../../components/admin/category-form";
+import CategoryList from "../../components/admin/category-list";
 
 const AddCategory = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -23,7 +23,7 @@ const AddCategory = () => {
   }
 
   return (
-    <section className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
+    <section className="flex flex-col gap-4 mx-5 my-5 text-2xl font-semibold text-white">
       <h1 className="self-center font-extrabold tracking-wider">
         All Categories
       </h1>

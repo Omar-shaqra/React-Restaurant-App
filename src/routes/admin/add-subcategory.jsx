@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { deleteItem } from "../../actions/delete-item";
 import { GetCategories } from "../../actions/get-categories";
 import { GetSubCategories } from "../../actions/get-subcategories";
-import SubcategoryForm from "./components/subcategory-form";
-import SubcategoryList from "./components/subcategory-list";
+import SubcategoryForm from "../../components/admin/subcategory-form";
+import SubcategoryList from "../../components/admin/subcategory-list";
 
 const AddSubcategory = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,7 +29,7 @@ const AddSubcategory = () => {
   }
 
   return (
-    <section className="mx-5 my-5 text-2xl font-semibold flex flex-col gap-4 text-white">
+    <section className="flex flex-col gap-4 mx-5 my-5 text-2xl font-semibold text-white">
       <h1 className="self-center font-extrabold tracking-wider">
         All Subcategories
       </h1>
