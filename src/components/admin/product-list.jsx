@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ProductCard from "../../../components/ui/product-card";
+import ProductCard from "../../components/ui/product-card";
 
 const responsive = {
   desktop: {
@@ -31,7 +31,7 @@ const ProductList = ({ products, refetch }) => {
       products.data.map((product, index) => (
         <ProductCard
           key={index}
-          {...product}
+          data={product}
           image="hidden"
           button="delete"
           refetch={refetch}

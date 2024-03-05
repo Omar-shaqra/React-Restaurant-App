@@ -3,7 +3,7 @@ import { ImagePlus, Tag, Trash2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-import noImage from "../../../assets/No_Preview.png";
+import noImage from "../../assets/No_Preview.png";
 import SizeFields from "./size-fields";
 
 const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
@@ -75,7 +75,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
     categories &&
     categories.map((item, index) => (
       <option
-        className="capitalize bg-black text-center font-semibold"
+        className="font-semibold text-center capitalize bg-black"
         key={categories[index]._id}
         value={categories[index]._id}>
         {categories[index].name}
@@ -88,7 +88,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
       .filter((subcategory) => subcategory.category._id === categoryId)
       .map((subcategory) => (
         <option
-          className="capitalize bg-black text-center font-semibold"
+          className="font-semibold text-center capitalize bg-black"
           key={subcategory._id}
           value={subcategory._id}>
           {subcategory.name}
@@ -98,8 +98,8 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="mt-14 gap-4 flex flex-col ml-auto mx-10 items-center">
-      <h1 className="font-extrabold tracking-wider mr-auto">Add Product</h1>
+      className="flex flex-col items-center gap-4 mx-10 ml-auto mt-14">
+      <h1 className="mr-auto font-extrabold tracking-wider">Add Product</h1>
       <div className="flex flex-row gap-6">
         {/* First Column (Category) */}
         <div className="flex flex-col gap-6">
@@ -109,7 +109,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
               setCategoryId(e.target.value);
               setSubcategoryId("");
             }}
-            className="text-base border h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg capitalize">
+            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
             {categoryId === "" && (
               <option selected className="bg-neutral-400 text-neutral-800">
                 Select Category
@@ -120,7 +120,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
           {/* Subcategories */}
           <select
             onChange={(e) => setSubcategoryId(e.target.value)}
-            className="text-base border  h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg capitalize">
+            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
             {subcategoryId === "" && (
               <option
                 disabled
@@ -137,12 +137,12 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
               required
               name="title"
               value={title}
-              className="text-base border capitalize h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+              className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
               placeholder={"Enter Title..."}
               onChange={(e) => setTitle(e.target.value)}
             />
             <div className="relative">
-              <span className="absolute right-4 bottom-3 text-gray-300">
+              <span className="absolute text-gray-300 right-4 bottom-3">
                 <Tag />
               </span>
             </div>
@@ -154,16 +154,16 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter Description..."
-            className="text-base border  min-h-12 max-h-12 border-red-300 focus:border-white m-0 pl-3 pt-3 bg-black bg-opacity-70 rounded-lg"
+            className="pt-3 pl-3 m-0 text-base bg-black border border-red-300 rounded-lg min-h-12 max-h-12 focus:border-white bg-opacity-70"
           />
         </div>
         {/* Second Column (Sizes) */}
-        <div className="flex flex-col gap-y-6 items-center">
+        <div className="flex flex-col items-center gap-y-6">
           <select
             required
             name="size"
             value={sizes}
-            className=" relative text-base w-full border h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+            className="relative w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg  focus:border-white bg-opacity-70"
             onChange={(e) => setSizes(e.target.value)}>
             <option value="" disabled>
               Select Size
@@ -183,17 +183,17 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
           />
         </div>
         {/* Third Column (Image) */}
-        <div className="flex flex-col gap-6 items-center">
+        <div className="flex flex-col items-center gap-6">
           {/* Image */}
           <div
-            className="flex items-center justify-start px-2 border-red-300 cursor-pointer text-base text-gray-300 border min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-black bg-opacity-70 rounded-lg group"
+            className="flex items-center justify-start px-2 text-base text-gray-300 bg-black border border-red-300 rounded-lg cursor-pointer min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-opacity-70 group"
             onClick={() => document.querySelector(".image").click()}>
             <input
               required
               type="file"
               accept="image/*"
               value={""}
-              className="image hidden"
+              className="hidden image"
               disabled={imageCover}
               onChange={(e) => {
                 setImageCover(e.target.files[0]);
@@ -201,18 +201,18 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
               }}
             />
             {!imageCover ? (
-              <span className="image flex justify-between items-center w-full group-hover:text-green-300 transition duration-300">
+              <span className="flex items-center justify-between w-full transition duration-300 image group-hover:text-green-300">
                 <p>Upload Image</p>
                 <ImagePlus />
               </span>
             ) : (
-              <div className="flex gap-2 justify-between items-center w-full max-w-52 truncate">
-                <p className="py-1 items-start overflow-hidden text-ellipsis text-blue-500">
+              <div className="flex items-center justify-between w-full gap-2 truncate max-w-52">
+                <p className="items-start py-1 overflow-hidden text-blue-500 text-ellipsis">
                   {imageCover.name !== "" && imageCover.name}
                 </p>
                 <Trash2
                   key={imageCover ? imageCover.name : "empty"}
-                  className="hover:text-red-400 overflow-visible "
+                  className="overflow-visible hover:text-red-400 "
                   onClick={() => {
                     setImageCover(null);
                     setImagePreview(null);
@@ -225,7 +225,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
           <img
             src={imagePreview ? imagePreview : noImage}
             alt=""
-            className="h-48 w-44 flex rounded"
+            className="flex h-48 rounded w-44"
           />
         </div>
       </div>
@@ -233,7 +233,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
       <button
         type="submit"
         disabled={isLoading || title === "" || description === ""}
-        className="justify-center items-center p-1 my-5 w-3/6 h-10 text-lg text-white bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 transition disabled:cursor-not-allowed disabled:bg-black">
+        className="items-center justify-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-black">
         Create
       </button>
     </form>

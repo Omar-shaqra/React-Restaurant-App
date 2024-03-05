@@ -4,7 +4,7 @@ import { Multiselect } from "multiselect-react-dropdown";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-import noImage from "../../../assets/No_Preview.png";
+import noImage from "../../assets/No_Preview.png";
 
 const OfferForm = ({ products, refetch }) => {
   const [name, setName] = useState("");
@@ -56,15 +56,15 @@ const OfferForm = ({ products, refetch }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="mt-16 gap-4 flex flex-col ml-auto mx-16">
-      <h1 className="font-extrabold self-end tracking-wider">Add New Offer</h1>
+      className="flex flex-col gap-4 mx-16 mt-16 ml-auto">
+      <h1 className="self-end font-extrabold tracking-wider">Add New Offer</h1>
       <div className="flex flex-row gap-6">
         {/* First Column */}
         <div className="flex flex-col items-end gap-6">
           {/* Name */}
           <input
             required
-            className="text-base capitalize border w-fit h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
             placeholder={"Enter Offer Name"}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -93,11 +93,11 @@ const OfferForm = ({ products, refetch }) => {
             }}
             placeholder="Select Products"
             showArrow
-            className="text-base capitalize pt-2 w-fit border border-red-300 focus:border-white text-black bg-black bg-opacity-70 rounded-lg"
+            className="pt-2 text-base text-black capitalize bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
           />
 
           {/* Price */}
-          <div className="relative self-end flex gap-2">
+          <div className="relative flex self-end gap-2">
             <input
               required
               type="number"
@@ -106,22 +106,22 @@ const OfferForm = ({ products, refetch }) => {
               value={price}
               placeholder="Enter Price..."
               onChange={(e) => setPrice(e.target.value)}
-              className="text-base border w-fit h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+              className="h-12 pl-3 text-base bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
             />
-            <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
+            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
         </div>
 
         {/* Second Column (Image) */}
-        <div className="flex flex-col gap-6 items-center">
+        <div className="flex flex-col items-center gap-6">
           <div
-            className="flex items-center justify-start px-2 border-red-300 cursor-pointer text-base text-gray-300 border min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-black bg-opacity-70 rounded-lg group"
+            className="flex items-center justify-start px-2 text-base text-gray-300 bg-black border border-red-300 rounded-lg cursor-pointer min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-opacity-70 group"
             onClick={() => document.querySelector(".image").click()}>
             <input
               type="file"
               accept="image/*"
               value={""}
-              className="image hidden"
+              className="hidden image"
               disabled={image}
               onChange={(e) => {
                 setImage(e.target.files[0]);
@@ -130,18 +130,18 @@ const OfferForm = ({ products, refetch }) => {
               }}
             />
             {!image ? (
-              <span className="image flex justify-between items-center w-full group-hover:text-green-300 transition duration-300">
+              <span className="flex items-center justify-between w-full transition duration-300 image group-hover:text-green-300">
                 <p>Upload Image</p>
                 <ImagePlus />
               </span>
             ) : (
-              <div className="flex gap-2 justify-between items-center w-full max-w-52 truncate">
-                <p className="py-1 items-start overflow-hidden text-ellipsis text-blue-500">
+              <div className="flex items-center justify-between w-full gap-2 truncate max-w-52">
+                <p className="items-start py-1 overflow-hidden text-blue-500 text-ellipsis">
                   {image.name !== "" && image.name}
                 </p>
                 <Trash2
                   key={image?.name}
-                  className="hover:text-red-400 overflow-visible "
+                  className="overflow-visible hover:text-red-400 "
                   onClick={() => {
                     setImage(null);
                     setImagePreview(null);
@@ -154,14 +154,14 @@ const OfferForm = ({ products, refetch }) => {
           <img
             src={imagePreview ? imagePreview : noImage}
             alt=""
-            className="h-48 w-44 flex rounded"
+            className="flex h-48 rounded w-44"
           />
         </div>
       </div>
 
       <button
         type="submit"
-        className="self-center p-1 my-5 w-3/6 h-10 text-lg text-white bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 transition">
+        className="self-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800">
         Create
       </button>
     </form>
