@@ -25,34 +25,34 @@ function Navbar() {
   }
 
   return (
-    <div className="border-b border-b-[#d46622] mx-auto w-full shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
-      <div className="flex h-16 items-center justify-between">
+    <div className="w-full mx-auto border-b border-b-[#d46622] shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
+      <div className="flex items-center justify-between h-16">
         <Link to="/">
           <img src={logo} className="w-16 h-auto mr-auto" />
         </Link>
         <div className="flex items-center md:space-x-10 xs:space-x-2 xl:text-xl md:text-xl sm:text-sm xs:text-sm font-semibold font-serif text-[#fdf8ef]">
           <a
             href={`${origin}/#deals`}
-            className="hover:scale-110 hover:text-red-300 transition">
+            className="transition hover:scale-110 hover:text-red-300">
             Deals
           </a>
           <a
             href="/#offers"
-            className="hover:scale-110 hover:text-red-300 transition">
+            className="transition hover:scale-110 hover:text-red-300">
             Offers
           </a>
           <a
             href="#footer"
-            className="hover:scale-110 hover:text-red-300 transition">
+            className="transition hover:scale-110 hover:text-red-300">
             Contact
           </a>
           <Link
             to={"/our-new"}
-            className="hover:scale-110 hover:text-red-300 transition p-1">
+            className="p-1 transition hover:scale-110 hover:text-red-300">
             Our New
           </Link>
         </div>
-        <div className="flex items-center space-x-4 px-1">
+        <div className="flex items-center px-1 space-x-4">
           <NavCart />
           {isSignedIn ? (
             <SignedIn>

@@ -34,27 +34,27 @@ function Summary() {
 
   return (
     <div className="mt-5 rounded-xl bg-black/90 px-4 py-4 text-white w-full self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
-      <h2 className="text-2xl font-medium mb-1">Order Summary</h2>
+      <h2 className="mb-1 text-2xl font-medium">Order Summary</h2>
       {items.map((item) => (
         <div
           key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}
-          className="flex gap-1 mb-1 items-center">
-          <p className="font-bold tracking-widest p-1">{item.title}</p>
-          <p className="bg-orange-800/90 rounded-full p-1 text-sm">
+          className="flex items-center gap-1 mb-1">
+          <p className="p-1 font-bold tracking-widest">{item.title}</p>
+          <p className="p-1 text-sm rounded-full bg-orange-800/90">
             {item.selectedSize}
           </p>
           {item.selectedDough && (
-            <p className="bg-orange-800/70 rounded-full p-1 text-sm">
+            <p className="p-1 text-sm rounded-full bg-orange-800/70">
               {item.selectedDough}
             </p>
           )}
-          <p className="bg-white/10 rounded-full p-1 text-sm">
+          <p className="p-1 text-sm rounded-full bg-white/10">
             x{item.quantity}
           </p>
         </div>
       ))}
       <div className="mt-3 space-y-4">
-        <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
           <div className="text-base font-medium">Order Total</div>
           <Currency value={totalPrice} />
         </div>
@@ -64,11 +64,11 @@ function Summary() {
           toast.error("Not Working yet");
         }}
         disabled={items.length === 0}
-        className="w-full flex justify-center items-center gap-2 rounded-full p-3 text-white font-semibold mt-6 bg-neutral-500 hover:bg-green-600 transition duration-500 disabled:cursor-not-allowed group">
-        <p className="group-hover:-translate-x-3 transition tracking-wider uppercase">
+        className="flex items-center justify-center w-full gap-2 p-3 mt-6 font-semibold text-white transition duration-500 rounded-full bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed group">
+        <p className="tracking-wider uppercase transition group-hover:-translate-x-3">
           Checkout
         </p>
-        <Wallet size={20} className="group-hover:translate-x-3 transition" />
+        <Wallet size={20} className="transition group-hover:translate-x-3" />
       </button>
     </div>
   );

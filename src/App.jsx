@@ -6,15 +6,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import Layout from "./components/ui/layout";
-import NotFound from "./components/ui/not-found";
 import AddCategory from "./routes/admin/add-category";
+import AddOffer from "./routes/admin/add-offer";
 import AddProduct from "./routes/admin/add-product";
 import AddSubcategory from "./routes/admin/add-subcategory";
 import Admin from "./routes/admin/admin-page";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
+import NotFound from "./routes/not-found";
 import OurNew from "./routes/ourNew";
-import AddOffer from "./routes/admin/add-offer";
 
 function App() {
   return (

@@ -5,27 +5,27 @@ const Footer = () => {
   return (
     <section
       id="footer"
-      className="flex mt-10 text-white items-center justify-center font-semibold font-serif bg-gradient-to-t from-black to-neutral-900/30">
-      <div className="container flex md:flex-row xs:flex-col py-5 w-full">
+      className="flex items-center justify-center mt-10 font-serif font-semibold text-white bg-gradient-to-t from-black to-neutral-900/30">
+      <div className="container flex w-full py-5 md:flex-row xs:flex-col">
         {/* Logo & Description */}
-        <div className="py-2 px-4">
-          <h1 className="w-fit sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
+        <div className="px-4">
+          <h1 className="flex items-center gap-3 mb-1 text-xl font-bold text-justify w-fit sm:text-3xl sm:text-left">
             <img src={footerLogo} alt="Logo" className="max-w-[80px] bg" />A
             Pizza
           </h1>
-          <p className="px-2 w-5/6">
+          <p>
             Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
             consectetur adipisicing elit. Possimus, voluptate
           </p>
           <br />
         </div>
-        <div className="flex md:flex-row xs:flex-col justify-between w-full">
+        <div className="flex justify-between w-full md:flex-row xs:flex-col">
           {/* Important Links */}
-          <div className="flex flex-col items-center py-8 px-4">
-            <h1 className="w-fit sm:text-xl text-xl text-nowrap font-bold sm:text-left text-justify mb-3 p-2 rounded-lg">
+          <div className="flex flex-col items-center px-4 py-8">
+            <h1 className="p-2 mb-3 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl text-nowrap sm:text-left">
               Important Links
             </h1>
-            <ul className="w-fit flex flex-col items-center justify-center gap-3 cursor-pointer">
+            <ul className="flex flex-col items-center justify-center gap-3 cursor-pointer w-fit">
               <li className="rounded-lg ">Home</li>
               <li className="rounded-lg">About</li>
               <li className="rounded-lg">Services</li>
@@ -33,31 +33,31 @@ const Footer = () => {
             </ul>
           </div>
           {/* Links */}
-          <div className="flex flex-col items-center py-8 px-4">
-            <h1 className="w-fit sm:text-xl text-xl font-bold sm:text-left text-justify mb-3  p-2 rounded-lg">
+          <div className="flex flex-col items-center px-4 py-8">
+            <h1 className="p-2 mb-3 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl sm:text-left">
               Links
             </h1>
-            <ul className="w-fit flex flex-col items-center gap-3 cursor-pointer">
-              <li className="  rounded-lg">Home</li>
-              <li className="  rounded-lg">About</li>
-              <li className="  rounded-lg">Services</li>
-              <li className="  rounded-lg">Login</li>
+            <ul className="flex flex-col items-center gap-3 cursor-pointer w-fit">
+              <li className="rounded-lg ">Home</li>
+              <li className="rounded-lg ">About</li>
+              <li className="rounded-lg ">Services</li>
+              <li className="rounded-lg ">Login</li>
             </ul>
           </div>
           {/* Extra Info */}
-          <div className="flex flex-col items-center py-8 px-4">
+          <div className="flex flex-col items-center px-4 py-8">
             {/* Address */}
-            <div className="flex items-center text-nowrap gap-3 mt-3  p-2 rounded-lg">
+            <div className="flex items-center gap-3 p-2 mt-3 rounded-lg text-nowrap">
               <MapPin />
               <p>Noida, Uttar Pradesh</p>
             </div>
             {/* Phone */}
-            <div className="flex items-center gap-3 mt-3  p-2 rounded-lg">
+            <div className="flex items-center gap-3 p-2 mt-3 rounded-lg">
               <Phone />
               <p className="text-nowrap">+91 123456789</p>
             </div>
             {/* Socials */}
-            <div className="flex items-center gap-3 mt-6  p-2 rounded-lg">
+            <div className="flex items-center gap-3 p-2 mt-6 rounded-lg">
               <a href="#">
                 <Instagram className="text-3xl" />
               </a>

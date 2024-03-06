@@ -51,17 +51,17 @@ const ProductList = () => {
   const productList =
     products.data?.length > 0 &&
     products.data.map((product, index) => (
-      <ProductCard key={index} data={products.data[index]} {...product} />
+      <ProductCard key={index} data={product} image="visible" button="add" />
     ));
 
   return (
     <section
       id="deals"
       className="flex flex-col w-full border-t-2 p-2 bg-[#000000] bg-opacity-80 border-t-red-300 rounded-md">
-      <h4 className="flex flex-col self-center w-fit font-semibold text-white bg-black/30 p-2 md:text-lg xs:text-base tracking-widest rounded-2xl">
+      <h4 className="flex flex-col self-center p-2 font-semibold tracking-widest text-white w-fit bg-black/30 md:text-lg xs:text-base rounded-2xl">
         Select your Favorite
       </h4>
-      <div className="sticky top-0 z-10 flex flex-col w-full self-center gap-x-2 bg-black">
+      <div className="sticky top-0 z-10 flex flex-col self-center w-full bg-black gap-x-2">
         <CategoryList categoryFilter={categoryFilter} />
         <SubcategoryList
           subcategoryFilter={subcategoryFilter}
@@ -69,7 +69,7 @@ const ProductList = () => {
         />
       </div>
 
-      <div className="items-center z-0 justify-center flex-row w-full grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 pt-5 xs:pt-1">
+      <div className="z-0 grid flex-row items-center justify-center w-full pt-5 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 xs:pt-1">
         {productList}
       </div>
     </section>

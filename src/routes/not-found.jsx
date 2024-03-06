@@ -1,6 +1,6 @@
 export default function NotFound() {
   return (
-    <div className="flex items-center flex-col justify-center bg-black bg-opacity-50 h-screen lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28 text-white">
+    <div className="flex flex-col items-center justify-center h-screen gap-16 px-6 text-white bg-black bg-opacity-50 lg:flex-row py-28 md:px-24 md:py-20 lg:py-32 lg:gap-28">
       <div className="w-full lg:w-1/2">
         <img
           className="hidden lg:block"
@@ -13,8 +13,8 @@ export default function NotFound() {
           alt=""
         />
       </div>
-      <div className="w-full lg:w-1/2 text-lg m-5">
-        <h1 className="py-4 text-3xl lg:text-4xl font-extrabold ">
+      <div className="w-full m-5 text-lg lg:w-1/2">
+        <h1 className="py-4 text-3xl font-extrabold lg:text-4xl ">
           Looks like you&apos;ve found the doorway to the great nothing!
         </h1>
         <p className="py-4 ">
@@ -26,7 +26,7 @@ export default function NotFound() {
           go.
         </p>
         <a
-          className="flex w-fit h-18 p-4 mt-8 text-black bg-amber-300 hover:bg-orange-400 transition rounded-full font-serif"
+          className="flex p-4 mt-8 font-serif text-black transition rounded-full w-fit h-18 bg-amber-300 hover:bg-orange-400"
           href="/">
           Go back to Homepage
         </a>

@@ -13,10 +13,10 @@ const CategoryCard = ({ name, image, selected, onClick }) => {
             image ? image.replace("undefined", "http://localhost:8000") : img
           }
           alt=""
-          className="md:h-24 xs:h-16 bg-opacity-0 rounded"
+          className="bg-opacity-0 rounded md:h-24 xs:h-16"
         />
       </div>
-      <h3 className="font-semibold self-center justify-center capitalize tracking-widest text-md">
+      <h3 className="self-center justify-center font-semibold tracking-widest capitalize text-md">
         {name}
       </h3>
     </section>

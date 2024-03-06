@@ -73,10 +73,10 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
     );
 
   return (
-    <section className="shadow-sm flex flex-col text-white mb-2">
+    <section className="flex flex-col mb-2 text-white shadow-sm">
       {subcategoryList && (
         <Carousel
-          className="flex flex-row rounded-lg bg-white/10 p-2 mx-3"
+          className="flex flex-row p-2 mx-3 rounded-lg bg-white/10"
           slidesToSlide={1}
           additionalTransfrom={0}
           minimumTouchDrag={80}

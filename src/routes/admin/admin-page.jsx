@@ -13,13 +13,13 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="flex flex-row h-screen w-screen overflow-hidden bg-neutral-950/80">
+    <div className="flex flex-row w-screen h-screen overflow-hidden bg-neutral-950/80">
       <div className="flex flex-col flex-1 p-0 m-0">
         <header className="flex mx-auto w-full h-16 items-center justify-center p-4 backdrop-filter backdrop-blur-md bg-opacity-95 border-b border-b-[#d46622]">
           <Link to="/admin" className="mr-auto">
             <img src={logo} className="w-16 h-auto" />
           </Link>
-          <ul className="flex gap-8 font-semibold mr-auto">
+          <ul className="flex gap-8 mr-auto font-semibold">
             <Link
               to="/admin"
               className={`${

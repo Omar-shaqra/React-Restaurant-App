@@ -65,7 +65,7 @@ const CategoryList = ({ categoryFilter }) => {
     );
 
   return (
-    <section className="shadow-sm flex flex-col text-white mt-1">
+    <section className="flex flex-col mt-1 text-white shadow-sm">
       {categoryList && (
         <Carousel
           className="flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1 mx-3"

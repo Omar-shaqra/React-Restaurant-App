@@ -5,7 +5,7 @@ const SubcategoryCard = ({ name, selected, onClick }) => {
 
   return (
     <div className={cardClassName} onClick={onClick}>
-      <h3 className="font-semibold capitalize tracking-widest md:text-base xs:text-xs text-nowrap">
+      <h3 className="font-semibold tracking-widest capitalize md:text-base xs:text-xs text-nowrap">
         {name}
       </h3>
     </div>

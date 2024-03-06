@@ -15,7 +15,7 @@ const Currency = ({ value }) => {
   if (!isMounted) return null;
 
   return (
-    <div className="font-semibold xl:text-xl md:text-base sm:text-sm xs:text-xs">
+    <div className="font-semibold xl:text-xl md:text-base sm:text-sm">
       {formatter.format(Number(value))}
     </div>
   );

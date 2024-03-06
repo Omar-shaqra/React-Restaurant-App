@@ -3,7 +3,7 @@ import ProductList from "../components/product-list";
 
 function Home() {
   return (
-    <div className="container flex flex-col mx-auto space-y-14 p-3">
+    <div className="container flex flex-col p-3 mx-auto space-y-14">
       <ProductList />
       <OffersList />
     </div>

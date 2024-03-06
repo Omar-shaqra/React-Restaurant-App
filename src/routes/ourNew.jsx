@@ -2,7 +2,7 @@ import HeroBanner from "../components/hero-banner";
 
 const OurNew = () => {
   return (
-    <div className="container mx-auto flex flex-col space-y-14 p-3">
+    <div className="container flex flex-col p-3 mx-auto space-y-14">
       <HeroBanner />
     </div>
   );
