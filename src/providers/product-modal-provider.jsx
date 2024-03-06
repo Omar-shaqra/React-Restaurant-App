@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import PreviewModal from "../components/ui/preview-modal";
+import ProductPreviewModal from "../components/modals/product-preview-modal";
 
-const ModalProvider = () => {
+const ProductModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -13,9 +13,9 @@ const ModalProvider = () => {
   }
   return (
     <>
-      <PreviewModal />
+      <ProductPreviewModal />
     </>
   );
 };
 
-export default ModalProvider;
+export default ProductModalProvider;

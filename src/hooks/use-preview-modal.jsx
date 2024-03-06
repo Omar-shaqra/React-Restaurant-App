@@ -1,10 +1,17 @@
 import { create } from "zustand";
 
-const usePreviewModal = create((set) => ({
+// Product Modal
+export const useProductPreviewModal = create((set) => ({
   isOpen: false,
-  data: undefined,
-  onOpen: (data) => set({ isOpen: true, data }),
+  productData: null,
+  onOpen: (productData) => set({ isOpen: true, productData }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default usePreviewModal;
+// Offer Modal
+export const useOfferPreviewModal = create((set) => ({
+  isOpen: false,
+  offerData: null,
+  onOpen: (offerData) => set({ isOpen: true, offerData }),
+  onClose: () => set({ isOpen: false }),
+}));
