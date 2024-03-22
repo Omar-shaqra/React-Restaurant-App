@@ -71,16 +71,16 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
       />
       <h1 className="font-extrabold tracking-wider">Select Category</h1>
       <select
+        value={categoryId}
         onChange={(e) => setCategoryId(e.target.value)}
         className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
-        {categoryId === "" && ( // Add this condition to show "Select Category" by default
-          <option
-            disabled
-            selected
-            className="capitalize bg-neutral-400 text-neutral-800">
-            Select Category
-          </option>
-        )}
+        {/* Add default "Select Category" option */}
+        <option
+          value=""
+          disabled
+          className="capitalize bg-neutral-400 text-neutral-800">
+          Select Category
+        </option>
         {categoryOptions}
       </select>
       <button

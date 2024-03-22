@@ -9,7 +9,7 @@ const CategoryList = ({ categories, deleteItem, refetch }) => {
             item={item}
             deleteItem={deleteItem}
             refetch={refetch}
-            key={item.id}
+            key={item._id}
           />
         ))
       ) : (

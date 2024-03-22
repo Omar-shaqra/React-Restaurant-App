@@ -13,11 +13,11 @@ if (!PUBLISHABLE_KEY) {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment>
     <QueryClientProvider client={queryClient}>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <App />
       </ClerkProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.Fragment>
 );
