@@ -1,5 +1,4 @@
 import { Facebook, Instagram, Youtube, MapPin, Phone } from "lucide-react";
-import footerLogo from "/src/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -10,7 +9,7 @@ const Footer = () => {
         {/* Logo & Description */}
         <div className="px-4">
           <h1 className="flex items-center gap-3 mb-1 text-xl font-bold text-justify w-fit sm:text-3xl sm:text-left">
-            <img src={footerLogo} alt="Logo" className="max-w-[80px] bg" />A
+            <img src={"/logo.png"} alt="Logo" className="max-w-[80px] bg" />A
             Pizza
           </h1>
           <p>

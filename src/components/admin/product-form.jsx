@@ -3,7 +3,6 @@ import { ImagePlus, Tag, Trash2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-import noImage from "../../assets/No_Preview.png";
 import SizeFields from "./size-fields";
 
 const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
@@ -105,32 +104,36 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
         <div className="flex flex-col gap-6">
           {/* Categories */}
           <select
+            value={categoryId}
             onChange={(e) => {
               setCategoryId(e.target.value);
-              setSubcategoryId("");
+              setSubcategoryId(""); // Reset subcategory when category changes
             }}
             className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
-            {categoryId === "" && (
-              <option selected className="bg-neutral-400 text-neutral-800">
-                Select Category
-              </option>
-            )}
+            <option
+              value=""
+              disabled
+              className="bg-neutral-400 text-neutral-800">
+              Select Category
+            </option>
             {categoriesOptions}
           </select>
+
           {/* Subcategories */}
           <select
+            value={subcategoryId}
             onChange={(e) => setSubcategoryId(e.target.value)}
             className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
-            {subcategoryId === "" && (
-              <option
-                disabled
-                selected
-                className="bg-neutral-400 text-neutral-800">
-                Select Sub-Category
-              </option>
-            )}
+            <option
+              value=""
+              disabled
+              className="bg-neutral-400 text-neutral-800">
+              Select Sub-Category
+            </option>
+            {/* Only render subcategory options if available */}
             {Subcategories_Options?.length > 0 && Subcategories_Options}
           </select>
+
           {/* Title */}
           <div className="relative">
             <input
@@ -163,7 +166,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             required
             name="size"
             value={sizes}
-            className="relative w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg  focus:border-white bg-opacity-70"
+            className="relative w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             onChange={(e) => setSizes(e.target.value)}>
             <option value="" disabled>
               Select Size
@@ -223,8 +226,8 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             )}
           </div>
           <img
-            src={imagePreview ? imagePreview : noImage}
-            alt=""
+            src={imagePreview ? imagePreview : "/No_Preview.png"}
+            alt="imagePreview"
             className="flex h-48 rounded w-44"
           />
         </div>

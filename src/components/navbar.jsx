@@ -3,7 +3,6 @@ import { UserRoundPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/logo.png";
 import NavCart from "./cart/nav-cart";
 
 function Navbar() {
@@ -28,7 +27,7 @@ function Navbar() {
     <div className="w-full mx-auto border-b border-b-[#d46622] shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
       <div className="flex items-center justify-between h-16">
         <Link to="/">
-          <img src={logo} className="w-16 h-auto mr-auto" />
+          <img src={"/logo.png"} className="w-16 h-auto mr-auto" />
         </Link>
         <div className="flex items-center md:space-x-10 xs:space-x-2 xl:text-xl md:text-xl sm:text-sm xs:text-sm font-semibold font-serif text-[#fdf8ef]">
           <a
@@ -46,11 +45,11 @@ function Navbar() {
             className="transition hover:scale-110 hover:text-red-300">
             Contact
           </a>
-          <Link
+          {/* <Link
             to={"/our-new"}
             className="p-1 transition hover:scale-110 hover:text-red-300">
             Our New
-          </Link>
+          </Link> */}
         </div>
         <div className="flex items-center px-1 space-x-4">
           <NavCart />

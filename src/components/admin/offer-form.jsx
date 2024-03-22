@@ -4,8 +4,6 @@ import { Multiselect } from "multiselect-react-dropdown";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-import noImage from "../../assets/No_Preview.png";
-
 const OfferForm = ({ products, refetch }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -130,7 +128,7 @@ const OfferForm = ({ products, refetch }) => {
               }}
             />
             {!image ? (
-              <span className="flex items-center justify-between w-full transition duration-300 image group-hover:text-green-300">
+              <span className="flex items-center justify-between w-full gap-2 transition duration-300 image group-hover:text-green-300">
                 <p>Upload Image</p>
                 <ImagePlus />
               </span>
@@ -152,8 +150,8 @@ const OfferForm = ({ products, refetch }) => {
             )}
           </div>
           <img
-            src={imagePreview ? imagePreview : noImage}
-            alt=""
+            src={imagePreview ? imagePreview : "/No_Preview.png"}
+            alt="image preview"
             className="flex h-48 rounded w-44"
           />
         </div>

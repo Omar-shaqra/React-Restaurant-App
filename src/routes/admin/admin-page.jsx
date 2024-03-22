@@ -1,8 +1,6 @@
 import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-import logo from "../../assets/logo.png";
-
 const AdminPage = () => {
   const { pathname } = useLocation();
 
@@ -17,7 +15,7 @@ const AdminPage = () => {
       <div className="flex flex-col flex-1 p-0 m-0">
         <header className="flex mx-auto w-full h-16 items-center justify-center p-4 backdrop-filter backdrop-blur-md bg-opacity-95 border-b border-b-[#d46622]">
           <Link to="/admin" className="mr-auto">
-            <img src={logo} className="w-16 h-auto" />
+            <img src={"/logo.png"} className="w-16 h-auto" />
           </Link>
           <ul className="flex gap-8 mr-auto font-semibold">
             <Link
