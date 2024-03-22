@@ -24,7 +24,7 @@ const NavCart = () => {
         className="flex items-center font-semibold text-white transition bg-black border-transparent rounded-full md:p-2 xs:p-1 hover:opacity-75">
         <ShoppingCart size={18} />
         <span className="text-sm font-medium text-white md:ml-2 xs:ml-1">
-          {cart.items?.length}
+          {cart.productItems?.length + cart.offerItems?.length}
         </span>
       </Link>
     </div>

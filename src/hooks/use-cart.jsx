@@ -5,19 +5,20 @@ import { createJSONStorage, persist } from "zustand/middleware";
 const useCart = create(
   persist(
     (set, get) => ({
-      items: [],
+      productItems: [],
+      offerItems: [],
 
-      // Add an item to the cart
-      addItem: (data, selectedSize, selectedDough) => {
-        const currentItems = get().items;
+      // Add an product item to the cart
+      addProductItem: (product, selectedSize, selectedDough) => {
+        const currentItems = get().productItems;
         const existingItemIndex = currentItems.findIndex(
-          (item) => item.id === data._id
+          (item) => item.id === product._id
         );
 
         if (existingItemIndex !== -1) {
           // Item already exists in the cart
           const newItem = {
-            ...data,
+            ...product,
             selectedSize,
             selectedDough,
             quantity: 1,
@@ -27,7 +28,7 @@ const useCart = create(
           const hasSameItem =
             currentItems.findIndex(
               (item) =>
-                item.id === data._id &&
+                item.id === product._id &&
                 item.selectedSize === selectedSize &&
                 item.selectedDough === selectedDough
             ) !== -1;
@@ -39,16 +40,16 @@ const useCart = create(
 
           // Add the new item with different size or dough type as a separate entry
           set((state) => ({
-            items: [
-              ...state.items.slice(0, existingItemIndex + 1),
+            productItems: [
+              ...state.productItems.slice(0, existingItemIndex + 1),
               newItem,
-              ...state.items.slice(existingItemIndex + 1),
+              ...state.productItems.slice(existingItemIndex + 1),
             ],
           }));
         } else {
           // Item does not exist in the cart
           const newItem = {
-            ...data,
+            ...product,
             selectedSize,
             selectedDough,
             quantity: 1,
@@ -56,17 +57,17 @@ const useCart = create(
 
           // Add the new item to the cart
           set((state) => ({
-            items: [...state.items, newItem],
+            productItems: [...state.productItems, newItem],
           }));
         }
 
-        toast.success(`${selectedSize} ${data.title} Added to Cart.`);
+        toast.success(`${selectedSize} ${product.title} Added to Cart.`);
       },
 
       // Update the size of an item in the cart
       size: (id, size) => {
         set((state) => ({
-          items: state.items.map((item) =>
+          productItems: state.productItems.map((item) =>
             item.id === id ? { ...item, selectedSize: size } : item
           ),
         }));
@@ -75,7 +76,7 @@ const useCart = create(
       // Update the dough of an item in the cart
       dough: (id, dough) => {
         set((state) => ({
-          items: state.items.map((item) =>
+          productItems: state.productItems.map((item) =>
             item.id === id ? { ...item, selectedDough: dough } : item
           ),
         }));
@@ -83,7 +84,7 @@ const useCart = create(
 
       increaseQuantity: (id, selectedSize, selectedDough) => {
         set((state) => ({
-          items: state.items.map((item) =>
+          productItems: state.productItems.map((item) =>
             item.id === id &&
             item.selectedSize === selectedSize &&
             item.selectedDough === selectedDough
@@ -95,7 +96,7 @@ const useCart = create(
 
       decreaseQuantity: (id, selectedSize, selectedDough) => {
         set((state) => ({
-          items: state.items.map((item) =>
+          productItems: state.productItems.map((item) =>
             item.id === id &&
             item.selectedSize === selectedSize &&
             item.selectedDough === selectedDough &&
@@ -109,7 +110,7 @@ const useCart = create(
       // Remove an item from the cart
       removeItem: (id, selectedSize, selectedDough) => {
         set((state) => ({
-          items: state.items.filter(
+          productItems: state.productItems.filter(
             (item) =>
               item.id !== id ||
               item.selectedSize !== selectedSize ||
@@ -118,8 +119,56 @@ const useCart = create(
         }));
       },
 
+      //! OFFERS
+      addOfferItem: (offer) => {
+        const currentItems = get().offerItems;
+        const existingItem = currentItems.find(
+          (item) => item._id === offer._id
+        );
+
+        if (existingItem) {
+          // Offer already exists in the cart
+          return toast.dismiss(), toast("Offer already in cart!");
+        }
+        const newItem = {
+          ...offer,
+          quantity: 1,
+        };
+        set((state) => ({
+          offerItems: [...state.offerItems, newItem],
+        }));
+        toast.success(`${offer.name} Added to Cart.`);
+      },
+
+      increaseOfferQuantity: (offerId) => {
+        set((state) => ({
+          offerItems: state.offerItems.map((item) =>
+            item.id === offerId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        }));
+      },
+
+      decreaseOfferQuantity: (offerId) => {
+        set((state) => ({
+          offerItems: state.offerItems.map((item) =>
+            item.id === offerId && item.quantity > 1
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }));
+      },
+
+      // Remove an offer from the cart
+      removeOfferItem: (offerId) => {
+        set((state) => ({
+          offerItems: state.offerItems.filter((item) => item.id !== offerId),
+        }));
+      },
+
       // Remove all items from the cart
-      removeAll: () => set({ items: [] }),
+      removeAll: () => set({ productItems: [], offerItems: [] }),
     }),
     {
       name: "cart-storage",

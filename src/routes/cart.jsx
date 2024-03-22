@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import empty_cart from "../assets/empty_cart.png";
-import CartItem from "../components/cart/cart-item";
+import ProductCartItem from "../components/cart/product-cart-item";
 import Summary from "../components/cart/summary";
 import useCart from "../hooks/use-cart";
+import OfferCartItem from "../components/cart/offer-cart-item";
 
 function CartPage() {
-  const { items } = useCart();
+  const { productItems, offerItems } = useCart();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -23,24 +23,29 @@ function CartPage() {
         Shopping Cart
       </h1>
       <div className="flex flex-col items-center justify-center px-4">
-        {items.length === 0 && (
+        {/* Empty Cart */}
+        {productItems.length + offerItems.length === 0 && (
           <div className="flex flex-col items-center h-screen">
             <img
-              src={empty_cart}
+              src={"/empty_cart.png"}
               className="p-4 mt-8 rounded-full w-80 bg-white/10"
               alt=""
             />
           </div>
         )}
+
         <ul className="flex flex-col items-center self-center justify-center w-full gap-2">
-          {items.map((item) => (
-            <CartItem
+          {productItems?.map((item) => (
+            <ProductCartItem
               key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}
               data={item}
             />
           ))}
+          {offerItems?.map((item) => (
+            <OfferCartItem key={item._id} data={item} />
+          ))}
         </ul>
-        {items.length > 0 && <Summary />}
+        {(productItems.length > 0 || offerItems.length > 0) && <Summary />}
       </div>
     </div>
   );

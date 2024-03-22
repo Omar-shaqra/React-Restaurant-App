@@ -8,20 +8,12 @@ const ProductPreviewInfo = ({ data }) => {
   const [selectedSize, setSelectedSize] = useState(data.price[0]?.size);
   const [selectedDough, setSelectedDough] = useState("");
 
-  const { addItem } = useCart();
+  const { addProductItem } = useCart();
 
   return (
     <section className="container flex flex-col w-full gap-2">
       <div className="flex items-center justify-between my-3">
         <p className="text-2xl">{data.title}</p>
-        <span className="p-1 rounded shadow-sm bg-white/30 shadow-orange-400">
-          <Currency
-            value={
-              data.price.find((price) => price.size === selectedSize)?.pr ||
-              data.price[0].pr
-            }
-          />
-        </span>
       </div>
       {/* Description */}
       <p className="w-5/6 text-sm text-gray-300 text-wrap">
@@ -50,7 +42,7 @@ const ProductPreviewInfo = ({ data }) => {
                       value={data.price[0].size}
                       className="hidden size"
                     />
-                    <div className="flex flex-col items-center ">
+                    <div className="flex flex-col items-center">
                       <p>{data.price[0].size}</p>
                       <Currency value={data.price[0].pr} />
                     </div>
@@ -135,14 +127,25 @@ const ProductPreviewInfo = ({ data }) => {
               </div>
             ))}
         </div>
-        {/* Add Button */}
-        <button
-          onClick={() => addItem(data, selectedSize, selectedDough)}
-          disabled={data.category?.name === "pizza" && !selectedDough}
-          className="flex items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-sm hover:rounded-2xl disabled:cursor-not-allowed">
-          Add To Cart
-          <ShoppingCart size={20} />
-        </button>
+
+        <div className="flex md:flex-col xs:flex-row gap-1">
+          <span className="p-1 w-fit self-center rounded shadow-sm bg-white/30 shadow-orange-400">
+            <Currency
+              value={
+                data.price.find((price) => price.size === selectedSize)?.pr ||
+                data.price[0].pr
+              }
+            />
+          </span>
+          {/* Add Button */}
+          <button
+            onClick={() => addProductItem(data, selectedSize, selectedDough)}
+            disabled={data.category?.name === "pizza" && !selectedDough}
+            className="flex items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 md:rounded-none xs:rounded rounded-sm hover:rounded-2xl disabled:cursor-not-allowed">
+            Add To Cart
+            <ShoppingCart size={20} />
+          </button>
+        </div>
       </div>
     </section>
   );
