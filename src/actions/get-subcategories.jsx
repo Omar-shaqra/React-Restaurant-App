@@ -7,7 +7,7 @@ export const GetSubCategories = ({ setSubcategories }) => {
     queryFn: async () => {
       const { data } = await axios.get(
         // "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories"
-        "http://localhost:8000/api/v1/subcategories"
+        "https://clean-plum-bass.cyclic.app/api/v1/subcategories"
       );
       setSubcategories(data);
       return data;
@@ -21,7 +21,7 @@ export const GetSubCategoriesWithId = ({ setSubcategories, id }) => {
     queryFn: async () => {
       const { data } = await axios.get(
         // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories/${id}/subcategories`
-        `http://localhost:8000/api/v1/categories/${id}/subcategories`
+        `https://clean-plum-bass.cyclic.app/api/v1/categories/${id}/subcategories`
       );
       setSubcategories(data);
       return data;

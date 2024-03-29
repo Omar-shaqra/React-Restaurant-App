@@ -35,7 +35,7 @@ const OfferForm = ({ products, refetch }) => {
       try {
         await axios.post(
           // "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories",
-          `http://localhost:8000/api/v1/offers`,
+          `https://clean-plum-bass.cyclic.app/api/v1/offers`,
           formdata
         );
         refetch();

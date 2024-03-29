@@ -30,7 +30,7 @@ const CategoryForm = ({ categories, refetch }) => {
       try {
         await axios.post(
           // "https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories",
-          "http://localhost:8000/api/v1/categories",
+          "https://clean-plum-bass.cyclic.app/api/v1/categories",
 
           formdata
         );

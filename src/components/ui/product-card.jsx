@@ -71,7 +71,6 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
                     }
                   );
                 }}>
-                Delete
                 <Trash2 size={15} />
               </button>
             </div>

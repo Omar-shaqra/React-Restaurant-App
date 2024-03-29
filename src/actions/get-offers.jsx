@@ -7,7 +7,7 @@ export const GetOffers = ({ setOffers }) => {
     queryFn: async () => {
       const { data } = await axios.get(
         // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products`
-        `http://localhost:8000/api/v1/offers`
+        `https://clean-plum-bass.cyclic.app/api/v1/offers`
       );
       setOffers(data);
       return data;
