@@ -12,8 +12,11 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     previewModal.onOpen(data);
   };
 
-  // const imgSrc = data.imageCover?.replace("undefined", "http://localhost:8000");
-  const imgSrc = data.imageCover;
+  const imgSrc = data.imageCover?.replace(
+    "undefined",
+    "https://clean-plum-bass.cyclic.app/api/v1"
+  );
+  // const imgSrc = data.imageCover;
 
   return (
     <section
