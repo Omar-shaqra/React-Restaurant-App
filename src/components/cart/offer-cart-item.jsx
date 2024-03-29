@@ -19,7 +19,8 @@ function OfferCartItem({ data }) {
     decreaseOfferQuantity(data.id);
   };
 
-  const imgSrc = data?.image.replace("undefined", "http://localhost:8000");
+  // const imgSrc = data?.image.replace("undefined", "http://localhost:8000");
+  const imgSrc = data?.image;
 
   return (
     <li className="flex sm:flex-row xs:flex-col w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
@@ -35,10 +36,10 @@ function OfferCartItem({ data }) {
         )}
       </div>
 
-      <div className="relative flex flex-col w-full self-center flex-1 gap-2 space-y-2 sm:ml-6">
+      <div className="relative flex flex-col self-center flex-1 w-full gap-2 space-y-2 sm:ml-6">
         {/* Title */}
         <div className="flex justify-between gap-2">
-          <p className="text-3xl capitalize font-semibold">{data?.name}</p>
+          <p className="text-3xl font-semibold capitalize">{data?.name}</p>
           {/* Remove Button */}
           <IconButton
             className="self-center text-white border-2 rounded-full hover:bg-red-600 h-fit"

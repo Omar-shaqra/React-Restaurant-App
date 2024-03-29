@@ -12,7 +12,8 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     previewModal.onOpen(data);
   };
 
-  const imgSrc = data.imageCover?.replace("undefined", "http://localhost:8000");
+  // const imgSrc = data.imageCover?.replace("undefined", "http://localhost:8000");
+  const imgSrc = data.imageCover;
 
   return (
     <section

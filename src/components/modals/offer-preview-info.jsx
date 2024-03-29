@@ -13,10 +13,11 @@ const OfferPreviewInfo = ({ data }) => {
       <div className="flex gap-1">
         <img
           className="w-24 h-20 rounded"
-          src={product.imageCover.replace(
-            "undefined",
-            "http://localhost:8000/"
-          )}
+          // src={product.imageCover.replace(
+          //   "undefined",
+          //   "http://localhost:8000/"
+          // )}
+          src={product.imageCover}
         />
         <p className="p-1 font-semibold rounded bg-white/20 w-fit h-fit">
           {product.title}
@@ -31,14 +32,14 @@ const OfferPreviewInfo = ({ data }) => {
       {/* Name & Price */}
       <p className="text-2xl">{data.name}</p>
       <hr className="my-2" />
-      <div className="flex items-end flex-wrap sm:gap-6 xs:gap-3 sm:mb-4 sm:justify-between">
+      <div className="flex flex-wrap items-end sm:gap-6 xs:gap-3 sm:mb-4 sm:justify-between">
         <div className="flex justify-center gap-2 md:flex-row xs:flex-col xs:space-y-2">
           {productsList}
         </div>
       </div>
 
       <div className="flex items-center justify-end gap-1">
-        <span className="p-1 w-fit rounded shadow-sm bg-white/30 shadow-orange-400">
+        <span className="p-1 rounded shadow-sm w-fit bg-white/30 shadow-orange-400">
           <Currency value={data.price} />
         </span>
         {/* Add Button */}

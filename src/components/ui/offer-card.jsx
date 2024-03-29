@@ -20,7 +20,8 @@ const OfferCard = ({ data }) => {
         {data.price}
       </h1>
       <img
-        src={data?.image.replace("undefined", "http://localhost:8000/")}
+        // src={data?.image.replace("undefined", "http://localhost:8000/")}
+        src={data?.image}
         alt="Offer Image"
         className="w-64 rounded-2xl"
       />
