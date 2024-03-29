@@ -20,7 +20,7 @@ const Modal = ({ open, onClose, children }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
               <Dialog.Panel className="max-w-4xl text-left align-middle ">
-                <div className="relative flex items-center px-4 pt-4 pb-2 m-2 overflow-hidden border border-orange-300 rounded-md shadow-2xl w-fit text-wrap bg-zinc-950 border-opacity-40">
+                <div className="relative flex items-center w-full px-4 pt-4 pb-2 m-2 overflow-hidden border border-orange-300 rounded-md shadow-2xl w-fit text-wrap bg-zinc-950 border-opacity-40">
                   <div className="absolute z-10 right-3 top-2">
                     <IconButton
                       className="text-white border-2 rounded-full"

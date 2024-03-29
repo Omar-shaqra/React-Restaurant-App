@@ -1,32 +1,159 @@
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 import { Wallet } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
+import { useUser } from "@clerk/clerk-react";
 
 import useCart from "../../hooks/use-cart";
+import CheckoutModal from "../modals/checkout-modal";
 import Currency from "../ui/currency";
 
 function Summary() {
+  const { user } = useUser();
   const [searchParams] = useSearchParams();
+  const productData = [];
 
   const productItems = useCart((state) => state.productItems);
   const offerItems = useCart((state) => state.offerItems);
   const removeAll = useCart((state) => state.removeAll);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [payment, setPayment] = useState();
+  const [address, setAddress] = useState();
+  const [userPhone, setUserPhone] = useState();
+  const [state, setState] = useState();
+
   useEffect(() => {
     let paymentCompleted = false;
 
-    if (searchParams.get("success") && !paymentCompleted) {
-      toast.success("Payment completed.");
-      removeAll();
-      paymentCompleted = true; // Set paymentCompleted flag to true
+    const handlePaymentSuccess = async () => {
+      if (!user) return; // User not logged in
+
+      if (searchParams.get("success") && !paymentCompleted) {
+        try {
+          await axios.post("https://clean-plum-bass.cyclic.app/api/v1/sells", {
+            userID: user.id,
+            productData: productData,
+            TypeOfPayment: payment,
+            userPhone,
+            address,
+            state,
+            TotalPrice: totalPrice,
+            statue: true,
+          });
+          toast.success("Payment Completed.");
+          removeAll();
+          paymentCompleted = true;
+        } catch (error) {
+          console.error("Error completing payment:", error);
+          toast.error("Error completing payment.");
+        }
+      }
+
+      if (searchParams.get("canceled")) {
+        toast.error("Payment Was Canceld.");
+      }
+    };
+
+    handlePaymentSuccess();
+  });
+
+  const onCheckout = async () => {
+    if (!payment) setIsModalOpen(true);
+    const cashOrder = async () => {
+      try {
+        await axios.post("https://clean-plum-bass.cyclic.app/api/v1/sells", {
+          userID: user.id,
+          productData,
+          TypeOfPayment: payment,
+          userPhone,
+          address,
+          state,
+          TotalPrice: totalPrice,
+          statue: false,
+        });
+        toast.success("Order sent successfully.");
+        removeAll();
+      } catch (error) {
+        console.error("Error sending order:", error);
+        toast.error("Error sending order.");
+      }
+    };
+
+    const onlineOrder = async () => {
+      setIsModalOpen(false);
+      const stripe = await loadStripe(
+        "pk_test_51Os1xgGMUahkuOEpq1ocLcu40WY2mupSx3J4msiQNacUhfYlRPnYwotSt5DHTOMgzxVtQ92isEzIKYFINxdLQ65n000rfabEZC"
+      );
+
+      const body = {
+        products: productItems,
+        offers: offerItems,
+        price: totalPrice,
+      };
+
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const response = await fetch(
+        "https://clean-plum-bass.cyclic.app/api/v1/checkout",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
+
+      const session = await response.json();
+
+      const result = stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.log(result.error);
+      }
+    };
+    // Cash Payment
+    if (payment === "Cash On Delivery") {
+      setIsModalOpen(false);
+      await cashOrder();
     }
 
-    if (searchParams?.get("canceled")) {
-      toast.error("Something went wrong.");
+    if (payment === "Online Payment") {
+      setIsModalOpen(false);
+      await onlineOrder();
     }
-  }, [searchParams, removeAll]);
+  };
+
+  // Add products from productItems array
+  productItems.forEach((item) => {
+    const productObj = {
+      productid: item.id,
+      scale: item.selectedSize,
+      quantity: item.quantity,
+    };
+    productData.push(productObj);
+  });
+
+  // Add offer items to productData
+  offerItems.forEach((item) => {
+    const offerObj = {
+      offersid: item._id,
+      quantity: item.quantity,
+    };
+    productData.push(offerObj);
+  });
+
+  const handleDeliveryInfo = (value) => {
+    setPayment(value.payment);
+    setState(value.state);
+    setAddress(value.address);
+    setUserPhone(value.phone);
+  };
 
   const totalPriceFromProducts = productItems.reduce((total, item) => {
     return (
@@ -43,38 +170,6 @@ function Summary() {
   }, 0);
 
   const totalPrice = totalPriceFromProducts + totalPriceFromOffers;
-
-  const onCheckout = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51Os1xgGMUahkuOEpq1ocLcu40WY2mupSx3J4msiQNacUhfYlRPnYwotSt5DHTOMgzxVtQ92isEzIKYFINxdLQ65n000rfabEZC"
-    );
-
-    const body = {
-      products: productItems,
-      offers: offerItems,
-      price: totalPrice,
-    };
-
-    const headers = {
-      "Content-Type": "application/json",
-    };
-
-    const response = await fetch("http://localhost:8000/api/v1/checkout", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
-
-    const session = await response.json();
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (result.error) {
-      console.log(result.error);
-    }
-  };
 
   return (
     <div className="mt-5 rounded-xl bg-black/90 px-4 py-4 text-white w-full self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
@@ -115,17 +210,31 @@ function Summary() {
           <div className="text-base font-medium">Order Total</div>
           <Currency value={totalPrice} />
         </div>
+
+        {payment && (
+          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+            <div className="text-base font-medium">Payment Type</div>
+            <p>{payment}</p>
+          </div>
+        )}
       </div>
 
       {/* Checkout Button */}
       <button
         onClick={onCheckout}
-        disabled={productItems.length === 0}
+        disabled={productItems.length === 0 && offerItems.length === 0}
         className="flex items-center justify-center w-full gap-2 p-3 mt-6 font-semibold text-white transition duration-500 rounded-full bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed group">
+        <CheckoutModal
+          handleDeliveryInfo={handleDeliveryInfo}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
         <p className="tracking-wider uppercase transition group-hover:-translate-x-3">
-          Checkout
+          {!payment ? "Fill Delivey Details" : "Order Now"}
         </p>
-        <Wallet size={20} className="transition group-hover:translate-x-3" />
+        {payment && (
+          <Wallet size={20} className="transition group-hover:translate-x-3" />
+        )}
       </button>
     </div>
   );
