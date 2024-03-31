@@ -13,11 +13,11 @@ const OfferPreviewInfo = ({ data }) => {
       <div className="flex gap-1">
         <img
           className="w-24 h-20 rounded"
-          // src={product.imageCover.replace(
-          //   "undefined",
-          //   "http://localhost:8000/"
-          // )}
-          src={product.imageCover}
+          src={product.imageCover.replace(
+            "undefined",
+            "https://restaurant-menue-ordering-v1.onrender.com"
+          )}
+          // src={product.imageCover}
         />
         <p className="p-1 font-semibold rounded bg-white/20 w-fit h-fit">
           {product.title}

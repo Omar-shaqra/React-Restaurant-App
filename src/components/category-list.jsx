@@ -59,7 +59,7 @@ const CategoryList = ({ categoryFilter }) => {
         </div>
       ))
     ) : (
-      <div className="self-center text-base text-center">
+      <div className="self-center text-base text-center text-nowrap">
         No Categories Found
       </div>
     );

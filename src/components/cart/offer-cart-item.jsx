@@ -19,8 +19,11 @@ function OfferCartItem({ data }) {
     decreaseOfferQuantity(data.id);
   };
 
-  // const imgSrc = data?.image.replace("undefined", "http://localhost:8000");
-  const imgSrc = data?.image;
+  const imgSrc = data?.image.replace(
+    "undefined",
+    "https://restaurant-menue-ordering-v1.onrender.com"
+  );
+  // const imgSrc = data?.image;
 
   return (
     <li className="flex sm:flex-row xs:flex-col w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">

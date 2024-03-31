@@ -6,8 +6,7 @@ export const GetOffers = ({ setOffers }) => {
     queryKey: [setOffers, "offers"],
     queryFn: async () => {
       const { data } = await axios.get(
-        // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products`
-        `https://clean-plum-bass.cyclic.app/api/v1/offers`
+        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/offers`
       );
       setOffers(data);
       return data;

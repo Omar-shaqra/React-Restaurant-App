@@ -14,7 +14,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
 
   const imgSrc = data.imageCover?.replace(
     "undefined",
-    "https://clean-plum-bass.cyclic.app/api/v1"
+    "https://restaurant-menue-ordering-v1.onrender.com"
   );
   // const imgSrc = data.imageCover;
 
@@ -32,14 +32,28 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
         )}
         {/* Title & Cateogry */}
         <div className="flex justify-start mt-2 md:flex-row xs:flex-col md:items-center md:gap-4 xs:gap-1">
-          <h5 className="font-semibold xl:text-xl md:text-base sm:text-sm xs:text-xs xs:text-wrap text-nowrap">
+          <h5 className="font-semibold text-nowrap xl:text-xl md:text-base sm:text-sm xs:text-xs ">
             {data.title}
           </h5>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full">
             <p className="p-1 text-sm text-orange-300 rounded bg-black/50 w-fit h-fit">
               {data.category?.name}
             </p>
-            <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
+            {button == "add" ? (
+              <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
+            ) : (
+              <button
+                className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                onClick={() => {
+                  deleteItem({ id: data._id, routeName: "products" }).then(
+                    () => {
+                      refetch();
+                    }
+                  );
+                }}>
+                <Trash2 size={15} />
+              </button>
+            )}
           </div>
         </div>
         {/* Prices & Button */}
@@ -62,22 +76,8 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
               </div>
             )}
           </div>
-          {button === "add" ? (
+          {button === "add" && (
             <ShoppingBag className="hidden overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:block size-auto lg:p-2 md:p-1 hover:border-orange-600 hover:scale-105" />
-          ) : (
-            <div className="flex items-center justify-center pt-2">
-              <button
-                className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                onClick={() => {
-                  deleteItem({ id: data._id, routeName: "products" }).then(
-                    () => {
-                      refetch();
-                    }
-                  );
-                }}>
-                <Trash2 size={15} />
-              </button>
-            </div>
           )}
         </div>
       </div>

@@ -23,7 +23,7 @@ export const deleteItem = async ({ id, routeName }) => {
   await axios
     .delete(
       // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/${routeName}/${id}`
-      `https://clean-plum-bass.cyclic.app/api/v1/${routeName}/${id}`
+      `https://restaurant-menue-ordering-v1.onrender.com/api/v1/${routeName}/${id}`
     )
     .then(() => {
       toast.success("Delete Successfully.");

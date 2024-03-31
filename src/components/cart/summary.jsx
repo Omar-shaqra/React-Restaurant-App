@@ -33,16 +33,19 @@ function Summary() {
 
       if (searchParams.get("success") && !paymentCompleted) {
         try {
-          await axios.post("https://clean-plum-bass.cyclic.app/api/v1/sells", {
-            userID: user.id,
-            productData: productData,
-            TypeOfPayment: payment,
-            userPhone,
-            address,
-            state,
-            TotalPrice: totalPrice,
-            statue: true,
-          });
+          await axios.post(
+            "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
+            {
+              userID: user.id,
+              productData: productData,
+              TypeOfPayment: payment,
+              userPhone,
+              address,
+              state,
+              TotalPrice: totalPrice,
+              statue: true,
+            }
+          );
           toast.success("Payment Completed.");
           removeAll();
           paymentCompleted = true;
@@ -64,16 +67,19 @@ function Summary() {
     if (!payment) setIsModalOpen(true);
     const cashOrder = async () => {
       try {
-        await axios.post("https://clean-plum-bass.cyclic.app/api/v1/sells", {
-          userID: user.id,
-          productData,
-          TypeOfPayment: payment,
-          userPhone,
-          address,
-          state,
-          TotalPrice: totalPrice,
-          statue: false,
-        });
+        await axios.post(
+          "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
+          {
+            userID: user.id,
+            productData,
+            TypeOfPayment: payment,
+            userPhone,
+            address,
+            state,
+            TotalPrice: totalPrice,
+            statue: false,
+          }
+        );
         toast.success("Order sent successfully.");
         removeAll();
       } catch (error) {
@@ -99,7 +105,7 @@ function Summary() {
       };
 
       const response = await fetch(
-        "https://clean-plum-bass.cyclic.app/api/v1/checkout",
+        "https://restaurant-menue-ordering-v1.onrender.com/api/v1/checkout",
         {
           method: "POST",
           headers: headers,

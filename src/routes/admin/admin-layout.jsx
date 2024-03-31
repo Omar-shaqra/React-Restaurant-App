@@ -1,7 +1,7 @@
 import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-const AdminPage = () => {
+const AdminLayout = () => {
   const { pathname } = useLocation();
 
   const { isLoaded, isSignedIn } = useAuth();
@@ -18,6 +18,7 @@ const AdminPage = () => {
             <img src={"/logo.png"} className="w-16 h-auto" />
           </Link>
           <ul className="flex gap-8 mr-auto font-semibold">
+            {/* Orders */}
             <Link
               to="/admin"
               className={`${
@@ -25,8 +26,19 @@ const AdminPage = () => {
                   ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
                   : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
               }`}>
+              Orders
+            </Link>
+            {/* Products */}
+            <Link
+              to="/admin/products"
+              className={`${
+                pathname === "/admin/products"
+                  ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+              }`}>
               Products
             </Link>
+            {/* Categories */}
             <Link
               to="/admin/categories"
               className={`${
@@ -36,6 +48,7 @@ const AdminPage = () => {
               }`}>
               Categories
             </Link>
+            {/* Subcategories */}
             <Link
               to="/admin/subcategories"
               className={`${
@@ -45,6 +58,7 @@ const AdminPage = () => {
               }`}>
               SubCategories
             </Link>
+            {/* Offers */}
             <Link
               to="/admin/offers"
               className={`${
@@ -66,4 +80,4 @@ const AdminPage = () => {
     </div>
   );
 };
-export default AdminPage;
+export default AdminLayout;

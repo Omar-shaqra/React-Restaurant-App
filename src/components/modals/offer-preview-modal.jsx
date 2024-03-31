@@ -14,8 +14,11 @@ const OfferPreviewModal = () => {
     <Modal open={previewModal.isOpen} onClose={previewModal.onClose}>
       <div className="container flex gap-4 md:flex-row xs:flex-col">
         <img
-          // src={offer.image.replace("undefined", "http://localhost:8000/")}
-          src={offer.image}
+          src={offer.image.replace(
+            "undefined",
+            "https://restaurant-menue-ordering-v1.onrender.com"
+          )}
+          // src={offer.image}
           className="self-center rounded aspect-square xl:h-64 lg:h-60 xs:h-52"
         />
         <div className="container mt-5 sm:col-span-8 lg:col-span-7 xs:col-span-10">

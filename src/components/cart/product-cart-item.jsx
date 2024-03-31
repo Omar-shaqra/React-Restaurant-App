@@ -19,7 +19,7 @@ function ProductCartItem({ data }) {
 
   const imgSrc = data?.imageCover?.replace(
     "undefined",
-    "http://localhost:8000"
+    "https://restaurant-menue-ordering-v1.onrender.com"
   );
 
   return (
@@ -40,7 +40,7 @@ function ProductCartItem({ data }) {
         {/* Title, Size */}
         <div className="flex justify-between gap-2">
           <div className="flex items-center gap-2">
-            <p className="text-3xl capitalize font-semibold">
+            <p className="text-3xl font-semibold capitalize">
               {data ? data.title : "product name"}
             </p>
             <p className="p-1 rounded bg-orange-800/90">{data.selectedSize}</p>

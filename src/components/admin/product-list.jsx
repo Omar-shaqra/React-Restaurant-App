@@ -19,7 +19,7 @@ const responsive = {
     slidesToSlide: 2,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 637, min: 0 },
     items: 2,
     slidesToSlide: 1,
   },

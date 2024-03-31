@@ -7,13 +7,16 @@ const CategoryCard = ({ name, image, selected, onClick }) => {
     <section className="flex flex-col items-center gap-1 ">
       <div className={cardClassName} onClick={onClick}>
         <img
-          // src={
-          //   image
-          //     ? image.replace("undefined", "http://localhost:8000")
-          //     : "/logo.png"
-          // }
-          src={image ? image : "/logo.pn"}
-          alt=""
+          src={
+            image
+              ? image.replace(
+                  "undefined",
+                  "https://restaurant-menue-ordering-v1.onrender.com"
+                )
+              : "/logo.png"
+          }
+          // src={image ? image : "/logo.pn"}
+          alt="category image"
           className="bg-opacity-0 rounded md:h-24 xs:h-16"
         />
       </div>
