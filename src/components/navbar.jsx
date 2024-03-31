@@ -25,11 +25,11 @@ function Navbar() {
 
   return (
     <div className="w-full mx-auto border-b border-b-[#d46622] shadow-orange-200 backdrop-filter backdrop-blur-md bg-opacity-95">
-      <div className="flex items-center justify-between h-16">
+      <div className="flex items-center justify-between h-16 ">
         <Link to="/">
           <img src={"/logo.png"} className="w-16 h-auto mr-auto" />
         </Link>
-        <div className="flex items-center md:space-x-10 xs:space-x-2 xl:text-xl md:text-xl sm:text-sm xs:text-sm font-semibold font-serif text-[#fdf8ef]">
+        <div className="flex gap-2 items-center md:space-x-10 xs:space-x-2 xl:text-xl md:text-xl sm:text-sm xs:text-sm font-semibold font-serif text-[#fdf8ef]">
           <a
             href={`${origin}/#deals`}
             className="transition hover:scale-110 hover:text-red-300">

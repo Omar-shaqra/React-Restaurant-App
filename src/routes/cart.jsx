@@ -19,10 +19,10 @@ function CartPage() {
 
   return (
     <div className="container flex flex-col w-full gap-5 px-4 pt-10 mx-auto text-white">
-      <h1 className="flex flex-col self-center p-2 mb-2 text-3xl font-semibold tracking-widest bg-white/30 w-fit rounded-2xl">
+      <h1 className="flex flex-col self-center p-2 mb-2 text-3xl font-semibold tracking-widest text-center bg-white/30 w-fit rounded-2xl">
         Shopping Cart
       </h1>
-      <div className="flex flex-col items-center justify-center px-4">
+      <div className="flex flex-col items-center justify-center w-full px-4">
         {/* Empty Cart */}
         {productItems.length + offerItems.length === 0 && (
           <div className="flex flex-col items-center h-screen">
@@ -34,7 +34,7 @@ function CartPage() {
           </div>
         )}
 
-        <ul className="flex flex-col items-center self-center justify-center w-full gap-2">
+        <ul className="flex flex-col items-center self-center justify-center gap-2">
           {productItems?.map((item) => (
             <ProductCartItem
               key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}

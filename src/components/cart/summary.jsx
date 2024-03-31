@@ -36,7 +36,7 @@ function Summary() {
           await axios.post(
             "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
             {
-              userID: user.id,
+              userID: user?.id,
               productData: productData,
               TypeOfPayment: payment,
               userPhone,
@@ -178,7 +178,7 @@ function Summary() {
   const totalPrice = totalPriceFromProducts + totalPriceFromOffers;
 
   return (
-    <div className="mt-5 rounded-xl bg-black/90 px-4 py-4 text-white w-full self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <div className="w-full mt-5 rounded-xl bg-black/90 px-4 py-4 text-white self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       <h2 className="mb-1 text-2xl font-medium">Order Summary</h2>
       {/* Products Summary */}
       {productItems?.map((item) => (

@@ -5,7 +5,7 @@ const Footer = () => {
     <section
       id="footer"
       className="flex items-center justify-center mt-10 font-serif font-semibold text-white bg-gradient-to-t from-black to-neutral-900/30">
-      <div className="container flex w-full py-5 md:flex-row xs:flex-col">
+      <div className="flex-1 w-full py-5 mx-auto">
         {/* Logo & Description */}
         <div className="px-4">
           <h1 className="flex items-center gap-3 mb-1 text-xl font-bold text-justify w-fit sm:text-3xl sm:text-left">
@@ -18,7 +18,7 @@ const Footer = () => {
           </p>
           <br />
         </div>
-        <div className="flex justify-between w-full md:flex-row xs:flex-col">
+        <div className="flex flex-col justify-between w-full md:flex-row">
           {/* Important Links */}
           <div className="flex flex-col items-center px-4 py-8">
             <h1 className="p-2 mb-3 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl text-nowrap sm:text-left">

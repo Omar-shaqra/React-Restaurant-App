@@ -56,7 +56,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <label className="font-bold ">Name:</label>
           <input
             placeholder="Enter your name"
-            // required
+            required
             className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             type="text"
             name="name"
@@ -69,7 +69,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <label className="font-bold ">Email:</label>
           <input
             placeholder="Enter your email"
-            // required
+            required
             className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             type="email"
             name="email"
@@ -82,7 +82,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <label className="font-bold ">Phone:</label>
           <input
             placeholder="Enter your phone"
-            // required
+            required
             className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             type="number"
             name="phone"
@@ -113,7 +113,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
         <div className="flex items-center w-full gap-6 text-white">
           <label className="font-bold">Address:</label>
           <input
-            // required
+            required
             placeholder="Enter your full address"
             className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             name="address"
