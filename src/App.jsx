@@ -10,7 +10,8 @@ import AddCategory from "./routes/admin/add-category";
 import AddOffer from "./routes/admin/add-offer";
 import AddProduct from "./routes/admin/add-product";
 import AddSubcategory from "./routes/admin/add-subcategory";
-import Admin from "./routes/admin/admin-page";
+// import Orders from "./routes/admin/orders";
+import AdminLayout from "./routes/admin/admin-layout";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
 import NotFound from "./routes/not-found";
@@ -26,8 +27,9 @@ function App() {
           <Route path={`/cart`} element={<Cart />} />
           <Route path={`/our-new`} element={<OurNew />} />
         </Route>
-        <Route path={`/admin`} element={<Admin />}>
-          <Route path={`/admin`} element={<AddProduct />} />
+        <Route path={`/admin`} element={<AdminLayout />}>
+          {/* <Route path={`/admin`} element={<Orders />} /> */}
+          <Route path={`/admin/products`} element={<AddProduct />} />
           <Route path={`/admin/categories`} element={<AddCategory />} />
           <Route path={`/admin/subcategories`} element={<AddSubcategory />} />
           <Route path={`/admin/offers`} element={<AddOffer />} />
