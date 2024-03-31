@@ -19,12 +19,12 @@ const responsive = {
     items: 3,
   },
   smallTablet: {
-    breakpoint: { max: 626, min: 464 },
+    breakpoint: { max: 626, min: 373 },
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
+    breakpoint: { max: 373, min: 0 },
+    items: 1,
   },
 };
 
@@ -65,14 +65,14 @@ const CategoryList = ({ categoryFilter }) => {
     );
 
   return (
-    <section className="flex flex-col mt-1 text-white shadow-sm">
+    <section className="flex flex-col w-full mt-1 text-white shadow-sm">
       {categoryList && (
         <Carousel
-          className="flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1 mx-3"
+          className="w-full flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1"
           slidesToSlide={2}
           additionalTransfrom={0}
           minimumTouchDrag={80}
-          centerMode={true}
+          // centerMode={true}
           arrows
           infinite
           rewind

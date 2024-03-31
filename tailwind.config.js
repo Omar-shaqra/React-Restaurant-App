@@ -13,14 +13,14 @@ export default {
     container: {
       center: true,
       screens: {
-        xs: "370px",
+        xs: "250px",
         ...defaultTheme.screens,
       },
     },
-    screens: {
-      xs: "370px",
-      ...defaultTheme.screens,
-    },
+    // screens: {
+    //   // xs: "270px",
+    //   ...defaultTheme.screens,
+    // },
   },
   plugins: [],
 };

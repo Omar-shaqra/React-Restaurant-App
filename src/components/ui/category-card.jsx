@@ -4,7 +4,7 @@ const CategoryCard = ({ name, image, selected, onClick }) => {
     : "flex flex-col items-center text-white bg-white/90 md:hover:text-red-300 hover:cursor-pointer md:hover:scale-110 transition p-1 rounded";
 
   return (
-    <section className="flex flex-col items-center gap-1 ">
+    <section className="flex flex-col items-center gap-1">
       <div className={cardClassName} onClick={onClick}>
         <img
           src={
@@ -17,7 +17,7 @@ const CategoryCard = ({ name, image, selected, onClick }) => {
           }
           // src={image ? image : "/logo.pn"}
           alt="category image"
-          className="bg-opacity-0 rounded md:h-24 xs:h-16"
+          className="bg-opacity-0 rounded aspect-square max-h-24"
         />
       </div>
       <h3 className="self-center justify-center font-semibold tracking-widest capitalize text-md">

@@ -70,7 +70,7 @@ function Summary() {
         await axios.post(
           "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
           {
-            userID: user.id,
+            userID: user?.id,
             productData,
             TypeOfPayment: payment,
             userPhone,

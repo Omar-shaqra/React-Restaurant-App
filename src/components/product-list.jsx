@@ -57,8 +57,8 @@ const ProductList = () => {
   return (
     <section
       id="deals"
-      className="flex flex-col w-full border-t-2 p-2 bg-[#000000] bg-opacity-80 border-t-red-300 rounded-md">
-      <h4 className="flex flex-col self-center p-2 font-semibold tracking-widest text-white w-fit bg-black/30 md:text-lg xs:text-base rounded-2xl">
+      className="w-full flex flex-col border-t-2 p-2 bg-[#000000] bg-opacity-80 border-t-red-300 rounded-md">
+      <h4 className="flex flex-col self-center p-2 font-semibold tracking-widest text-white bg-black/30 md:text-lg xs:text-base rounded-2xl">
         Select your Favorite
       </h4>
       <div className="sticky top-0 z-10 flex flex-col self-center w-full bg-black gap-x-2">

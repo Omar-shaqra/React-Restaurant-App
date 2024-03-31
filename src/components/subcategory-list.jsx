@@ -23,11 +23,11 @@ const responsive = {
   },
   smallTablet: {
     breakpoint: { max: 640, min: 464 },
-    items: 3,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 3,
+    items: 2,
   },
 };
 
@@ -54,7 +54,7 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
     subcategories.data?.length > 0 ? (
       subcategories.data.map((subcategory, index) => (
         <div
-          className="w-fit"
+          className="w-fit "
           onClick={() => {
             subcategoryFilter(subcategory._id);
           }}
@@ -76,7 +76,7 @@ const SubcategoryList = ({ selected_Category, subcategoryFilter }) => {
     <section className="flex flex-col mb-2 text-white shadow-sm">
       {subcategoryList && (
         <Carousel
-          className="flex flex-row p-2 mx-3 rounded-lg bg-white/10"
+          className="flex flex-row p-2 rounded-lg bg-white/10"
           slidesToSlide={1}
           additionalTransfrom={0}
           minimumTouchDrag={80}
