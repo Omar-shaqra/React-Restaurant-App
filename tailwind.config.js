@@ -17,10 +17,10 @@ export default {
         ...defaultTheme.screens,
       },
     },
-    // screens: {
-    //   // xs: "270px",
-    //   ...defaultTheme.screens,
-    // },
+    screens: {
+      xs: "270px",
+      ...defaultTheme.screens,
+    },
   },
   plugins: [],
 };

@@ -19,12 +19,12 @@ const responsive = {
     items: 3,
   },
   smallTablet: {
-    breakpoint: { max: 626, min: 373 },
+    breakpoint: { max: 626, min: 270 },
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 373, min: 0 },
-    items: 1,
+    breakpoint: { max: 270, min: 0 },
+    items: 2,
   },
 };
 
@@ -59,16 +59,16 @@ const CategoryList = ({ categoryFilter }) => {
         </div>
       ))
     ) : (
-      <div className="self-center text-base text-center text-nowrap">
+      <div className="self-center w-full text-base text-center text-nowrap">
         No Categories Found
       </div>
     );
 
   return (
-    <section className="flex flex-col w-full mt-1 text-white shadow-sm">
+    <section className="flex flex-col p-1 mt-1 text-white shadow-sm">
       {categoryList && (
         <Carousel
-          className="w-full flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1"
+          className="flex flex-row rounded bg-[#000000]/20 z-0 px-2 py-1"
           slidesToSlide={2}
           additionalTransfrom={0}
           minimumTouchDrag={80}

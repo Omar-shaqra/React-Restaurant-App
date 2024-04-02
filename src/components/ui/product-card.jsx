@@ -16,7 +16,6 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     "undefined",
     "https://restaurant-menue-ordering-v1.onrender.com"
   );
-  // const imgSrc = data.imageCover;
 
   return (
     <section
@@ -57,18 +56,21 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
           </div>
         </div>
         {/* Prices & Button */}
-        <div className="flex items-center justify-between">
-          <div className="flex justify-between mt-1 md:text-sm xs:text-[10px] xs:gap-1">
+        <div className="flex items-center justify-between gap-1">
+          <div className="flex mt-1 md:text-sm xs:text-[10px] gap-1 hide-scrollbar overflow-x-auto">
+            {/* Basic Price */}
             <div className="flex flex-col items-center p-1 rounded bg-white/20">
               <p className="text-gray-300">Basic</p>
               <Currency value={data.price[0]?.pr} />
             </div>
+            {/* Mid Price */}
             {data.price[1] && (
               <div className="flex flex-col items-center p-1 rounded bg-white/20">
                 <p className="text-gray-300">Medium</p>
                 <Currency value={data.price[1].pr} />
               </div>
             )}
+            {/* Large Price */}
             {data.price[2] && (
               <div className="flex flex-col items-center p-1 rounded bg-white/20">
                 <p className="text-gray-300">Large</p>

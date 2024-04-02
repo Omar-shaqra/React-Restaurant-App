@@ -169,7 +169,7 @@ const ProductPreviewInfo = ({ data }) => {
         <button
           onClick={() => addProductItem(data, selectedSize, selectedDough)}
           disabled={data.category?.name === "pizza" && !selectedDough}
-          className="flex flex-1 max-w-60 self-end  mx-2 justify-between items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-2xl disabled:cursor-not-allowed">
+          className="text-nowrap flex flex-1 max-w-60 self-end  mx-2 justify-between items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-2xl disabled:cursor-not-allowed">
           Add To Cart
           <ShoppingCart size={20} />
         </button>

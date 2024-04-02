@@ -57,11 +57,11 @@ const ProductList = () => {
   return (
     <section
       id="deals"
-      className="w-full flex flex-col border-t-2 p-2 bg-[#000000] bg-opacity-80 border-t-red-300 rounded-md">
+      className="w-full flex flex-col border-t-2  bg-[#000000] bg-opacity-80 border-t-red-300 rounded-md">
       <h4 className="flex flex-col self-center p-2 font-semibold tracking-widest text-white bg-black/30 md:text-lg xs:text-base rounded-2xl">
         Select your Favorite
       </h4>
-      <div className="sticky top-0 z-10 flex flex-col self-center w-full bg-black gap-x-2">
+      <div className="sticky top-0 z-10 flex flex-col bg-black gap-x-2">
         <CategoryList categoryFilter={categoryFilter} />
         <SubcategoryList
           subcategoryFilter={subcategoryFilter}
@@ -69,7 +69,7 @@ const ProductList = () => {
         />
       </div>
 
-      <div className="z-0 grid flex-row items-center justify-center w-full pt-5 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 xs:pt-1">
+      <div className="z-0 grid flex-row items-center justify-center pt-5 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 xs:pt-1">
         {productList}
       </div>
     </section>

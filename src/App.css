@@ -22,15 +22,7 @@ body,
   background-size: cover;
 }
 
-.multiSelectContainer li {
-  background-color: #fce2bf;
-  color: black;
-}
 
-li.groupChildEle {
-  background-color: #030303;
-  color: white;
-}
 
 @layer base {
   :root {
@@ -98,11 +90,26 @@ li.groupChildEle {
   }
 }
 
-@layer base {
-  /* * {
-    @apply border-border;
+@layer utilities {
+  .multiSelectContainer li {
+    background-color: #fce2bf;
+    color: black;
   }
-  body {
-    @apply bg-background text-foreground;
-  } */
+
+  li.groupChildEle {
+    background-color: #030303;
+    color: white;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
