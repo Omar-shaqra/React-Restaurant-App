@@ -1,10 +1,10 @@
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react";
 
 import useCart from "../../hooks/use-cart";
 import CheckoutModal from "../modals/checkout-modal";
@@ -65,6 +65,8 @@ function Summary() {
 
   const onCheckout = async () => {
     if (!payment) setIsModalOpen(true);
+
+    // Cash Payment
     const cashOrder = async () => {
       try {
         await axios.post(
@@ -88,42 +90,29 @@ function Summary() {
       }
     };
 
+    // Onlined Payment
     const onlineOrder = async () => {
-      setIsModalOpen(false);
-      const stripe = await loadStripe(
-        "pk_test_51Os1xgGMUahkuOEpq1ocLcu40WY2mupSx3J4msiQNacUhfYlRPnYwotSt5DHTOMgzxVtQ92isEzIKYFINxdLQ65n000rfabEZC"
-      );
-
-      const body = {
-        products: productItems,
-        offers: offerItems,
-        price: totalPrice,
-      };
-
-      const headers = {
-        "Content-Type": "application/json",
-      };
-
-      const response = await fetch(
-        "https://restaurant-menue-ordering-v1.onrender.com/api/v1/checkout",
-        {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(body),
+      try {
+        const res = await axios.post(
+          `https://restaurant-menue-ordering-v1.onrender.com/api/v1/paymob/${totalPrice}`,
+          {
+            TotalPrice: totalPrice,
+          }
+        );
+        // toast.success("Order Sent Successfully.");
+        const redirectURL = res.data;
+        if (redirectURL) {
+          window.location.href = redirectURL;
+        } else {
+          console.error("Payment Error Please try again later");
+          toast.error("Error redirecting to payment.");
         }
-      );
-
-      const session = await response.json();
-
-      const result = stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        console.log(result.error);
+      } catch (error) {
+        console.error("Error sending order:", error);
+        toast.error("Error sending order.");
       }
     };
-    // Cash Payment
+
     if (payment === "Cash On Delivery") {
       setIsModalOpen(false);
       await cashOrder();
@@ -135,7 +124,7 @@ function Summary() {
     }
   };
 
-  // Add products from productItems array
+  // Add products from productItems to productData
   productItems.forEach((item) => {
     const productObj = {
       productid: item.id,
@@ -145,7 +134,7 @@ function Summary() {
     productData.push(productObj);
   });
 
-  // Add offer items to productData
+  // Add offers from offerItems to productData
   offerItems.forEach((item) => {
     const offerObj = {
       offersid: item._id,
@@ -178,7 +167,7 @@ function Summary() {
   const totalPrice = totalPriceFromProducts + totalPriceFromOffers;
 
   return (
-    <div className="w-full mt-5 rounded-xl bg-black/90 px-4 py-4 text-white self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <div className="min-w-full mt-5 rounded-xl bg-black/90 px-4 py-4 text-white self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       <h2 className="mb-1 text-2xl font-medium">Order Summary</h2>
       {/* Products Summary */}
       {productItems?.map((item) => (

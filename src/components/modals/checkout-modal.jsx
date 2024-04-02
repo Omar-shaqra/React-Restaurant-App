@@ -22,7 +22,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
 
   const [formData, setFormData] = useState({
     name: user ? `${user?.firstName} ${user.lastName}` : "",
-    phone: "",
+    phone: "+968",
     email: user ? `${user?.emailAddresses[0]?.emailAddress}` : "",
     state: "",
     address: "",
@@ -31,6 +31,21 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === "phone") {
+      // Check if the value starts with "+968" and has a total length of 12 characters
+      if (value.startsWith("+968") && value.length === 12) {
+        setFormData({ ...formData, [name]: value });
+      } else if (value.startsWith("+968") && value.length > 12) {
+        // If the value starts with "+968" and has more than 12 characters, truncate to 12 characters
+        setFormData({ ...formData, [name]: value.slice(0, 12) });
+      } else if (value.length <= 8) {
+        // If the value has less than or equal to 8 characters, update the state
+        setFormData({ ...formData, [name]: value });
+      }
+    } else {
+      // For other input fields, directly update the state
+      setFormData({ ...formData, [name]: value });
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -84,8 +99,10 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             placeholder="Enter your phone"
             required
             className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
-            type="number"
+            type="text"
             name="phone"
+            minLength={4}
+            maxLength={12}
             value={formData.phone}
             onChange={handleInputChange}
           />
@@ -117,6 +134,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             placeholder="Enter your full address"
             className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             name="address"
+            min={10}
             value={formData.address}
             onChange={handleInputChange}
           />
