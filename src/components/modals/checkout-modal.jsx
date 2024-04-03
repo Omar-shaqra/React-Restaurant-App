@@ -111,6 +111,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
         <div className="flex items-center w-full gap-6 text-white">
           <label className="font-bold">State:</label>
           <select
+            required
             placeholder="Select your state"
             className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             name="state"

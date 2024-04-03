@@ -112,4 +112,57 @@ body,
     scrollbar-width: none;
     /* Firefox */
   }
+
+  .table_container {
+    max-width: max-content;
+    margin: 0 auto;
+    overflow: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-spacing: 0;
+    border-radius: 200px;
+  }
+
+  .table th {
+    background: #fff;
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a1a1a;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  caption {
+    color: white;
+    font-style: italic;
+    font-size: 90%;
+    margin-bottom: 10px;
+  }
+
+  th.up,
+  th.default,
+  th.down {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center right;
+  }
+
+  .table td {
+    border-top: 1px solid #707070;
+    padding: 8px 20px;
+    text-align: center;
+  }
+
+  .table tbody tr:first-child td {
+    border-top: none;
+  }
+
+  .table tbody tr:nth-child(n) td {
+    background: #eff0f0;
+  }
+
+  .table tbody tr:nth-child(2n) td {
+    background: #fff;
+  }
 }

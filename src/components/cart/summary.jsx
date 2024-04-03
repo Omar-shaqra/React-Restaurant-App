@@ -25,6 +25,14 @@ function Summary() {
   const [userPhone, setUserPhone] = useState();
   const [state, setState] = useState();
 
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+
+  let currentDate = `${day}-${month}-${year}`;
+
   useEffect(() => {
     let paymentCompleted = false;
 
@@ -75,11 +83,12 @@ function Summary() {
             userID: user?.id,
             productData,
             TypeOfPayment: payment,
-            userPhone,
+            userphone: userPhone,
             address,
             state,
             TotalPrice: totalPrice,
             statue: false,
+            Date: currentDate,
           }
         );
         toast.success("Order sent successfully.");
