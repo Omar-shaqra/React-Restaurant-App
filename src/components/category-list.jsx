@@ -52,7 +52,7 @@ const CategoryList = ({ categoryFilter }) => {
           }}
           key={index}>
           <CategoryCard
-            {...category}
+            data={category}
             onClick={() => handleOnClick(category._id)}
             selected={selected === category._id}
           />

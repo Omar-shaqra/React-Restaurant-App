@@ -29,7 +29,7 @@ const AddSubcategory = () => {
   }
 
   return (
-    <section className="flex flex-col gap-4 mx-5 my-5 text-2xl font-semibold text-white">
+    <section className="flex flex-col gap-4 m-5 text-2xl font-semibold text-white ">
       <h1 className="self-center font-extrabold tracking-wider">
         All Subcategories
       </h1>
