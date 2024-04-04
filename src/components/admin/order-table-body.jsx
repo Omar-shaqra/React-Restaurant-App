@@ -6,7 +6,12 @@ const TableBody = ({ tableData, columns }) => {
         return (
           <tr key={data._id}>
             {columns.map(({ accessor }) => {
-              const tData = data[accessor] ? data[accessor] : "——";
+              let tData;
+              if (accessor === "statue") {
+                tData = data[accessor] === true ? "Paid" : "Not Paid";
+              } else {
+                tData = data[accessor] ? data[accessor] : "——";
+              }
               return (
                 <td
                   key={accessor}

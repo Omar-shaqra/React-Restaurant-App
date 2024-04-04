@@ -20,7 +20,10 @@ const OrderTable = () => {
       label: "Date",
       accessor: "Date",
     },
-
+    {
+      label: "Governate",
+      accessor: "governate",
+    },
     {
       label: "State",
       accessor: "state",
@@ -33,10 +36,13 @@ const OrderTable = () => {
       label: "Payment Method",
       accessor: "TypeOfPayment",
     },
-
     {
       label: "Price",
       accessor: "TotalPrice",
+    },
+    {
+      label: "Paid",
+      accessor: "statue",
     },
   ];
 

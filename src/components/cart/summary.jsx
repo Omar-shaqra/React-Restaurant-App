@@ -24,6 +24,7 @@ function Summary() {
   const [address, setAddress] = useState();
   const [userPhone, setUserPhone] = useState();
   const [state, setState] = useState();
+  const [governate, setGovernate] = useState();
 
   const date = new Date();
 
@@ -48,8 +49,9 @@ function Summary() {
               productData: productData,
               TypeOfPayment: payment,
               userPhone,
-              address,
+              governate,
               state,
+              address,
               TotalPrice: totalPrice,
               statue: true,
             }
@@ -84,8 +86,9 @@ function Summary() {
             productData,
             TypeOfPayment: payment,
             userphone: userPhone,
-            address,
+            governate,
             state,
+            address,
             TotalPrice: totalPrice,
             statue: false,
             Date: currentDate,
@@ -157,6 +160,7 @@ function Summary() {
     setState(value.state);
     setAddress(value.address);
     setUserPhone(value.phone);
+    setGovernate(value.governate);
   };
 
   const totalPriceFromProducts = productItems.reduce((total, item) => {

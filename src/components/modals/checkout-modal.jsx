@@ -3,19 +3,89 @@ import { useUser } from "@clerk/clerk-react";
 
 import Modal from "./modal";
 
-const governorates = [
-  "Ad Dakhiliyah",
-  "Ad Dhahirah",
-  "Al Batinah North",
-  "Al Batinah South",
-  "Al Buraimi",
-  "Al Wusta",
-  "Ash Sharqiyah North",
-  "Ash Sharqiyah South",
-  "Dhofar",
-  "Musandam",
-  "Muscat",
-];
+// const governorates = [
+//   "Ad Dakhiliyah",
+//   "Ad Dhahirah",
+//   "Al Batinah North",
+//   "Al Batinah South",
+//   "Al Buraimi",
+//   "Al Wusta",
+//   "Ash Sharqiyah North",
+//   "Ash Sharqiyah South",
+//   "Dhofar",
+//   "Musandam",
+//   "Muscat",
+// ];
+const governates = {
+  "محافظة الداخلية": {
+    state: [
+      "نزوى",
+      "بهلا",
+      "منح",
+      "الحمراء",
+      "أدم",
+      "إزكي",
+      "سمائل",
+      "بدبد",
+      "الجبل الأخضر",
+    ],
+  },
+  "محافظة الظاهرة": {
+    state: ["عبري", "ينقل", "ضنك"],
+  },
+  "محافظة شمال الباطنة": {
+    state: ["صحار", "شناص", "لوى", "صحم", "الخابورة", "السويق	"],
+  },
+  "محافظة جنوب الباطنة": {
+    state: ["نخل", "وادي المعاول", "العوابي", "المصنعة", "بركاء", "الرستاق"],
+  },
+  "محافظة البريمي": {
+    state: ["البريمي", "محضة", "السنينة"],
+  },
+  "محافظة الوسطى": {
+    state: ["هيما", "الدقم", "محوت", "الجازر"],
+  },
+  "محافظة شمال الشرقية": {
+    state: [
+      "إبراء",
+      "المضيبي",
+      "بدية",
+      "وادي بني خالد",
+      "دماء والطائيين",
+      "القابل",
+      "سناو",
+    ],
+  },
+  "محافظة جنوب الشرقية": {
+    state: [
+      "مصيرة",
+      "صور",
+      "جعلان بني بو حسن",
+      "جعلان بني بو علي",
+      "الكامل والوافي",
+    ],
+  },
+  "محافظة ظفار": {
+    state: [
+      "صلالة",
+      "طاقة",
+      "مرباط",
+      "ثمريت",
+      "سدح",
+      "رخيوت",
+      "ضلكوت",
+      "مقشن",
+      "شليم وجزر الحلانيات",
+      "المزيونة",
+    ],
+  },
+  "محافظة مسقط": {
+    state: ["مسقط", "مطرح", "بوشر", "السيب", "العامرات", "قريات"],
+  },
+  "محافظة مسندم": {
+    state: ["خصب", "بخا", "دباء", "مدحاء"],
+  },
+};
 
 const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
   const { user } = useUser();
@@ -24,6 +94,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
     name: user ? `${user?.firstName} ${user.lastName}` : "",
     phone: "+968",
     email: user ? `${user?.emailAddresses[0]?.emailAddress}` : "",
+    governate: "",
     state: "",
     address: "",
     payment: "Cash On Delivery" || "Online Payment",
@@ -42,6 +113,16 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
         // If the value has less than or equal to 8 characters, update the state
         setFormData({ ...formData, [name]: value });
       }
+    }
+    if (name === "state") {
+      const governate = Object.keys(governates).find((gov) =>
+        governates[gov].state.includes(value)
+      );
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        governate: governate,
+      }));
     } else {
       // For other input fields, directly update the state
       setFormData({ ...formData, [name]: value });
@@ -120,10 +201,20 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             <option value="" disabled className="text-gray-300">
               Select your state
             </option>
-            {governorates.map((governorate) => (
-              <option key={governorate} value={governorate}>
-                {governorate}
-              </option>
+            {Object.keys(governates).map((governate) => (
+              <optgroup
+                key={governate}
+                label={governate}
+                className="font-semibold tracking-wider text-black bg-white">
+                {governates[governate].state.map((state) => (
+                  <option
+                    key={state}
+                    value={state}
+                    className="text-white bg-black">
+                    {state}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>
