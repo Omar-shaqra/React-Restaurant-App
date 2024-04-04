@@ -1,5 +1,4 @@
 const TableBody = ({ tableData, columns }) => {
-  console.log("tableBody", tableData);
   return (
     <tbody>
       {tableData.data.map((data) => {

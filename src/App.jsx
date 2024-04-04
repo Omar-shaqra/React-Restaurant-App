@@ -2,7 +2,7 @@ import "./App.css";
 
 // import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import { useAuth } from "@clerk/clerk-react";
+import { SignIn } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
 
 import Layout from "./components/ui/layout";
@@ -24,6 +24,14 @@ function App() {
         <Route path={`*`} element={<NotFound />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={
+              <div className="flex flex-col items-center py-10">
+                <SignIn afterSignInUrl={"/"} afterSignUpUrl={"/"} />
+              </div>
+            }
+          />
           <Route path={`/cart`} element={<Cart />} />
           <Route path={`/our-new`} element={<OurNew />} />
         </Route>

@@ -58,7 +58,7 @@ function Navbar() {
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
           ) : (
-            <Link to={"/admin"}>
+            <Link to={"/login"}>
               <UserRoundPlus className="size-auto" />
             </Link>
           )}

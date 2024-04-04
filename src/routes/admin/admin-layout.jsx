@@ -1,14 +1,30 @@
-import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
+import {
+  RedirectToSignIn,
+  useAuth,
+  UserButton,
+  useSession,
+} from "@clerk/clerk-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+
+import { checkUserRole } from "../../utils/constants";
 
 const AdminLayout = () => {
   const { pathname } = useLocation();
+  const { session } = useSession();
+  const userRole = checkUserRole(session);
 
   const { isLoaded, isSignedIn } = useAuth();
 
-  if (!isLoaded || !isSignedIn) {
-    return RedirectToSignIn();
-  }
+  if (!isSignedIn) return RedirectToSignIn();
+
+  if (!isLoaded) return <p>...Loading</p>;
+
+  if (userRole != "org:admin")
+    return (
+      <p className="flex flex-col items-center p-1 mt-20 text-white text-7xl bg-white/20">
+        You are Not Admin
+      </p>
+    );
 
   return (
     <div className="flex flex-row w-screen h-screen overflow-hidden bg-neutral-950/80">
@@ -69,9 +85,9 @@ const AdminLayout = () => {
               Offers
             </Link>
           </ul>
-          {/* <div className="ml-auto"> */}
-          {/* <UserButton /> */}
-          {/* </div> */}
+          <div className="ml-auto">
+            <UserButton />
+          </div>
         </header>
         <div className="overflow-auto">
           <Outlet />
