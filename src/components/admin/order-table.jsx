@@ -41,7 +41,7 @@ const OrderTable = () => {
   ];
 
   return (
-    <table className="table">
+    <table className="table border-4 ">
       <caption className="self-center py-5 text-2xl font-extrabold tracking-wider">
         Orders
       </caption>

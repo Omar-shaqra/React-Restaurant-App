@@ -149,7 +149,7 @@ body,
   }
 
   .table td {
-    border-top: 1px solid #707070;
+    border-top: 1px solid #d46622;
     padding: 8px 20px;
     text-align: center;
   }
@@ -159,10 +159,12 @@ body,
   }
 
   .table tbody tr:nth-child(n) td {
-    background: #eff0f0;
+    background: #dedede;
+    color: #000;
   }
 
   .table tbody tr:nth-child(2n) td {
-    background: #fff;
+    background: #9b9b9b;
+    color: rgb(0, 0, 0);
   }
 }

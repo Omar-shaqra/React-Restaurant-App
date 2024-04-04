@@ -2,7 +2,7 @@ import OrderTable from "../../components/admin/order-table";
 
 const orders = () => {
   return (
-    <div className="pb-6 table_container">
+    <div className="pb-6 px-15 table_container ">
       <OrderTable />
     </div>
   );
