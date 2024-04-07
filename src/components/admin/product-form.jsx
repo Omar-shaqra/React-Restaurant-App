@@ -156,7 +156,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter Description..."
-            className="pt-3 pl-3 m-0 text-base bg-black border border-red-300 rounded-lg min-h-12 max-h-12 focus:border-white bg-opacity-70"
+            className="pt-3 pl-3 m-0 overflow-hidden text-base bg-black border border-red-300 rounded-lg min-h-12 max-h-12 focus:border-white bg-opacity-70"
           />
         </div>
         {/* Second Column (Sizes) */}

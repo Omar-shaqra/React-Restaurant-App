@@ -122,7 +122,6 @@ const OfferForm = ({ products, refetch }) => {
               disabled={image}
               onChange={(e) => {
                 setImage(e.target.files[0]);
-                console.log(image);
                 setImagePreview(URL.createObjectURL(e.target.files[0]));
               }}
             />

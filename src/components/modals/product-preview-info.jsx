@@ -107,62 +107,61 @@ const ProductPreviewInfo = ({ data }) => {
             </div>
           )}
           {/* Dough Type */}
-          {data.category?.name === "Pizza" ||
-            (data.category?.name === "pizza" && (
-              <div className="flex-wrap items-center gap-x-2">
-                <h3 className="font-semibold">Dough:</h3>
-                <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center md:flex-row">
-                  {/* Classic */}
-                  <div
-                    className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
-                      selectedDough === "classic" ? "selected-size" : ""
-                    }`}
-                    onClick={() => setSelectedDough("classic")}>
-                    <input
-                      type="radio"
-                      name="dough"
-                      value="classic"
-                      checked={selectedDough === "classic"}
-                      onChange={() => setSelectedDough("classic")}
-                      className="hidden classic"
-                    />
-                    <p>Classic</p>
-                  </div>
-                  {/* Crust */}
-                  <div
-                    className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
-                      selectedDough === "crust" ? "selected-size" : ""
-                    }`}
-                    onClick={() => setSelectedDough("crust")}>
-                    <input
-                      type="radio"
-                      name="dough"
-                      value="crust"
-                      checked={selectedDough === "crust"}
-                      onChange={() => setSelectedDough("crust")}
-                      className="hidden crust"
-                    />
-                    <p>Crust</p>
-                  </div>
-                  {/* Thin */}
-                  <div
-                    className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
-                      selectedDough === "thin" ? "selected-size" : ""
-                    }`}
-                    onClick={() => setSelectedDough("thin")}>
-                    <input
-                      type="radio"
-                      name="dough"
-                      value="thin"
-                      checked={selectedDough === "thin"}
-                      onChange={() => setSelectedDough("thin")}
-                      className="hidden thin"
-                    />
-                    <p>Thin</p>
-                  </div>
+          {data.category?.name === "Pizza" && (
+            <div className="flex-wrap items-center gap-x-2">
+              <h3 className="font-semibold">Dough:</h3>
+              <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center md:flex-row">
+                {/* Classic */}
+                <div
+                  className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
+                    selectedDough === "classic" ? "selected-size" : ""
+                  }`}
+                  onClick={() => setSelectedDough("classic")}>
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="classic"
+                    checked={selectedDough === "classic"}
+                    onChange={() => setSelectedDough("classic")}
+                    className="hidden classic"
+                  />
+                  <p>Classic</p>
+                </div>
+                {/* Crust */}
+                <div
+                  className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
+                    selectedDough === "crust" ? "selected-size" : ""
+                  }`}
+                  onClick={() => setSelectedDough("crust")}>
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="crust"
+                    checked={selectedDough === "crust"}
+                    onChange={() => setSelectedDough("crust")}
+                    className="hidden crust"
+                  />
+                  <p>Crust</p>
+                </div>
+                {/* Thin */}
+                <div
+                  className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
+                    selectedDough === "thin" ? "selected-size" : ""
+                  }`}
+                  onClick={() => setSelectedDough("thin")}>
+                  <input
+                    type="radio"
+                    name="dough"
+                    value="thin"
+                    checked={selectedDough === "thin"}
+                    onChange={() => setSelectedDough("thin")}
+                    className="hidden thin"
+                  />
+                  <p>Thin</p>
                 </div>
               </div>
-            ))}
+            </div>
+          )}
         </div>
 
         {/* Add Button */}

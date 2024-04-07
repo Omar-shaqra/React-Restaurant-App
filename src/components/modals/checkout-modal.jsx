@@ -3,19 +3,6 @@ import { useUser } from "@clerk/clerk-react";
 
 import Modal from "./modal";
 
-// const governorates = [
-//   "Ad Dakhiliyah",
-//   "Ad Dhahirah",
-//   "Al Batinah North",
-//   "Al Batinah South",
-//   "Al Buraimi",
-//   "Al Wusta",
-//   "Ash Sharqiyah North",
-//   "Ash Sharqiyah South",
-//   "Dhofar",
-//   "Musandam",
-//   "Muscat",
-// ];
 const governates = {
   "محافظة الداخلية": {
     state: [
