@@ -1,4 +1,5 @@
-import { ShoppingBag, Trash2 } from "lucide-react";
+import { ShoppingBag, SquarePen, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { deleteItem } from "../../actions/delete-item";
 import { useProductPreviewModal } from "../../hooks/use-preview-modal";
@@ -6,13 +7,14 @@ import Currency from "./currency";
 
 const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const previewModal = useProductPreviewModal();
+  const navigate = useNavigate();
 
   const onPreview = (e) => {
     e.preventDefault();
     previewModal.onOpen(data);
   };
 
-  const imgSrc = data.imageCover?.replace(
+  const imgURL = data.imageCover?.replace(
     "undefined",
     "https://restaurant-menue-ordering-v1.onrender.com"
   );
@@ -24,7 +26,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
       <div className="w-full p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
         {image == "visible" && (
           <img
-            src={imgSrc}
+            src={imgURL}
             alt="cart Item"
             className="w-full rounded aspect-square"
           />
@@ -41,17 +43,24 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
             {button == "add" ? (
               <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
             ) : (
-              <button
-                className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                onClick={() => {
-                  deleteItem({ id: data._id, routeName: "products" }).then(
-                    () => {
-                      refetch();
-                    }
-                  );
-                }}>
-                <Trash2 size={15} />
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={() => navigate(`/admin/products/${data.id}`)}>
+                  <SquarePen size={15} />
+                </button>
+                <button
+                  className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={() => {
+                    deleteItem({ id: data._id, routeName: "products" }).then(
+                      () => {
+                        refetch();
+                      }
+                    );
+                  }}>
+                  <Trash2 size={15} />
+                </button>
+              </div>
             )}
           </div>
         </div>
@@ -78,7 +87,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
               </div>
             )}
           </div>
-          {button === "add" && (
+          {button == "add" && (
             <ShoppingBag className="hidden overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:block size-auto lg:p-2 md:p-1 hover:border-orange-600 hover:scale-105" />
           )}
         </div>

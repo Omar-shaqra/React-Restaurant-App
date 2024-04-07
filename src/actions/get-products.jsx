@@ -14,6 +14,19 @@ export const GetProducts = ({ setProducts }) => {
   });
 };
 
+export const GetProductWithId = ({ setProduct, id }) => {
+  return useQuery({
+    queryKey: [id, setProduct, "product"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products/${id}`
+      );
+      setProduct(data);
+      return data;
+    },
+  });
+};
+
 export const GetProductsWithCategoryId = ({ setProducts, id }) => {
   return useQuery({
     queryKey: [id, setProducts, "category"],

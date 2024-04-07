@@ -34,9 +34,9 @@ const SizeFields = ({
             value={price_basic}
             placeholder="Price for basic..."
             onChange={(e) => handlePriceChange(e, "basic")}
-            className="text-base border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+            className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
           />
-          <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
+          <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
         </div>
       </div>
       {/* Mid size */}
@@ -52,9 +52,9 @@ const SizeFields = ({
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
-              className="text-base border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             />
-            <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
+            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
         </div>
       )}
@@ -71,9 +71,9 @@ const SizeFields = ({
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
-              className="text-base border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             />
-            <span className="absolute right-4 bottom-3 text-gray-300">$</span>
+            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
         </div>
       )}
@@ -89,9 +89,9 @@ const SizeFields = ({
               value={price_lg}
               placeholder="Price for lg..."
               onChange={(e) => handlePriceChange(e, "lg")}
-              className="text-base border w-full h-12 border-red-300 focus:border-white pl-3 bg-black bg-opacity-70 rounded-lg"
+              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             />
-            <DollarSign className="absolute right-4 bottom-3 text-gray-300" />
+            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
         </div>
       )}

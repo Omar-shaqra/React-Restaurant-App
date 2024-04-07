@@ -17,7 +17,7 @@ function ProductCartItem({ data }) {
     removeItem(data.id, data.selectedSize, data.selectedDough);
   };
 
-  const imgSrc = data?.imageCover?.replace(
+  const imgURL = data?.imageCover?.replace(
     "undefined",
     "https://restaurant-menue-ordering-v1.onrender.com"
   );
@@ -26,11 +26,11 @@ function ProductCartItem({ data }) {
     <li className="flex flex-wrap w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
       <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
-        {imgSrc && (
+        {imgURL && (
           <img
             className="object-contain object-center w-full rounded-md aspect-square"
             loading="lazy"
-            src={imgSrc}
+            src={imgURL}
             alt="combos images"
           />
         )}
