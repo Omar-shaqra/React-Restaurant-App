@@ -21,7 +21,7 @@ const OfferPreviewModal = () => {
           // src={offer.image}
           className="self-center rounded aspect-square max-w-40"
         />
-        <div className="mt-5">
+        <div className="mt-5 w-fit">
           <OfferPreviewInfo data={offer} />
         </div>
       </div>

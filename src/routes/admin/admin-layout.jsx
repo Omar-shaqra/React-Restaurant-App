@@ -21,9 +21,16 @@ const AdminLayout = () => {
 
   if (userRole != "org:admin")
     return (
-      <p className="flex flex-col items-center p-1 mt-20 text-white text-7xl bg-white/20">
-        You are Not Admin
-      </p>
+      <div className="flex flex-col items-center w-full overflow-hidden">
+        <p className="p-1 mt-20 font-bold tracking-widest text-white text-7xl bg-red-600/70">
+          You Are Not Admin!
+        </p>
+        <Link
+          className="p-4 mt-8 font-serif text-black transition rounded-full w-fit h-18 bg-amber-300 hover:bg-orange-400"
+          to="/">
+          Go back to Homepage
+        </Link>
+      </div>
     );
 
   return (

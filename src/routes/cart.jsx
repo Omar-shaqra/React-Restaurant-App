@@ -29,12 +29,12 @@ function CartPage() {
             <img
               src={"/empty_cart.png"}
               className="p-4 mt-8 rounded-full w-80 bg-white/10"
-              alt=""
+              alt="NoItems"
             />
           </div>
         )}
 
-        <ul className="flex flex-col items-center self-center justify-center gap-2">
+        <ul className="flex flex-col items-center self-center justify-center w-full gap-2">
           {productItems?.map((item) => (
             <ProductCartItem
               key={`${item.id}-${item.selectedSize}-${item.selectedDough}`}

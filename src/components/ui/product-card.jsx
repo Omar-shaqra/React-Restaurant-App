@@ -21,7 +21,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
 
   return (
     <section
-      className="flex justify-center m-1 text-white capitalize"
+      className="flex justify-center m-1 overflow-x-auto text-white capitalize hide-scrollbar "
       onClick={onPreview}>
       <div className="w-full p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
         {image == "visible" && (

@@ -28,7 +28,7 @@ const OfferPreviewInfo = ({ data }) => {
   ));
 
   return (
-    <section className="flex flex-col w-full gap-2 ">
+    <section className="flex flex-col w-full gap-2">
       {/* Name & Price */}
       <div className="flex items-center justify-between w-full mt-5 ">
         <p className="text-2xl">{data.name}</p>
