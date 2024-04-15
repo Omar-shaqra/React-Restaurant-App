@@ -10,16 +10,19 @@ const ProductPreviewModal = () => {
   if (!product) {
     return null;
   }
+  const imgURL =
+    product.imageCover !=
+    // Handle No Image Case
+    "undefined/products/null"
+      ? product.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      : "/logo.png";
 
   return (
     <Modal open={previewModal.isOpen} onClose={previewModal.onClose}>
       <div className="container flex flex-col gap-4 md:flex-row xs:flex-col">
         <img
-          src={product.imageCover.replace(
-            "undefined",
-            "https://restaurant-menue-ordering-v1.onrender.com"
-          )}
-          className="self-center rounded aspect-square max-h-44 "
+          src={imgURL}
+          className="self-center bg-white rounded aspect-square max-h-44"
         />
         <div className="mt-5">
           <ProductPreviewInfo data={product} />

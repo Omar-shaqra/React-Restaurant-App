@@ -29,16 +29,17 @@ const ProductList = ({ products, refetch }) => {
   const productList =
     products.data?.length > 0 ? (
       products.data.map((product, index) => (
-        <ProductCard
-          key={index}
-          data={product}
-          image="hidden"
-          button="delete"
-          refetch={refetch}
-        />
+        <div className="overflow-x-auto hide-scrollbar scroll-auto" key={index}>
+          <ProductCard
+            data={product}
+            image="hidden"
+            button="delete"
+            refetch={refetch}
+          />
+        </div>
       ))
     ) : (
-      <p>No Products Found</p>
+      <p className="p-1 text-nowrap">No Products Found</p>
     );
 
   return (

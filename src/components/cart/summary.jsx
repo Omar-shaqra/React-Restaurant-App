@@ -42,20 +42,17 @@ function Summary() {
 
       if (searchParams.get("success") && !paymentCompleted) {
         try {
-          await axios.post(
-            "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
-            {
-              userID: user?.id,
-              productData: productData,
-              TypeOfPayment: payment,
-              userPhone,
-              governate,
-              state,
-              address,
-              TotalPrice: totalPrice,
-              statue: true,
-            }
-          );
+          await axios.post("http://91.108.102.253:8000/api/v1/sells", {
+            userID: user?.id,
+            productData: productData,
+            TypeOfPayment: payment,
+            userPhone,
+            governate,
+            state,
+            address,
+            TotalPrice: totalPrice,
+            statue: true,
+          });
           toast.success("Payment Completed.");
           removeAll();
           paymentCompleted = true;
@@ -79,21 +76,18 @@ function Summary() {
     // Cash Payment
     const cashOrder = async () => {
       try {
-        await axios.post(
-          "https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells",
-          {
-            userID: user?.id,
-            productData,
-            TypeOfPayment: payment,
-            userphone: userPhone,
-            governate,
-            state,
-            address,
-            TotalPrice: totalPrice,
-            statue: false,
-            Date: currentDate,
-          }
-        );
+        await axios.post("http://91.108.102.253:8000/api/v1/sells", {
+          userID: user?.id,
+          productData,
+          TypeOfPayment: payment,
+          userphone: userPhone,
+          governate,
+          state,
+          address,
+          TotalPrice: totalPrice,
+          statue: false,
+          Date: currentDate,
+        });
         toast.success("Order sent successfully.");
         removeAll();
       } catch (error) {
@@ -106,7 +100,7 @@ function Summary() {
     const onlineOrder = async () => {
       try {
         const res = await axios.post(
-          `https://restaurant-menue-ordering-v1.onrender.com/api/v1/paymob/${totalPrice}`,
+          `http://91.108.102.253:8000/api/v1/paymob/${totalPrice}`,
           {
             TotalPrice: totalPrice,
           }

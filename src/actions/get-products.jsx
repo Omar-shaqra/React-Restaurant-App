@@ -6,7 +6,7 @@ export const GetProducts = ({ setProducts }) => {
     queryKey: [setProducts, "products"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?sort=category`
+        `http://91.108.102.253:8000/api/v1/products?sort=category`
       );
       setProducts(data);
       return data;
@@ -19,7 +19,7 @@ export const GetProductWithId = ({ setProduct, id }) => {
     queryKey: [id, setProduct, "product"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products/${id}`
+        `http://91.108.102.253:8000/api/v1/products/${id}`
       );
       setProduct(data);
       return data;
@@ -32,8 +32,8 @@ export const GetProductsWithCategoryId = ({ setProducts, id }) => {
     queryKey: [id, setProducts, "category"],
     queryFn: async () => {
       const { data } = await axios.get(
-        // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?subcategories=${id}`
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?category=${id}`
+        // `http://91.108.102.253:8000/api/v1/products?subcategories=${id}`
+        `http://91.108.102.253:8000/api/v1/products?category=${id}`
       );
       setProducts(data);
       return data;
@@ -46,8 +46,8 @@ export const GetProductsWithSubcategoryId = ({ setProducts, id }) => {
     queryKey: [id, setProducts, "subcategory"],
     queryFn: async () => {
       const { data } = await axios.get(
-        // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?subcategories=${id}`
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products?subcategories=${id}`
+        // `http://91.108.102.253:8000/api/v1/products?subcategories=${id}`
+        `http://91.108.102.253:8000/api/v1/products?subcategories=${id}`
       );
       setProducts(data);
       return data;

@@ -6,7 +6,7 @@ export const GetOffers = ({ setOffers }) => {
     queryKey: [setOffers, "offers"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/offers`
+        `http://91.108.102.253:8000/api/v1/offers`
       );
       setOffers(data);
       return data;

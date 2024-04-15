@@ -17,10 +17,12 @@ function ProductCartItem({ data }) {
     removeItem(data.id, data.selectedSize, data.selectedDough);
   };
 
-  const imgURL = data?.imageCover?.replace(
-    "undefined",
-    "https://restaurant-menue-ordering-v1.onrender.com"
-  );
+  const imgURL =
+    data.imageCover !=
+    // Handle No Image Case
+    "undefined/products/null"
+      ? data.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      : "/logo.png";
 
   return (
     <li className="flex flex-wrap w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
@@ -28,7 +30,7 @@ function ProductCartItem({ data }) {
       <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
         {imgURL && (
           <img
-            className="object-contain object-center w-full rounded-md aspect-square"
+            className="object-contain object-center w-full bg-white rounded-md aspect-square"
             loading="lazy"
             src={imgURL}
             alt="combos images"

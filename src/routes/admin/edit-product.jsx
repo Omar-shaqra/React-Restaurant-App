@@ -48,8 +48,12 @@ const EditProduct = () => {
         price: product.result.price || [],
       });
 
-      setImagePreview(formData.imageCover);
-
+      setImagePreview(
+        product.result?.imageCover.replace(
+          "undefined/products/undefined",
+          "http://91.108.102.253:8000/"
+        )
+      );
       // Set sizes state to the length of the price array
       setSizes(product.result.price.length.toString());
 
@@ -79,7 +83,7 @@ const EditProduct = () => {
     }
     try {
       await axios.put(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products/${id}`,
+        `http://91.108.102.253:8000/api/v1/products/${id}`,
         formdata
       );
       toast.success("Product Updated Successfully!");
@@ -171,8 +175,7 @@ const EditProduct = () => {
                 <p className="items-start py-1 overflow-hidden text-blue-500 text-ellipsis">
                   {formData.imageCover.name
                     ? formData.imageCover.name
-                    : formData.imageCover !== "" &&
-                      formData.imageCover.toString()}
+                    : formData.imageCover !== "" && "Current Image"}
                 </p>
                 <Trash2
                   className="overflow-visible hover:text-red-400 "

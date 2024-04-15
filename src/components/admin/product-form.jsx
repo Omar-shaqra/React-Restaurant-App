@@ -48,7 +48,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
       }
       try {
         await axios.post(
-          `https://restaurant-menue-ordering-v1.onrender.com/api/v1/products`,
+          `http://91.108.102.253:8000/api/v1/products`,
           formdata
         );
         refetch();

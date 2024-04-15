@@ -21,7 +21,7 @@ function OfferCartItem({ data }) {
 
   const imgURL = data?.image.replace(
     "undefined",
-    "https://restaurant-menue-ordering-v1.onrender.com"
+    "http://91.108.102.253:8000/"
   );
 
   return (

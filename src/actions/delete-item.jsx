@@ -21,9 +21,7 @@ export const deleteItem = async ({ id, routeName }) => {
     return;
   }
   await axios
-    .delete(
-      `https://restaurant-menue-ordering-v1.onrender.com/api/v1/${routeName}/${id}`
-    )
+    .delete(`http://91.108.102.253:8000/api/v1/${routeName}/${id}`)
     .then(() => {
       toast.success("Delete Successfully.");
     })

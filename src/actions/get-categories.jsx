@@ -6,7 +6,7 @@ export const GetCategories = ({ setCategories }) => {
     queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories`
+        `http://91.108.102.253:8000/api/v1/categories`
       );
       setCategories(data);
       return data;

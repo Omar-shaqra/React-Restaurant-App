@@ -20,10 +20,7 @@ const OfferCard = ({ data }) => {
         {data.price}
       </h1>
       <img
-        src={data?.image.replace(
-          "undefined",
-          "https://restaurant-menue-ordering-v1.onrender.com"
-        )}
+        src={data?.image.replace("undefined", "http://91.108.102.253:8000/")}
         // src={data?.image}
         alt="Offer Image"
         className="w-64 rounded-2xl"

@@ -13,7 +13,7 @@ const OfferPreviewInfo = ({ data }) => {
           className="w-24 h-20 rounded"
           src={product.imageCover.replace(
             "undefined",
-            "https://restaurant-menue-ordering-v1.onrender.com"
+            "http://91.108.102.253:8000/"
           )}
           // src={product.imageCover}
         />

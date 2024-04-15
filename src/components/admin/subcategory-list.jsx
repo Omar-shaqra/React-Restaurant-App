@@ -13,7 +13,7 @@ const SubcategoryList = ({ subcategories, deleteItem, refetch }) => {
           />
         ))
       ) : (
-        <div>No Subcategories Found</div>
+        <div className="text-nowrap">No Subcategories Found</div>
       )}
     </div>
   );

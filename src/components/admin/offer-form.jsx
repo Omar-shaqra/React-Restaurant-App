@@ -33,10 +33,7 @@ const OfferForm = ({ products, refetch }) => {
         formdata.append(`productsID[${index}]`, product.id);
       });
       try {
-        await axios.post(
-          `https://restaurant-menue-ordering-v1.onrender.com/api/v1/offers`,
-          formdata
-        );
+        await axios.post(`http://91.108.102.253:8000/api/v1/offers`, formdata);
         refetch();
         setName("");
         setPrice("");

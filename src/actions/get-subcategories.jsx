@@ -6,7 +6,7 @@ export const GetSubCategories = ({ setSubcategories }) => {
     queryKey: ["subcategories"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://restaurant-menue-ordering-v1.onrender.com/api/v1/subcategories"
+        "http://91.108.102.253:8000/api/v1/subcategories"
       );
       setSubcategories(data);
       return data;
@@ -19,8 +19,8 @@ export const GetSubCategoriesWithId = ({ setSubcategories, id }) => {
     queryKey: [id],
     queryFn: async () => {
       const { data } = await axios.get(
-        // `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories/${id}/subcategories`
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/categories/${id}/subcategories`
+        // `http://91.108.102.253:8000/api/v1/categories/${id}/subcategories`
+        `http://91.108.102.253:8000/api/v1/categories/${id}/subcategories`
       );
       setSubcategories(data);
       return data;

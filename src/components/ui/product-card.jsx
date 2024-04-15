@@ -14,21 +14,23 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     previewModal.onOpen(data);
   };
 
-  const imgURL = data.imageCover?.replace(
-    "undefined",
-    "https://restaurant-menue-ordering-v1.onrender.com"
-  );
+  const imgURL =
+    data.imageCover !=
+    // Handle No Image Case
+    "undefined/products/null"
+      ? data.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      : "/logo.png";
 
   return (
     <section
-      className="flex justify-center m-1 overflow-x-auto text-white capitalize hide-scrollbar "
+      className="flex justify-center m-1 overflow-x-auto text-white capitalize hide-scrollbar w-fit"
       onClick={onPreview}>
       <div className="w-full p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
         {image == "visible" && (
           <img
             src={imgURL}
             alt="cart Item"
-            className="w-full rounded aspect-square"
+            className="w-full bg-white rounded aspect-square"
           />
         )}
         {/* Title & Cateogry */}

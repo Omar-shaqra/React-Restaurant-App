@@ -13,7 +13,7 @@ const CategoryList = ({ categories, deleteItem, refetch }) => {
           />
         ))
       ) : (
-        <div>No Categories Found</div>
+        <p className="text-nowrap">No Categories Found</p>
       )}
     </div>
   );
