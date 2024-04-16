@@ -14,7 +14,10 @@ const ProductPreviewModal = () => {
     product.imageCover !=
     // Handle No Image Case
     "undefined/products/null"
-      ? product.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      ? product.imageCover?.replace(
+          "undefined",
+          `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+        )
       : "/logo.png";
 
   return (

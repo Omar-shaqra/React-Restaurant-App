@@ -18,7 +18,10 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     data.imageCover !=
     // Handle No Image Case
     "undefined/products/null"
-      ? data.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      ? data.imageCover?.replace(
+          "undefined",
+          `${import.meta.env.VITE_REACT_IMAGES_URL}`
+        )
       : "/logo.png";
 
   return (

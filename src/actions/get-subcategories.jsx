@@ -6,7 +6,7 @@ export const GetSubCategories = ({ setSubcategories }) => {
     queryKey: ["subcategories"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "http://91.108.102.253:8000/api/v1/subcategories"
+        `${import.meta.env.VITE_REACT_API_URL}/subcategories`
       );
       setSubcategories(data);
       return data;
@@ -19,8 +19,7 @@ export const GetSubCategoriesWithId = ({ setSubcategories, id }) => {
     queryKey: [id],
     queryFn: async () => {
       const { data } = await axios.get(
-        // `http://91.108.102.253:8000/api/v1/categories/${id}/subcategories`
-        `http://91.108.102.253:8000/api/v1/categories/${id}/subcategories`
+        `${import.meta.env.VITE_REACT_API_URL}/categories/${id}/subcategories`
       );
       setSubcategories(data);
       return data;

@@ -7,7 +7,10 @@ const CategoryCard = ({ data, selected, onClick }) => {
     data.image !=
     // Handle No Image Case
     "undefined/categories/null"
-      ? data.image.replace("undefined", "http://91.108.102.253:8000/")
+      ? data.image.replace(
+          "undefined",
+          `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+        )
       : "/logo.png";
 
   return (

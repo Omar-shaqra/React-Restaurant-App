@@ -89,6 +89,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Phone Validation
     if (name === "phone") {
       // Check if the value starts with "+968" and has a total length of 12 characters
       if (value.startsWith("+968") && value.length === 12) {
@@ -101,6 +102,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
         setFormData({ ...formData, [name]: value });
       }
     }
+    // State Validation
     if (name === "state") {
       const governate = Object.keys(governates).find((gov) =>
         governates[gov].state.includes(value)
@@ -112,12 +114,11 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
       }));
     } else {
       // For other input fields, directly update the state
-      setFormData({ ...formData, [name]: value });
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
     }
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   const handleFormSubmit = (e) => {

@@ -14,7 +14,10 @@ const OfferPreviewModal = () => {
     <Modal open={previewModal.isOpen} onClose={previewModal.onClose}>
       <div className="container flex flex-col gap-4 md:flex-row xs:flex-col">
         <img
-          src={offer.image.replace("undefined", "http://91.108.102.253:8000/")}
+          src={offer.image.replace(
+            "undefined",
+            `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+          )}
           // src={offer.image}
           className="self-center rounded aspect-square max-w-40"
         />

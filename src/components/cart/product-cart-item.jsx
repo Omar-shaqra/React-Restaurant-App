@@ -21,16 +21,19 @@ function ProductCartItem({ data }) {
     data.imageCover !=
     // Handle No Image Case
     "undefined/products/null"
-      ? data.imageCover?.replace("undefined", "http://91.108.102.253:8000/")
+      ? data.imageCover?.replace(
+          "undefined",
+          `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+        )
       : "/logo.png";
 
   return (
-    <li className="flex flex-wrap w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <li className="flex flex-wrap justify-center w-fit items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
       <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
         {imgURL && (
           <img
-            className="object-contain object-center w-full bg-white rounded-md aspect-square"
+            className="object-contain object-center bg-white rounded-md aspect-square"
             loading="lazy"
             src={imgURL}
             alt="combos images"
@@ -62,7 +65,7 @@ function ProductCartItem({ data }) {
         </div>
 
         {/* Description */}
-        <p className="p-1 font-semibold text-justify rounded line-clamp-4 text-md text-neutral-300 bg-white/40 w-fit">
+        <p className="p-1 font-semibold text-justify rounded line-clamp-4 text-wrap text-md text-neutral-300 bg-white/40 ">
           {data ? data.description : "product name"}
         </p>
 
@@ -84,7 +87,7 @@ function ProductCartItem({ data }) {
             />
           </div>
           {/* Price */}
-          <div className="flex items-center p-1 border-2 border-orange-500 rounded border-opacity-30 w-fit bg-neutral-800">
+          <div className="flex items-center p-1 border-2 border-orange-500 rounded border-opacity-30 bg-neutral-800">
             <Currency
               value={
                 data.price.find((price) => price.size === data.selectedSize)

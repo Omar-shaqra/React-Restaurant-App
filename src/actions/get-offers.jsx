@@ -6,7 +6,7 @@ export const GetOffers = ({ setOffers }) => {
     queryKey: [setOffers, "offers"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://91.108.102.253:8000/api/v1/offers`
+        `${import.meta.env.VITE_REACT_API_URL}/offers`
       );
       setOffers(data);
       return data;

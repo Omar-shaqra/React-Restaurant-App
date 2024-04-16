@@ -42,7 +42,7 @@ function Summary() {
 
       if (searchParams.get("success") && !paymentCompleted) {
         try {
-          await axios.post("http://91.108.102.253:8000/api/v1/sells", {
+          await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
             userID: user?.id,
             productData: productData,
             TypeOfPayment: payment,
@@ -76,7 +76,7 @@ function Summary() {
     // Cash Payment
     const cashOrder = async () => {
       try {
-        await axios.post("http://91.108.102.253:8000/api/v1/sells", {
+        await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
           userID: user?.id,
           productData,
           TypeOfPayment: payment,
@@ -100,7 +100,7 @@ function Summary() {
     const onlineOrder = async () => {
       try {
         const res = await axios.post(
-          `http://91.108.102.253:8000/api/v1/paymob/${totalPrice}`,
+          `${import.meta.env.VITE_REACT_API_URL}/paymob/${totalPrice}`,
           {
             TotalPrice: totalPrice,
           }

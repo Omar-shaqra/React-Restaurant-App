@@ -50,8 +50,8 @@ const EditProduct = () => {
 
       setImagePreview(
         product.result?.imageCover.replace(
-          "undefined/products/undefined",
-          "http://91.108.102.253:8000/"
+          "undefined",
+          `${import.meta.env.VITE_REACT_IMAGES_URL}/`
         )
       );
       // Set sizes state to the length of the price array
@@ -62,7 +62,6 @@ const EditProduct = () => {
       });
     }
   }, [product]);
-
   const onSubmit = async (e) => {
     e.preventDefault();
     toast.dismiss();
@@ -83,7 +82,7 @@ const EditProduct = () => {
     }
     try {
       await axios.put(
-        `http://91.108.102.253:8000/api/v1/products/${id}`,
+        `${import.meta.env.VITE_REACT_API_URL}/products/${id}`,
         formdata
       );
       toast.success("Product Updated Successfully!");

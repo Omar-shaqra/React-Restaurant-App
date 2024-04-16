@@ -21,7 +21,7 @@ export const deleteItem = async ({ id, routeName }) => {
     return;
   }
   await axios
-    .delete(`http://91.108.102.253:8000/api/v1/${routeName}/${id}`)
+    .delete(`${import.meta.env.VITE_REACT_API_URL}/${routeName}/${id}`)
     .then(() => {
       toast.success("Delete Successfully.");
     })

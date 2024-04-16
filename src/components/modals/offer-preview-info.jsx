@@ -6,17 +6,14 @@ import Currency from "../ui/currency";
 const OfferPreviewInfo = ({ data }) => {
   const { addOfferItem } = useCart();
 
-  const productsList = data.productsID?.map((product) => (
+  const productsList = data.productsID?.map((product) => {
+    const imgURL = product.imageCover.replace(
+      "undefined",
+      `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+    );
     <div key={product.id} className="flex flex-col pb-1 border-b-2 gap-y-2">
       <div className="flex gap-1">
-        <img
-          className="w-24 h-20 rounded"
-          src={product.imageCover.replace(
-            "undefined",
-            "http://91.108.102.253:8000/"
-          )}
-          // src={product.imageCover}
-        />
+        <img className="w-24 h-20 rounded" src={imgURL} />
         <p className="p-1 font-semibold rounded bg-white/20 w-fit h-fit">
           {product.title}
         </p>
@@ -24,8 +21,8 @@ const OfferPreviewInfo = ({ data }) => {
       <p className="w-5/6 text-sm text-gray-300 text-wrap">
         {product.description}
       </p>
-    </div>
-  ));
+    </div>;
+  });
 
   return (
     <section className="flex flex-col w-full gap-2">

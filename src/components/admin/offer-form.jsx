@@ -33,7 +33,10 @@ const OfferForm = ({ products, refetch }) => {
         formdata.append(`productsID[${index}]`, product.id);
       });
       try {
-        await axios.post(`http://91.108.102.253:8000/api/v1/offers`, formdata);
+        await axios.post(
+          `${import.meta.env.VITE_REACT_API_URL}/offers`,
+          formdata
+        );
         refetch();
         setName("");
         setPrice("");
@@ -96,6 +99,7 @@ const OfferForm = ({ products, refetch }) => {
               required
               type="number"
               min={1}
+              max={4}
               step={0.01}
               value={price}
               placeholder="Enter Price..."

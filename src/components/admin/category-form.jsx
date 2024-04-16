@@ -29,7 +29,7 @@ const CategoryForm = ({ categories, refetch }) => {
       formdata.append("image", image);
       try {
         await axios.post(
-          "http://91.108.102.253:8000/api/v1/categories",
+          `${import.meta.env.VITE_REACT_API_URL}/categories`,
 
           formdata
         );

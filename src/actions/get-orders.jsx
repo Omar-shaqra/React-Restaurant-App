@@ -6,7 +6,7 @@ export const GetOrders = ({ setOrders }) => {
     queryKey: [setOrders, "orders"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://restaurant-menue-ordering-v1.onrender.com/api/v1/sells`
+        `${import.meta.env.VITE_REACT_API_URL}/sells`
       );
       setOrders(data);
       return data;

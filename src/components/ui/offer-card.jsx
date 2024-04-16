@@ -7,7 +7,10 @@ const OfferCard = ({ data }) => {
     e.preventDefault();
     previewModal.onOpen(data);
   };
-
+  const imgURL = data?.image.replace(
+    "undefined",
+    `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+  );
   return (
     <div
       className="container relative cursor-pointer w-fit"
@@ -20,7 +23,7 @@ const OfferCard = ({ data }) => {
         {data.price}
       </h1>
       <img
-        src={data?.image.replace("undefined", "http://91.108.102.253:8000/")}
+        src={imgURL}
         // src={data?.image}
         alt="Offer Image"
         className="w-64 rounded-2xl"

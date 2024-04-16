@@ -21,7 +21,7 @@ function OfferCartItem({ data }) {
 
   const imgURL = data?.image.replace(
     "undefined",
-    "http://91.108.102.253:8000/"
+    `${import.meta.env.VITE_REACT_IMAGES_URL}/`
   );
 
   return (

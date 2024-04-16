@@ -48,7 +48,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
       }
       try {
         await axios.post(
-          `http://91.108.102.253:8000/api/v1/products`,
+          `${import.meta.env.VITE_REACT_API_URL}/products`,
           formdata
         );
         refetch();

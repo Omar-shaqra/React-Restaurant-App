@@ -6,7 +6,7 @@ export const GetCategories = ({ setCategories }) => {
     queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://91.108.102.253:8000/api/v1/categories`
+        `${import.meta.env.VITE_REACT_API_URL}/categories`
       );
       setCategories(data);
       return data;

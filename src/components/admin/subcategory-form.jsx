@@ -27,10 +27,13 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
 
     if (valid == true) {
       try {
-        await axios.post("http://91.108.102.253:8000/api/v1/subcategories", {
-          name,
-          category: categoryId,
-        });
+        await axios.post(
+          "${import.meta.env.VITE_REACT_API_URL}/subcategories",
+          {
+            name,
+            category: categoryId,
+          }
+        );
         refetch();
         setName("");
         setCategoryId("");

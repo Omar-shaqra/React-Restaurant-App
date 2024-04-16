@@ -18,7 +18,7 @@ function CartPage() {
   }
 
   return (
-    <div className="container flex flex-col w-full gap-5 px-4 pt-10 mx-auto text-white">
+    <div className="container flex flex-col min-w-full gap-5 px-4 pt-10 text-white ">
       <h1 className="flex flex-col self-center p-2 mb-2 text-3xl font-semibold tracking-widest text-center bg-white/30 w-fit rounded-2xl">
         Shopping Cart
       </h1>
