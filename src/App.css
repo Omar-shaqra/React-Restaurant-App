@@ -140,6 +140,18 @@ body,
     margin-bottom: 10px;
   }
 
+  .table th.up {
+    background-image: url("/up_arrow.png");
+  }
+
+  .table th.down {
+    background-image: url("/down_arrow.png");
+  }
+
+  .table th.default {
+    background-image: url("/default.png");
+  }
+
   th.up,
   th.default,
   th.down {
