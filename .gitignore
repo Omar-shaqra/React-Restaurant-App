@@ -23,7 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 # .env
+# /.env
 /menu-restaurant-ordering.postman_collection.json
-/.env
 /src/assets
 /package-lock.json
