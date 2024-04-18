@@ -16,7 +16,7 @@ import Orders from "./routes/admin/orders";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
 import NotFound from "./routes/not-found";
-import OurNew from "./routes/ourNew";
+// import OurNew from "./routes/ourNew";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
             }
           />
           <Route path={`/cart`} element={<Cart />} />
-          <Route path={`/our-new`} element={<OurNew />} />
+          {/* <Route path={`/our-new`} element={<OurNew />} /> */}
         </Route>
         <Route path={`/admin`} element={<AdminLayout />}>
           <Route path={`/admin`} element={<Orders />} />
