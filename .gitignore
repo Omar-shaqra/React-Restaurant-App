@@ -25,5 +25,5 @@ dist-ssr
 /menu-restaurant-ordering.postman_collection.json
 /src/assets
 /package-lock.json
-/.env
+
 /src/components/hero-banner.jsx
