@@ -26,3 +26,4 @@ dist-ssr
 /src/assets
 /package-lock.json
 /.env
+/src/components/hero-banner.jsx
