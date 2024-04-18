@@ -62,6 +62,7 @@ const EditProduct = () => {
       });
     }
   }, [product]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     toast.dismiss();

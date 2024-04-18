@@ -99,7 +99,6 @@ const OfferForm = ({ products, refetch }) => {
               required
               type="number"
               min={1}
-              max={4}
               step={0.01}
               value={price}
               placeholder="Enter Price..."

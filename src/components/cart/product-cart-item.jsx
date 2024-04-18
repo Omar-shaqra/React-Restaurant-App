@@ -28,7 +28,7 @@ function ProductCartItem({ data }) {
       : "/logo.png";
 
   return (
-    <li className="flex flex-wrap justify-center w-fit items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <li className="flex flex-wrap justify-center min-w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
       <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
         {imgURL && (
@@ -65,7 +65,7 @@ function ProductCartItem({ data }) {
         </div>
 
         {/* Description */}
-        <p className="p-1 font-semibold text-justify rounded line-clamp-4 text-wrap text-md text-neutral-300 bg-white/40 ">
+        <p className="p-1 font-semibold text-justify rounded line-clamp-4 text-wrap text-md text-neutral-300 bg-white/40 w-fit ">
           {data ? data.description : "product name"}
         </p>
 
