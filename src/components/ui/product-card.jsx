@@ -37,11 +37,9 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
           />
         )}
         {/* Title & Cateogry */}
-        <div className="flex justify-start mt-2 overflow-x-auto hide-scrollbar md:flex-row xs:flex-col md:items-center md:gap-4 xs:gap-1">
+        <div className="flex items-center gap-1 mt-2 overflow-x-auto hide-scrollbar md:flex-row xs:flex-col md:gap-4 xs:gap-1">
           <h5
-            className={`font-semibold text-nowrap xl:text-lg md:text-base sm:text-sm xs:text-xs ${
-              image != "visible" && "text-"
-            }`}>
+            className={`font-semibold text-nowrap xl:text-lg md:text-base sm:text-sm xs:text-xs`}>
             {data.title}
           </h5>
           <div className="flex items-center justify-between w-full">
