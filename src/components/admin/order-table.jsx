@@ -13,11 +13,11 @@ const columns = [
     accessor: "[productData]",
     sortable: false,
     CellData: ({ row }) => (
-      <span>
+      <>
         {row.original.productData
           .map((product) => product.productid)
           .join(", ")}
-      </span>
+      </>
     ),
   },
   {
