@@ -101,7 +101,7 @@ const ProductPreviewInfo = ({ data }) => {
           )}
 
           {/* Dough Type */}
-          {data.category?.name === "pizza" && (
+          {data.category?.name.toLowerCase() === "pizza" && (
             <div className="flex-wrap items-center gap-x-2">
               <h3 className="font-semibold">Dough:</h3>
               <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">

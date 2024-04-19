@@ -25,7 +25,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
 
     if (categoryId === "") {
       toast.error("Select Category First");
-    } else if (description.length < 19) {
+    } else if (description.length < 10) {
       toast.error("Description is too short!");
     } else {
       const formdata = new FormData();

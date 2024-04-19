@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "omr",
-  maximumFractionDigits: "1",
+  maximumFractionDigits: "2",
 });
 
 const Currency = ({ value }) => {
@@ -16,7 +16,7 @@ const Currency = ({ value }) => {
   if (!isMounted) return null;
 
   return (
-    <div className="font-semibold xl:text-[18px] md:text-[13px] sm:text-sm">
+    <div className="font-semibold text-[14x]">
       {formatter.format(Number(value))}
     </div>
   );

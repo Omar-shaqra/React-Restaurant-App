@@ -26,9 +26,9 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
 
   return (
     <section
-      className="flex justify-center m-1 overflow-x-auto text-white capitalize hide-scrollbar w-"
+      className="flex justify-center m-1 text-white capitalize"
       onClick={onPreview}>
-      <div className="w-full p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
+      <div className="w-9/12 p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
         {image == "visible" && (
           <img
             src={imgURL}
@@ -37,14 +37,19 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
           />
         )}
         {/* Title & Cateogry */}
-        <div className="flex justify-start mt-2 md:flex-row xs:flex-col md:items-center md:gap-4 xs:gap-1">
-          <h5 className="font-semibold text-nowrap xl:text-xl md:text-base sm:text-sm xs:text-xs ">
+        <div className="flex justify-start mt-2 overflow-x-auto hide-scrollbar md:flex-row xs:flex-col md:items-center md:gap-4 xs:gap-1">
+          <h5
+            className={`font-semibold text-nowrap xl:text-lg md:text-base sm:text-sm xs:text-xs ${
+              image != "visible" && "text-"
+            }`}>
             {data.title}
           </h5>
           <div className="flex items-center justify-between w-full">
-            <p className="p-1 text-sm text-orange-300 rounded bg-black/50 w-fit h-fit">
-              {data.category?.name}
-            </p>
+            {image == "visible" && (
+              <p className="p-1 text-sm text-orange-300 rounded bg-black/50 w-fit h-fit">
+                {data.category?.name}
+              </p>
+            )}
             {button == "add" ? (
               <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
             ) : (

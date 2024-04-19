@@ -29,7 +29,6 @@ const SizeFields = ({
             required
             name="price_basic"
             type="number"
-            min={1}
             step={0.01}
             value={price_basic}
             placeholder="Price for basic..."
@@ -47,7 +46,6 @@ const SizeFields = ({
               required
               name="price_md"
               type="number"
-              min={1}
               step={0.01}
               value={price_md}
               placeholder="Price for md..."
@@ -66,7 +64,6 @@ const SizeFields = ({
               required
               name="price_md"
               type="number"
-              min={1}
               step={0.01}
               value={price_md}
               placeholder="Price for md..."
@@ -84,7 +81,6 @@ const SizeFields = ({
               required
               name="price_lg"
               type="number"
-              min={1}
               step={0.01}
               value={price_lg}
               placeholder="Price for lg..."

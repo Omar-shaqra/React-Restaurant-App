@@ -19,7 +19,7 @@ const CategoryCard = ({ data, selected, onClick }) => {
         <img
           src={imgURL}
           alt={`${data.name}`}
-          className="h-24 bg-opacity-0 rounded aspect-square"
+          className="h-20 bg-opacity-0 rounded aspect-square"
         />
       </div>
       <h3 className="self-center justify-center font-semibold tracking-widest capitalize text-md">
