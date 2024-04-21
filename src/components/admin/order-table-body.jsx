@@ -2,8 +2,6 @@ import { useState } from "react";
 
 const TableBody = ({ tableData, columns, onUpdateData }) => {
   const [editCell, setEditCell] = useState({});
-  // console.log(tableData.data[0].productData);
-
   const renderCellContent = (accessor, data, CellData) => {
     if (accessor === "statue") {
       return statueCellContent(accessor, data);
@@ -35,6 +33,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
   };
 
   const productsCellContent = (data, CellData) => {
+    console.log("data", data);
     return (
       <CellData
         row={{

@@ -134,6 +134,7 @@ function Summary() {
   productItems.forEach((item) => {
     const productObj = {
       productid: item.id,
+      title: item.title,
       scale: item.selectedSize,
       quantity: item.quantity,
     };
@@ -144,6 +145,7 @@ function Summary() {
   offerItems.forEach((item) => {
     const offerObj = {
       offersid: item._id,
+      title: item.title,
       quantity: item.quantity,
     };
     productData.push(offerObj);

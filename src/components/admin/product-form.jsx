@@ -165,7 +165,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             required
             name="size"
             value={sizes}
-            className="relative w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="relative input-field"
             onChange={(e) => setSizes(e.target.value)}>
             <option value="" disabled>
               Select Size

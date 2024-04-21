@@ -41,12 +41,13 @@ const EditProduct = () => {
 
   useEffect(() => {
     if (product) {
-      setFormData({
+      setFormData((prevData) => ({
+        ...prevData,
         title: product.result.title || "",
         description: product.result.description || "",
         imageCover: product.result.imageCover || "",
         price: product.result.price || [],
-      });
+      }));
 
       setImagePreview(
         product.result?.imageCover.replace(
@@ -99,6 +100,15 @@ const EditProduct = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      imageCover: file,
+    }));
+    setImagePreview(URL.createObjectURL(file));
   };
 
   if (!product)
@@ -157,13 +167,7 @@ const EditProduct = () => {
               value={""}
               className="hidden image"
               disabled={formData.imageCover}
-              onChange={(e) => {
-                setFormData((prevData) => ({
-                  ...prevData,
-                  imageCover: e.target.files[0], // Update imageCover with the selected file
-                }));
-                setImagePreview(URL.createObjectURL(e.target.files[0]));
-              }}
+              onChange={handleImageChange}
             />
             {!formData.imageCover ? (
               <span className="flex items-center justify-between w-full gap-2 transition duration-300 image group-hover:text-green-300">
@@ -206,7 +210,7 @@ const EditProduct = () => {
             required
             name="size"
             value={sizes}
-            className="relative w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="relative input-field"
             onChange={(e) => setSizes(e.target.value)}>
             <option value="" disabled>
               Select Size

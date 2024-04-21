@@ -33,7 +33,7 @@ const SizeFields = ({
             value={price_basic}
             placeholder="Price for basic..."
             onChange={(e) => handlePriceChange(e, "basic")}
-            className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="input-field"
           />
           <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
         </div>
@@ -50,7 +50,7 @@ const SizeFields = ({
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
-              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+              className="input-field"
             />
             <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
@@ -68,7 +68,7 @@ const SizeFields = ({
               value={price_md}
               placeholder="Price for md..."
               onChange={(e) => handlePriceChange(e, "md")}
-              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+              className="input-field"
             />
             <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
@@ -85,7 +85,7 @@ const SizeFields = ({
               value={price_lg}
               placeholder="Price for lg..."
               onChange={(e) => handlePriceChange(e, "lg")}
-              className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+              className="input-field"
             />
             <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>

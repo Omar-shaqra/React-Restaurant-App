@@ -13,11 +13,20 @@ const columns = [
     accessor: "[productData]",
     sortable: false,
     CellData: ({ row }) => (
-      <>
-        {row.original.productData
-          .map((product) => product.productid)
-          .join(", ")}
-      </>
+      <div className="flex items-start gap-1">
+        <p className="rounded bg-white/50">
+          {row.original.productData.map((product) => product.title).join(", ")}
+        </p>
+        <p className="bg-gray-300 rounded">
+          {row.original.productData.map((product) => product.scale).join(", ")}
+        </p>
+        <p className="text-white rounded bg-black/70">
+          x
+          {row.original.productData
+            .map((product) => product.quantity)
+            .join(", ")}
+        </p>
+      </div>
     ),
   },
   {

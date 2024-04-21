@@ -84,7 +84,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
     governate: "",
     state: "",
     address: "",
-    payment: "Cash On Delivery" || "Online Payment",
+    payment: "Select Payment Method",
   });
 
   const handleInputChange = (e) => {
@@ -141,7 +141,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <input
             placeholder="Enter your name"
             required
-            className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="input-field"
             type="text"
             name="name"
             value={formData.name}
@@ -154,7 +154,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <input
             placeholder="Enter your email"
             required
-            className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="input-field"
             type="email"
             name="email"
             value={formData.email}
@@ -167,7 +167,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <input
             placeholder="Enter your phone"
             required
-            className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="input-field"
             type="text"
             name="phone"
             minLength={4}
@@ -212,7 +212,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
           <input
             required
             placeholder="Enter your full address"
-            className="w-full h-12 pl-3 text-base bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+            className="input-field"
             name="address"
             min={10}
             value={formData.address}
@@ -227,7 +227,10 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
             value={formData.payment}
             onChange={handleInputChange}>
-            <option value="" disabled className="text-gray-300">
+            <option
+              value="Select Payment Method"
+              disabled
+              className="text-gray-300">
               Select Payment Method
             </option>
             <option value="Cash On Delivery">Cash on Delivery</option>
