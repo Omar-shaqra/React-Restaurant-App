@@ -74,7 +74,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
         </div>
         {/* Prices & Button */}
         <div className="flex items-center justify-between gap-1">
-          <div className="flex mt-1 md:text-sm xs:text-[10px] gap-1 hide-scrollbar overflow-x-auto">
+          <div className="flex mt-1 text-[10px] gap-1 hide-scrollbar overflow-x-auto">
             {/* Basic Price */}
             <div className="flex flex-col items-center p-1 rounded bg-white/20">
               <p className="text-gray-300">Basic</p>

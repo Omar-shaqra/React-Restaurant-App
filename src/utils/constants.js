@@ -1,11 +1,5 @@
-// import slide1 from "/src/assets/slide1.jpg";
-// import slide2 from "/src/assets/slide2.jpg";
-// import slide3 from "/src/assets/slide3.jpg";
-// import slide4 from "/src/assets/slide4.jpg";
-// import slide5 from "/src/assets/slide5.jpg";
-// export const heroSlides = [slide2, slide4];
-
-function checkUserRole(session) {
+// Check for admin role
+export function checkUserRole(session) {
   if (
     !session ||
     !session.user ||
@@ -27,4 +21,53 @@ function checkUserRole(session) {
   return null; // Return null if no role is found in the memberships
 }
 
-export { checkUserRole };
+// Find current data
+const date = new Date();
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+export const currentDate = `${day}-${month}-${year}`;
+
+// Summary products price
+export const productsTotalPrice = (productItems) => {
+  return productItems.reduce((total, item) => {
+    return (
+      total +
+      Number(
+        item.price.find((price) => price.size === item.selectedSize)?.pr *
+          item.quantity || item.price[0].pr * item.quantity
+      )
+    );
+  }, 0);
+};
+// Summary offers price
+export const offersTotalPrice = (offerItems) => {
+  return offerItems.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+};
+
+// Add products to productData
+export const addProductsToData = (productItems, productData) => {
+  productItems.forEach((item) => {
+    const productObj = {
+      productid: item.id,
+      title: item.title,
+      scale: item.selectedSize,
+      quantity: item.quantity,
+    };
+    productData.push(productObj);
+  });
+};
+
+// Add offers to productData
+export const addOffersToData = (offerItems, productData) => {
+  offerItems.forEach((item) => {
+    const offerObj = {
+      offersid: item._id,
+      title: item.title,
+      quantity: item.quantity,
+    };
+    productData.push(offerObj);
+  });
+};

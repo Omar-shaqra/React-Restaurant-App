@@ -7,6 +7,13 @@ import { toast } from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 
 import useCart from "../../hooks/use-cart";
+import {
+  productsTotalPrice,
+  offersTotalPrice,
+  addProductsToData,
+  addOffersToData,
+} from "../../utils/constants";
+import { currentDate } from "../../utils/constants";
 import CheckoutModal from "../modals/checkout-modal";
 import Currency from "../ui/currency";
 
@@ -19,20 +26,20 @@ function Summary() {
   const offerItems = useCart((state) => state.offerItems);
   const removeAll = useCart((state) => state.removeAll);
 
+  const productsPrice = productsTotalPrice(productItems);
+  const offersPrice = offersTotalPrice(offerItems);
+  const totalPrice = productsPrice + offersPrice;
+
+  addProductsToData(productItems, productData);
+  addOffersToData(offerItems, productData);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [payment, setPayment] = useState();
   const [address, setAddress] = useState();
   const [userPhone, setUserPhone] = useState();
   const [state, setState] = useState();
   const [governate, setGovernate] = useState();
-
-  const date = new Date();
-
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-
-  let currentDate = `${day}-${month}-${year}`;
+  const [orderType, setOrderType] = useState();
 
   useEffect(() => {
     let paymentCompleted = false;
@@ -50,6 +57,7 @@ function Summary() {
             governate,
             state,
             address,
+            orderType,
             TotalPrice: totalPrice,
             statue: true,
           });
@@ -66,7 +74,6 @@ function Summary() {
         toast.error("Payment Was Canceld.");
       }
     };
-
     handlePaymentSuccess();
   });
 
@@ -84,6 +91,7 @@ function Summary() {
           governate,
           state,
           address,
+          orderType,
           TotalPrice: totalPrice,
           statue: false,
           Date: currentDate,
@@ -130,50 +138,14 @@ function Summary() {
     }
   };
 
-  // Add products from productItems to productData
-  productItems.forEach((item) => {
-    const productObj = {
-      productid: item.id,
-      title: item.title,
-      scale: item.selectedSize,
-      quantity: item.quantity,
-    };
-    productData.push(productObj);
-  });
-
-  // Add offers from offerItems to productData
-  offerItems.forEach((item) => {
-    const offerObj = {
-      offersid: item._id,
-      title: item.title,
-      quantity: item.quantity,
-    };
-    productData.push(offerObj);
-  });
-
   const handleDeliveryInfo = (value) => {
     setPayment(value.payment);
     setState(value.state);
     setAddress(value.address);
     setUserPhone(value.phone);
     setGovernate(value.governate);
+    setOrderType(value.orderType);
   };
-
-  const totalPriceFromProducts = productItems.reduce((total, item) => {
-    return (
-      total +
-      Number(
-        item.price.find((price) => price.size === item.selectedSize)?.pr *
-          item.quantity || item.price[0].pr * item.quantity
-      )
-    );
-  }, 0);
-
-  const totalPriceFromOffers = offerItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
-
-  const totalPrice = totalPriceFromProducts + totalPriceFromOffers;
 
   return (
     <div className="min-w-full mt-5 rounded-xl bg-black/90 px-4 py-4 text-white self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
