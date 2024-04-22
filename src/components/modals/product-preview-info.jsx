@@ -39,13 +39,14 @@ const ProductPreviewInfo = ({ data }) => {
     );
   };
 
-  const renderDoughType = (doughType) => {
+  const renderDoughType = (doughType, index) => {
     const handleClick = (selectedDough) => {
       setSelectedDough(selectedDough);
     };
 
     return (
       <div
+        key={index}
         className={`flex text-center items-center justify-center h-[52px] w-full gap-1 p-1 rounded cursor-pointer bg-white/20 hover:bg-orange-400 transition-all duration-300 ${
           selectedDough === doughType ? "selected-size" : ""
         }`}
@@ -105,8 +106,8 @@ const ProductPreviewInfo = ({ data }) => {
             <div className="flex-wrap items-center gap-x-2">
               <h3 className="font-semibold">Dough:</h3>
               <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">
-                {["Classic", "Crust", "Thin"].map((doughType) =>
-                  renderDoughType(doughType)
+                {["Classic", "Crust", "Thin"].map((doughType, index) =>
+                  renderDoughType(doughType, index)
                 )}
               </div>
             </div>
