@@ -22,7 +22,7 @@ const AddProduct = () => {
   const { refetch } = GetProducts({ setProducts: setProducts });
 
   return (
-    <section className="flex flex-col items-center gap-4 px-4 my-5 text-2xl font-semibold text-white">
+    <section className="flex flex-col items-center px-4 my-5 text-2xl font-semibold text-white">
       <h1 className="self-center font-extrabold tracking-wider">
         All Products
       </h1>

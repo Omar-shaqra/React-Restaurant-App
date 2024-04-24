@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.selected-size {
+.selected-size, .selected-dough {
   background-color: #EF6C00;
   /* Set your desired background color */
   color: #ffffff;
@@ -91,6 +91,49 @@ body,
 }
 
 @layer utilities {
+
+  /* Button Component CSS */
+  .radial-gradient {
+    background:
+      radial-gradient(circle at 50% 0%,
+        rgba(250, 250, 250, 0.05) 0%,
+        transparent 60%),
+      rgb(58, 58, 58)
+  }
+
+  .linear-mask {
+    mask-image:
+      linear-gradient(-75deg,
+        white calc(var(--x) + 20%),
+        transparent calc(var(--x) + 30%),
+        white calc(var(--x) + 100%));
+
+    -webkit-mask-image: linear-gradient(-75deg,
+        white calc(var(--x) + 20%),
+        transparent calc(var(--x) + 30%),
+        white calc(var(--x) + 100%))
+  }
+
+  .linear-overlay {
+    background-image:
+      linear-gradient(-75deg,
+        rgba(255, 255, 255, 0.1) calc(var(--x) + 20%),
+        rgba(255, 255, 255, 0.719) calc(var(--x) + 25%),
+        rgba(255, 255, 255, 0.1) calc(var(--x) + 100%));
+
+    mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+
+    -webkit-mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+
+    mask-composite: exclude;
+    -webkit-mask-composite: xor
+  }
+
+  /* Multi Select Component */
   .multiSelectContainer li {
     background-color: #fce2bf;
     color: black;

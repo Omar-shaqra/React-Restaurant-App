@@ -1,6 +1,5 @@
-import { ShoppingCart } from "lucide-react";
-
 import useCart from "../../hooks/use-cart";
+import Button from "../ui/button";
 import Currency from "../ui/currency";
 
 const OfferPreviewInfo = ({ data }) => {
@@ -43,13 +42,11 @@ const OfferPreviewInfo = ({ data }) => {
 
       <div className="flex items-center justify-end gap-1">
         {/* Add Button */}
-        <button
+        <Button
+          text={"Add To Cart"}
+          type={"button"}
           onClick={() => addOfferItem(data)}
-          // disabled={data.category?.name === "pizza" && !selectedDough}
-          className="flex flex-1 max-w-60 self-end  mx-2 justify-between items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-2xl disabled:cursor-not-allowed">
-          Add To Cart
-          <ShoppingCart size={20} />
-        </button>
+        />
       </div>
     </section>
   );

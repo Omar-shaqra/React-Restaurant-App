@@ -3,10 +3,11 @@ import { useState } from "react";
 
 import useCart from "../../hooks/use-cart";
 import Currency from "../ui/currency";
+import Button from "../ui/button";
 
 const ProductPreviewInfo = ({ data }) => {
   const [selectedSize, setSelectedSize] = useState(data.price[0]?.size);
-  const [selectedDough, setSelectedDough] = useState("classic");
+  const [selectedDough, setSelectedDough] = useState("Classic");
 
   const { addProductItem } = useCart();
 
@@ -115,13 +116,13 @@ const ProductPreviewInfo = ({ data }) => {
         </div>
 
         {/* Add Button */}
-        <button
-          onClick={() => addProductItem(data, selectedSize, selectedDough)}
-          disabled={data.category?.name === "pizza" && !selectedDough}
-          className="text-nowrap flex flex-1 max-w-60 self-center sm:self-end mx-2 justify-between items-center gap-2 h-fit bg-white/20 hover:bg-white/40 p-2 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-2xl disabled:cursor-not-allowed">
-          Add To Cart
-          <ShoppingCart size={20} />
-        </button>
+        <div className="text-nowrap max-w-60 self-center sm:self-end mx-2 justify-between items-center h-fit bg-white/20 hover:bg-white/40 p-1 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-xl ">
+          <Button
+            text={"Add To Cart"}
+            type={"button"}
+            onClick={() => addProductItem(data, selectedSize, selectedDough)}
+          />
+        </div>
       </div>
     </section>
   );

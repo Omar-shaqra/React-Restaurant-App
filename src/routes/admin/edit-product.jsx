@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import { ImagePlus, Trash2 } from "lucide-react";
-import SizeFields from "../../components/admin/size-fields";
-
-import { GetProductWithId } from "../../actions/get-products";
 import axios from "axios";
+import { ImagePlus, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
+import { GetProductWithId } from "../../actions/get-products";
+import SizeFields from "../../components/admin/size-fields";
+import Button from "../../components/ui/button";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -231,12 +231,11 @@ const EditProduct = () => {
         </div>
       </div>
       {/* Submit button */}
-      <button
+      <Button
+        text="Update"
         type="submit"
         disabled={formData.title === "" || formData.description === ""}
-        className="items-center justify-center w-24 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-black">
-        Update
-      </button>
+      />
     </form>
   );
 };

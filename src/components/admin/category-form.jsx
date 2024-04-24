@@ -2,6 +2,7 @@ import axios from "axios";
 import { ImagePlus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Button from "../ui/button";
 
 const CategoryForm = ({ categories, refetch }) => {
   const [name, setName] = useState("");
@@ -90,11 +91,7 @@ const CategoryForm = ({ categories, refetch }) => {
           )}
         </div>
         {/* Submit button */}
-        <button
-          type="submit"
-          className="items-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800">
-          Create
-        </button>
+        <Button text={"Create"} type={"submit"} />
       </div>
     </form>
   );

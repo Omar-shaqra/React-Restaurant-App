@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteItem } from "../../actions/delete-item";
 import { useProductPreviewModal } from "../../hooks/use-preview-modal";
 import Currency from "./currency";
+import IconButton from "./icon-button";
 
 const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const previewModal = useProductPreviewModal();
@@ -12,6 +13,15 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const onPreview = (e) => {
     e.preventDefault();
     previewModal.onOpen(data);
+  };
+
+  const onEdit = () => {
+    navigate(`/admin/products/${data.id}`);
+  };
+  const onDelete = () => {
+    deleteItem({ id: data._id, routeName: "products" }).then(() => {
+      refetch();
+    });
   };
 
   const imgURL =
@@ -51,23 +61,17 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
             {button == "add" ? (
               <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
             ) : (
-              <div className="flex items-center gap-1">
-                <button
-                  className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                  onClick={() => navigate(`/admin/products/${data.id}`)}>
-                  <SquarePen size={15} />
-                </button>
-                <button
-                  className="flex items-center gap-1 p-1 px-2 text-sm text-center text-white transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                  onClick={() => {
-                    deleteItem({ id: data._id, routeName: "products" }).then(
-                      () => {
-                        refetch();
-                      }
-                    );
-                  }}>
-                  <Trash2 size={15} />
-                </button>
+              <div className="flex gap-1">
+                <IconButton
+                  className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={onEdit}
+                  icon={<SquarePen size={15} />}
+                />
+                <IconButton
+                  className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={onDelete}
+                  icon={<Trash2 size={15} />}
+                />
               </div>
             )}
           </div>

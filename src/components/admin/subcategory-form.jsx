@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Button from "../ui/button";
 
 const SubcategoryForm = ({ categories, subcategories, refetch }) => {
   const [name, setName] = useState("");
@@ -28,7 +29,7 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
     if (valid == true) {
       try {
         await axios.post(
-          "${import.meta.env.VITE_REACT_API_URL}/subcategories",
+          `${import.meta.env.VITE_REACT_API_URL}/subcategories`,
           {
             name,
             category: categoryId,
@@ -61,32 +62,29 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
       onSubmit={onSubmit}
       className="flex flex-col gap-4 mx-16 mt-16 ml-auto">
       <h1 className="font-extrabold tracking-wider">Add New Sub Category</h1>
-      <input
-        required
-        className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
-        placeholder={"Enter Sub Category Name"}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <h1 className="font-extrabold tracking-wider">Select Category</h1>
-      <select
-        value={categoryId}
-        onChange={(e) => setCategoryId(e.target.value)}
-        className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
-        {/* Add default "Select Category" option */}
-        <option
-          value=""
-          disabled
-          className="capitalize bg-neutral-400 text-neutral-800">
-          Select Category
-        </option>
-        {categoryOptions}
-      </select>
-      <button
-        type="submit"
-        className="self-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800">
-        Create
-      </button>
+      <div className="flex flex-col items-center gap-y-3">
+        <input
+          required
+          className="w-full h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+          placeholder={"Enter Sub Category Name"}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <select
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
+          className="w-4/6 h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+          {/* Add default "Select Category" option */}
+          <option
+            value=""
+            disabled
+            className="capitalize bg-neutral-400 text-neutral-800">
+            Select Category
+          </option>
+          {categoryOptions}
+        </select>
+        <Button text={"Create"} type={"submit"} />
+      </div>
     </form>
   );
 };

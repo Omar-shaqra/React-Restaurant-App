@@ -3,6 +3,7 @@ import { useUser } from "@clerk/clerk-react";
 
 import Modal from "./modal";
 import { useEffect } from "react";
+import Button from "../ui/button";
 
 const governates = {
   "محافظة الداخلية": {
@@ -101,19 +102,6 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Phone Validation
-    if (name === "phone") {
-      // Check if the value starts with "+968" and has a total length of 12 characters
-      if (value.startsWith("+968") && value.length === 12) {
-        setFormData({ ...formData, [name]: value });
-      } else if (value.startsWith("+968") && value.length > 12) {
-        // If the value starts with "+968" and has more than 12 characters, truncate to 12 characters
-        setFormData({ ...formData, [name]: value.slice(0, 12) });
-      } else if (value.length <= 8) {
-        // If the value has less than or equal to 8 characters, update the state
-        setFormData({ ...formData, [name]: value });
-      }
-    }
     // State Validation
     if (name === "state") {
       const governate = Object.keys(governates).find((gov) =>
@@ -145,7 +133,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
         onSubmit={handleFormSubmit}
         className="flex flex-col items-center gap-5 p-5 text-black ">
         <p className="text-2xl font-semibold tracking-wider text-white">
-          Delivery Information
+          Order Information
         </p>
 
         <div className="flex flex-col gap-5 sm:flex-row">
@@ -274,14 +262,20 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                 <option value="Online Payment">Online Payment</option>
               </select>
             </div>
+
+            <Button
+              text={"Continue"}
+              type={"submit"}
+              disabled={
+                formData.phone.length < 8 ||
+                formData.address.length < 8 ||
+                formData.state.length < 3 ||
+                formData.orderType == "Select Order Type" ||
+                formData.payment == "Select Payment Method"
+              }
+            />
           </div>
         </div>
-
-        <button
-          className="flex items-center justify-center w-full gap-2 p-3 mt-6 font-semibold text-white transition duration-500 rounded-full bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed"
-          type="submit">
-          {!formData.payment ? "Choose payment first!" : "Continue"}
-        </button>
       </form>
     </Modal>
   );

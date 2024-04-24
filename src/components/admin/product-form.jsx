@@ -4,8 +4,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 import SizeFields from "./size-fields";
+import Button from "../ui/button";
 
-const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
+const ProductForm = ({ categories, subcategories, refetch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
@@ -96,9 +97,9 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col items-center gap-4 mx-10 ml-auto mt-14">
-      <h1 className="mr-auto font-extrabold tracking-wider">Add Product</h1>
-      <div className="flex flex-row gap-6">
+      className="flex flex-col items-center gap-4 mx-10 mt-4 ml-auto">
+      <h1 className="font-extrabold tracking-wider ">Add Product</h1>
+      <div className="flex flex-row items-end gap-6">
         {/* First Column (Category) */}
         <div className="flex flex-col gap-6">
           {/* Categories */}
@@ -160,7 +161,7 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
           />
         </div>
         {/* Second Column (Sizes) */}
-        <div className="flex flex-col items-center gap-y-6">
+        <div className="flex flex-col items-center self-start gap-y-6">
           <select
             required
             name="size"
@@ -230,14 +231,9 @@ const ProductForm = ({ categories, subcategories, isLoading, refetch }) => {
             className="flex h-48 rounded w-44"
           />
         </div>
+        {/* Submit button */}
+        <Button text={"Create"} type={"submit"} />
       </div>
-      {/* Submit button */}
-      <button
-        type="submit"
-        disabled={isLoading || title === "" || description === ""}
-        className="items-center justify-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-black">
-        Create
-      </button>
     </form>
   );
 };

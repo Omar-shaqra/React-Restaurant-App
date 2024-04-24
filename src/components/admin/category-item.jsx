@@ -1,8 +1,15 @@
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
+import IconButton from "../ui/icon-button";
 
 function CategoryItem({ item, deleteItem, refetch }) {
   const [hoverd, setIsHoverd] = useState(false);
+
+  const onDelete = () => {
+    deleteItem({ id: item._id, routeName: "categories" }).then(() => {
+      refetch();
+    });
+  };
 
   return (
     <div
@@ -11,15 +18,11 @@ function CategoryItem({ item, deleteItem, refetch }) {
       onMouseEnter={() => setIsHoverd(true)}
       onMouseLeave={() => setIsHoverd(false)}>
       {hoverd ? (
-        <button
-          onClick={() =>
-            deleteItem({ id: item._id, routeName: "categories" }).then(() => {
-              refetch();
-            })
-          }
-          className="px-1 py-[2px] text-center text-white transition border border-red-300 rounded-full whitespace-nowrap text-md bg-black/70 hover:border-red-800">
-          <Trash2 size={16} />
-        </button>
+        <IconButton
+          onClick={onDelete}
+          icon={<Trash2 size={16} />}
+          className="px-1 py-[2px] text-center text-white transition border border-red-300 rounded-full whitespace-nowrap text-md bg-black/70 hover:border-red-800"
+        />
       ) : (
         <p>{item.name}</p>
       )}

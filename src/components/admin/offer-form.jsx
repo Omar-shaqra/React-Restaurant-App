@@ -3,6 +3,7 @@ import { DollarSign, ImagePlus, Trash2 } from "lucide-react";
 import { Multiselect } from "multiselect-react-dropdown";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Button from "../ui/button";
 
 const OfferForm = ({ products, refetch }) => {
   const [name, setName] = useState("");
@@ -57,7 +58,7 @@ const OfferForm = ({ products, refetch }) => {
       <h1 className="self-end font-extrabold tracking-wider">Add New Offer</h1>
       <div className="flex flex-row gap-6">
         {/* First Column */}
-        <div className="flex flex-col items-end gap-6">
+        <div className="flex flex-col items-center gap-5">
           {/* Name */}
           <input
             required
@@ -107,6 +108,7 @@ const OfferForm = ({ products, refetch }) => {
             />
             <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
           </div>
+          <Button text={"Create"} type={"submit"} />
         </div>
 
         {/* Second Column (Image) */}
@@ -154,12 +156,6 @@ const OfferForm = ({ products, refetch }) => {
           />
         </div>
       </div>
-
-      <button
-        type="submit"
-        className="self-center w-3/6 h-10 p-1 my-5 text-lg text-white transition bg-black bg-opacity-75 rounded-lg hover:bg-neutral-800">
-        Create
-      </button>
     </form>
   );
 };
