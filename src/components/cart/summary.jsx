@@ -1,20 +1,21 @@
 // import { loadStripe } from "@stripe/stripe-js";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import { Wallet } from "lucide-react";
+import { FilePen, Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 
 import useCart from "../../hooks/use-cart";
 import {
-  productsTotalPrice,
-  offersTotalPrice,
-  addProductsToData,
   addOffersToData,
+  addProductsToData,
+  currentDate,
+  offersTotalPrice,
+  productsTotalPrice,
 } from "../../utils/constants";
-import { currentDate } from "../../utils/constants";
 import CheckoutModal from "../modals/checkout-modal";
+import Button from "../ui/button";
 import Currency from "../ui/currency";
 
 function Summary() {
@@ -181,37 +182,47 @@ function Summary() {
       ))}
 
       {/* Order Total */}
-      <div className="mt-3 space-y-4">
+      <div className="mt-3 space-y-4 ">
         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
           <div className="text-base font-medium">Order Total</div>
           <Currency value={totalPrice} />
         </div>
 
-        {payment && (
-          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-            <div className="text-base font-medium">Payment Type</div>
-            <p>{payment}</p>
-          </div>
-        )}
-      </div>
+        <div className="flex justify-between w-full gap-x-2">
+          {/* Checkout Button */}
+          <button
+            onClick={onCheckout}
+            type="submit"
+            disabled={productItems.length === 0 && offerItems.length === 0}
+            className="flex items-center justify-center w-full gap-2 p-2 font-semibold text-white transition duration-500 rounded-md bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed group">
+            <CheckoutModal
+              handleDeliveryInfo={handleDeliveryInfo}
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+            <p className="tracking-wider uppercase transition group-hover:-translate-x-3">
+              {!payment ? "Fill Details First" : "Order Now"}
+            </p>
+            {payment ? (
+              <Wallet
+                size={20}
+                className="transition group-hover:translate-x-3"
+              />
+            ) : (
+              <FilePen className="transition group-hover:translate-x-3" />
+            )}
+          </button>
 
-      {/* Checkout Button */}
-      <button
-        onClick={onCheckout}
-        disabled={productItems.length === 0 && offerItems.length === 0}
-        className="flex items-center justify-center w-full gap-2 p-3 mt-6 font-semibold text-white transition duration-500 rounded-full bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed group">
-        <CheckoutModal
-          handleDeliveryInfo={handleDeliveryInfo}
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
-        <p className="tracking-wider uppercase transition group-hover:-translate-x-3">
-          {!payment ? "Fill Delivey Details" : "Order Now"}
-        </p>
-        {payment && (
-          <Wallet size={20} className="transition group-hover:translate-x-3" />
-        )}
-      </button>
+          {/* Details Modal Button */}
+          {payment && (
+            <Button
+              text={"Change Details"}
+              type={"button"}
+              onClick={() => setIsModalOpen(true)}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
