@@ -1,7 +1,14 @@
 import { Facebook, Instagram, Youtube, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import ContactModal from "./modals/contact-modal";
+import { useState } from "react";
 
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onContact = () => {
+    setIsModalOpen(true);
+  };
   return (
     <section
       id="footer"
@@ -75,7 +82,15 @@ const Footer = () => {
                 <a href={"/#deals"}>Home</a>
               </li>
               <li className="rounded-lg">About</li>
-              <li className="rounded-lg">Services</li>
+              <li className="rounded-lg">
+                <button onClick={onContact} type="submit">
+                  <ContactModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                  />
+                  Contact Us
+                </button>
+              </li>
               <li className="rounded-lg">
                 <Link to={"/login"}>Login</Link>
               </li>
