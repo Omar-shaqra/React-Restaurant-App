@@ -65,9 +65,9 @@ const ContactModal = ({ isOpen, onClose }) => {
           Contact Information
         </p>
 
-        <div className="flex flex-col items-center gap-5 sm:flex-row">
+        <div className="flex flex-col items-center w-full gap-5 sm:flex-row">
           {/* First Column */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col w-full gap-3">
             <div className="flex items-center gap-6 text-white">
               <label className="font-bold ">Name:</label>
               <input
@@ -111,13 +111,13 @@ const ContactModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Second Column */}
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-6 text-white">
+          <div className="flex flex-col w-full gap-3">
+            <div className="flex w-full gap-6 text-white">
               <label className="font-bold">Text:</label>
               <textarea
                 required
                 placeholder="Enter Your Message"
-                className="pt-3 pl-3 m-0 overflow-hidden text-base bg-black border border-red-300 rounded-lg max-h-28 min-h-28 focus:border-white bg-opacity-70"
+                className="w-full pt-3 pl-3 overflow-hidden text-base bg-black border border-red-300 rounded-lg max-h-28 min-h-28 focus:border-white bg-opacity-70"
                 name="text"
                 min={10}
                 value={formData.text}
