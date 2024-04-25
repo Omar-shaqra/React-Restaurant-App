@@ -6,14 +6,11 @@ import { useState } from "react";
 const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const onContact = () => {
-    setIsModalOpen(true);
-  };
   return (
     <section
       id="footer"
       className="flex items-center justify-center mt-10 font-serif font-semibold text-white bg-gradient-to-t from-black to-neutral-900/30">
-      <div className="flex-1 w-full py-5 mx-auto">
+      <div className="flex-1 w-full pt-5 mx-auto">
         {/* Logo & Description */}
         <div className="px-4">
           <p className="flex items-center gap-3 mb-1 text-xl font-bold text-justify w-fit sm:text-3xl sm:text-left">
@@ -77,13 +74,16 @@ const Footer = () => {
             <p className="p-2 mb-3 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl sm:text-left">
               Links
             </p>
+
             <ul className="flex flex-col items-center gap-6 cursor-pointer w-fit">
-              <li className="rounded-lg">
+              <li className="transition-colors duration-300 rounded-lg hover:text-orange-400">
                 <a href={"/#deals"}>Home</a>
               </li>
-              <li className="rounded-lg">About</li>
-              <li className="rounded-lg">
-                <button onClick={onContact} type="submit">
+              <li className="transition-colors duration-300 rounded-lg hover:text-orange-400">
+                About
+              </li>
+              <li className="transition-colors duration-300 rounded-lg hover:text-orange-400">
+                <button onClick={() => setIsModalOpen(true)} type="submit">
                   <ContactModal
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
@@ -91,7 +91,7 @@ const Footer = () => {
                   Contact Us
                 </button>
               </li>
-              <li className="rounded-lg">
+              <li className="transition-colors duration-300 rounded-lg hover:text-orange-400">
                 <Link to={"/login"}>Login</Link>
               </li>
             </ul>
@@ -105,7 +105,7 @@ const Footer = () => {
             {/* First No. */}
             <div className="flex items-center gap-3 p-2 mt-3 transition duration-300 rounded-lg hover:text-orange-400">
               <svg
-                fill="white"
+                fill="currentColor"
                 className="hover:text-orange-400"
                 height="20px"
                 width="20px"
@@ -141,17 +141,15 @@ const Footer = () => {
             </div>
 
             {/* Second No. */}
-            <div className="flex items-center gap-3 p-2 mt-3 rounded-lg ">
+            <div className="flex items-center gap-3 p-2 mt-3 transition duration-300 rounded-lg hover:text-orange-400">
               <Phone />
-              <Link
-                to={"tel:+96897310806"}
-                className="font-mono transition duration-300 text-nowrap hover:text-orange-400 ">
+              <Link to={"tel:+96897310806"} className="font-mono text-nowrap ">
                 +96897310806
               </Link>
             </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-3 p-2 mt-6 rounded-lg">
+            {/* Socials */}
+            <div className="flex items-center gap-5 p-2 mt-6 rounded-lg">
               <Link
                 to={"https://www.instagram.com/apizza_om/"}
                 target="_blank"

@@ -60,12 +60,12 @@ const ContactModal = ({ isOpen, onClose }) => {
     <Modal open={isOpen} onClose={onClose}>
       <form
         onSubmit={handleFormSubmit}
-        className="flex flex-col items-center gap-5 p-5 text-black ">
+        className="flex flex-col items-center gap-5 p-5 text-black">
         <p className="text-2xl font-semibold tracking-wider text-white">
           Contact Information
         </p>
 
-        <div className="flex flex-col items-center w-full gap-5 sm:flex-row">
+        <div className="flex flex-wrap items-center gap-5 max-w-96">
           {/* First Column */}
           <div className="flex flex-col w-full gap-3">
             <div className="flex items-center gap-6 text-white">
@@ -81,7 +81,7 @@ const ContactModal = ({ isOpen, onClose }) => {
               />
             </div>
 
-            <div className="flex items-center gap-6 text-white">
+            <div className="flex items-center gap-6 text-white ">
               <label className="font-bold ">Email:</label>
               <input
                 placeholder="Enter your email"
@@ -94,7 +94,7 @@ const ContactModal = ({ isOpen, onClose }) => {
               />
             </div>
 
-            <div className="flex items-center gap-6 text-white">
+            <div className="flex items-center gap-4 text-white">
               <label className="font-bold ">Phone:</label>
               <input
                 placeholder="Enter your phone"
@@ -112,7 +112,7 @@ const ContactModal = ({ isOpen, onClose }) => {
 
           {/* Second Column */}
           <div className="flex flex-col w-full gap-3">
-            <div className="flex w-full gap-6 text-white">
+            <div className="flex w-full gap-8 text-white">
               <label className="font-bold">Text:</label>
               <textarea
                 required
