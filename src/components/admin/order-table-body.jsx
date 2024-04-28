@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 const TableBody = ({ tableData, columns, onUpdateData }) => {
-  const [editCell, setEditCell] = useState({});
+  const [editCell, setEditCell] = useState();
+  console.log(tableData);
+
   const renderCellContent = (accessor, data, CellData) => {
     if (accessor === "statue") {
       return statueCellContent(accessor, data);
@@ -12,6 +14,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     }
   };
 
+  // Paid Status
   const statueCellContent = (accessor, data) => {
     const isEditing =
       editCell && editCell.accessor === accessor && editCell.rowId === data._id;
@@ -19,9 +22,8 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     if (isEditing) {
       return (
         <select
-          value={""}
+          value={data.statue}
           onChange={(e) => handleChange(e, data._id, accessor)}
-          onBlur={() => setEditCell({})}
           autoFocus>
           <option value="Paid">Paid</option>
           <option value="Not Paid">Not Paid</option>
@@ -32,8 +34,8 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     }
   };
 
+  // Order Products
   const productsCellContent = (data, CellData) => {
-    console.log("data", data);
     return (
       <CellData
         row={{
@@ -43,6 +45,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     );
   };
 
+  // No Accessor
   const nullCellContent = (accessor, data) => {
     return data[accessor] ? data[accessor] : "——";
   };
@@ -53,7 +56,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     const row = newDataState.find((row) => row._id === rowId);
     row[accessor] = value;
     onUpdateData({ ...tableData, data: newDataState });
-    // console.log(`Row ${rowId}, Accessor ${accessor}, Value ${value}`);
+    console.log(`Row ${rowId}, Accessor ${accessor}, Value ${value}`);
   };
 
   return (

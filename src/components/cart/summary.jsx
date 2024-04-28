@@ -60,7 +60,7 @@ function Summary() {
             address,
             orderType,
             TotalPrice: totalPrice,
-            statue: true,
+            statue: "Paid",
           });
           toast.success("Payment Completed.");
           removeAll();
@@ -94,7 +94,7 @@ function Summary() {
           address,
           orderType,
           TotalPrice: totalPrice,
-          statue: false,
+          statue: "Not Paid",
           Date: currentDate,
         });
         toast.success("Order sent successfully.");

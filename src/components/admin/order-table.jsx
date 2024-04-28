@@ -3,31 +3,43 @@ import TableHead from "./order-table-head";
 import { useSortableTable } from "./useSortableTable";
 
 const columns = [
-  {
-    label: "User ID",
-    accessor: "userID",
-    sortable: false,
-  },
+  // {
+  //   label: "User ID",
+  //   accessor: "userID",
+  //   sortable: false,
+  // },
   {
     label: "Order",
     accessor: "[productData]",
     sortable: false,
-    CellData: ({ row }) => (
-      <div className="flex items-start gap-1">
-        <p className="rounded bg-white/50">
-          {row.original.productData.map((product) => product.title).join(", ")}
-        </p>
-        <p className="bg-gray-300 rounded">
-          {row.original.productData.map((product) => product.scale).join(", ")}
-        </p>
-        <p className="text-white rounded bg-black/70">
-          x
-          {row.original.productData
-            .map((product) => product.quantity)
-            .join(", ")}
-        </p>
-      </div>
-    ),
+    CellData: ({ row }) => {
+      const { productData } = row.original;
+
+      // Map product data only once
+      const title = productData.map((product) => product.title).join(", ");
+      const scale = productData.map((product) => product.scale).join(", ");
+      const doughType = productData
+        .map((product) => product.doughType)
+        .join(", ");
+      const quantity = productData
+        .map((product) => product.quantity)
+        .join(", ");
+
+      return (
+        <div className="flex items-start gap-1">
+          {/* Conditional rendering for titles */}
+          {title && <p className="p-px rounded bg-white/50">{title}</p>}
+          {/* Conditional rendering for scales */}
+          {scale && <p className="p-px bg-gray-300 rounded">{scale}</p>}
+          {/* Conditional rendering for dough types */}
+          {doughType && <p className="p-px bg-gray-300 rounded">{doughType}</p>}
+          {/* Conditional rendering for quantities */}
+          {quantity && (
+            <p className="p-px text-white rounded bg-black/70">x {quantity}</p>
+          )}
+        </div>
+      );
+    },
   },
   {
     label: "Phone",

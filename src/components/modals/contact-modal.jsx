@@ -49,7 +49,6 @@ const ContactModal = ({ isOpen, onClose }) => {
         phone: "",
         text: "",
       }));
-      console.log(formData);
     } catch (error) {
       toast.error("Error Sending Mail.");
     }

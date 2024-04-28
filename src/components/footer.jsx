@@ -26,14 +26,14 @@ const Footer = () => {
           <img
             src={"/logo.png"}
             alt="Logo"
-            className="max-w-[80px] px-4 rounded-full bg-white"
+            className="max-w-[80px] px-[18px] rounded-full bg-white"
           />
         </div>
 
         <div className="flex flex-col justify-between w-full border-t md:flex-row">
           {/* Branches */}
           <div className="flex flex-col items-center px-4 py-8">
-            <p className="p-2 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl text-nowrap sm:text-left">
+            <p className="p-2 text-xl font-bold text-justify bg-black rounded-lg w-fit sm:text-xl text-nowrap sm:text-left">
               Branches - الفروع
             </p>
             <Link
@@ -79,20 +79,20 @@ const Footer = () => {
 
           {/* Links */}
           <div className="flex flex-col items-center gap-4 px-4 py-8">
-            <p className="p-2 mb-5 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl sm:text-left">
+            <p className="p-2 text-xl font-bold text-justify bg-black rounded-lg w-fit sm:text-xl sm:text-left">
               Links - الروابط
             </p>
 
-            <span className="transition-colors duration-300 rounded-lg hover:text-orange-400">
+            {/* <span className="transition-colors duration-300 rounded-lg hover:text-orange-400">
               <a href={"/#deals"}>Home</a>
             </span>
 
             <span className="transition-colors duration-300 rounded-lg hover:text-orange-400">
               <Link to={"/login"}>Login</Link>
-            </span>
+            </span> */}
 
             {/* Social Media Logos */}
-            <div className="flex items-center gap-5 p-2 rounded-lg">
+            <div className="flex flex-col items-center gap-5 p-2 rounded-lg">
               <Link
                 to={"https://www.instagram.com/apizza_om/"}
                 target="_blank"
@@ -151,7 +151,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="flex flex-col items-center gap-2 px-4 py-8">
-            <p className="p-2 mb-5 text-xl font-bold text-justify rounded-lg w-fit sm:text-xl sm:text-left">
+            <p className="p-2 mb-5 text-xl font-bold text-justify bg-black rounded-lg w-fit sm:text-xl sm:text-left">
               Socials - التواصل
             </p>
             {/* First No. */}
@@ -187,7 +187,7 @@ const Footer = () => {
                   "https://api.whatsapp.com/send?phone=%2B96878781278&context=ARCm2SgGV0wnZLk0e8GEZq_mvtlzZH7Gxm0Z4m5s1wgQkDNZP4p2Ggsjdp13ohcbjoiZkmWiKyGO2E7bCWQtmhzV5ZcQpPyomFJ2w6aWOuNsbkbTcDKTi2dHT-om5qbt4tKC9t0eBjsnZqfMs9JSaxzXeA&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwZXh0bgNhZW0CMTAAAR0twr5X7PN5CiEANoVJv1UVw9Yzp3Qvh4TVaDhW5i3HcYJpMwAEXJYNHjo_aem_AaybGCUu-9WujHz6XdWDY8vdKnhmosEuR_6KyWWBcLsgNE2DkxbE634bkeGJ4G43HukaD2dOdbeCX4DKrtwzPpD1"
                 }
                 target="_blank"
-                className="font-mono text-nowrap">
+                className="font-mono text-lg text-nowrap">
                 +96878781278
               </Link>
             </div>
@@ -195,13 +195,15 @@ const Footer = () => {
             {/* Second No. */}
             <div className="flex items-center gap-3 p-2 transition duration-300 rounded-lg hover:text-orange-400">
               <Phone />
-              <Link to={"tel:+96897310806"} className="font-mono text-nowrap ">
+              <Link
+                to={"tel:+96897310806"}
+                className="font-mono text-lg text-nowrap">
                 +96897310806
               </Link>
             </div>
 
             {/* Send Email */}
-            <div className="flex items-center gap-3 p-2 transition duration-300 rounded-lg hover:text-orange-400">
+            <div className="flex items-center gap-3 p-2 text-lg transition duration-300 rounded-lg hover:text-orange-400">
               <MailPlus />
               <button onClick={() => setIsModalOpen(true)} type="submit">
                 <ContactModal

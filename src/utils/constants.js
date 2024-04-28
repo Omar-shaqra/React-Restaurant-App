@@ -53,6 +53,10 @@ export const addProductsToData = (productItems, productData) => {
     const productObj = {
       productid: item.id,
       title: item.title,
+      doughType:
+        item.category.name.toLowerCase() === "pizza"
+          ? item.selectedDough
+          : null,
       scale: item.selectedSize,
       quantity: item.quantity,
     };

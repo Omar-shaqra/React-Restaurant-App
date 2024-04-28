@@ -84,7 +84,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
   const Subcategories_Options =
     subcategories &&
     subcategories
-      .filter((subcategory) => subcategory.category._id === categoryId)
+      .filter((subcategory) => subcategory.category?._id === categoryId)
       .map((subcategory) => (
         <option
           className="font-semibold text-center capitalize bg-black"
@@ -192,7 +192,6 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
             className="flex items-center justify-start px-2 text-base text-gray-300 bg-black border border-red-300 rounded-lg cursor-pointer min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-opacity-70 group"
             onClick={() => document.querySelector(".image").click()}>
             <input
-              required
               type="file"
               accept="image/*"
               value={""}

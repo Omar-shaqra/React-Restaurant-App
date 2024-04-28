@@ -18,14 +18,14 @@ const EditProduct = () => {
   const [price_lg, setPrice_lg] = useState("");
 
   const [sizes, setSizes] = useState("1");
-  const [imagePreview, setImagePreview] = useState();
+  // const [imagePreview, setImagePreview] = useState();
 
   GetProductWithId({ setProduct, id });
 
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    imageCover: null,
+    // imageCover: null,
     price: [],
   });
 
@@ -45,16 +45,17 @@ const EditProduct = () => {
         ...prevData,
         title: product.result.title || "",
         description: product.result.description || "",
-        imageCover: product.result.imageCover || "",
+        // imageCover: product.result.imageCover || "",
         price: product.result.price || [],
       }));
 
-      setImagePreview(
-        product.result?.imageCover.replace(
-          "undefined",
-          `${import.meta.env.VITE_REACT_IMAGES_URL}/`
-        )
-      );
+      // setImagePreview(
+      //   product.result?.imageCover.replace(
+      //     "undefined",
+      //     `${import.meta.env.VITE_REACT_IMAGES_URL}/`
+      //   )
+      // );
+
       // Set sizes state to the length of the price array
       setSizes(product.result.price.length.toString());
 
@@ -71,7 +72,7 @@ const EditProduct = () => {
     const formdata = new FormData();
     formdata.append("title", formData.title);
     formdata.append("description", formData.description);
-    formdata.append("imageCover", formData.imageCover);
+    // formdata.append("imageCover", formData.imageCover);
     formdata.append("price.0.pr", price_basic);
     formdata.append("price.0.size", "basic");
     if (price_md) {
@@ -102,14 +103,14 @@ const EditProduct = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      imageCover: file,
-    }));
-    setImagePreview(URL.createObjectURL(file));
-  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     imageCover: file,
+  //   }));
+  //   setImagePreview(URL.createObjectURL(file));
+  // };
 
   if (!product)
     return (
@@ -146,15 +147,16 @@ const EditProduct = () => {
           </label>
           <textarea
             required
-            className="pt-3 pl-3 m-0 overflow-y-auto text-base bg-black border border-red-300 rounded-lg hide-scrollbar min-h-14 max-h-44 focus:border-white bg-opacity-70"
+            className="pt-3 pl-3 m-0 overflow-y-auto text-base bg-black border border-red-300 rounded-lg hide-scrollbar min-h-[78px] max-h-[78px] focus:border-white bg-opacity-70"
             placeholder="Enter Description"
             name="description"
             value={formData.description}
             onChange={handleInputChange}
           />
         </div>
+
         {/* Image */}
-        <div className="flex flex-col items-center gap-6">
+        {/* <div className="flex flex-col items-center gap-6">
           <label htmlFor="Image Preview" className="text-xl font-bold">
             Image Preview
           </label>
@@ -200,7 +202,8 @@ const EditProduct = () => {
             alt="image preview"
             className="flex h-48 rounded w-44"
           />
-        </div>
+        </div> */}
+
         {/* Sizes */}
         <div className="flex flex-col items-center gap-y-6">
           <label htmlFor="Prices" className="text-xl font-bold">
@@ -228,14 +231,14 @@ const EditProduct = () => {
             price_lg={price_lg}
             setPrice_lg={setPrice_lg}
           />
+          {/* Submit button */}
+          <Button
+            text="Update"
+            type="submit"
+            disabled={formData.title === "" || formData.description === ""}
+          />
         </div>
       </div>
-      {/* Submit button */}
-      <Button
-        text="Update"
-        type="submit"
-        disabled={formData.title === "" || formData.description === ""}
-      />
     </form>
   );
 };
