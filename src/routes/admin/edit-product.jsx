@@ -1,8 +1,8 @@
 import axios from "axios";
-import { ImagePlus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { GetProductWithId } from "../../actions/get-products";
 import SizeFields from "../../components/admin/size-fields";
 import Button from "../../components/ui/button";
@@ -204,7 +204,7 @@ const EditProduct = () => {
           />
         </div> */}
 
-        {/* Sizes */}
+        {/* Sizes & Submit Button*/}
         <div className="flex flex-col items-center gap-y-6">
           <label htmlFor="Prices" className="text-xl font-bold">
             Prices

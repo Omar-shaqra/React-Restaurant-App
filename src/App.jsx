@@ -12,6 +12,8 @@ import AddProduct from "./routes/admin/add-product";
 import AddSubcategory from "./routes/admin/add-subcategory";
 import AdminLayout from "./routes/admin/admin-layout";
 import EditProduct from "./routes/admin/edit-product";
+import EditCategory from "./routes/admin/edit-category";
+import EditSubcategory from "./routes/admin/edit-subcategory";
 import Orders from "./routes/admin/orders";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
@@ -40,6 +42,11 @@ function App() {
           <Route path={`/admin`} element={<Orders />} />
           <Route path={`/admin/products`} element={<AddProduct />} />
           <Route path={`/admin/products/:id`} element={<EditProduct />} />
+          <Route path={`/admin/categories/:id`} element={<EditCategory />} />
+          <Route
+            path={`/admin/subcategories/:id`}
+            element={<EditSubcategory />}
+          />
           <Route path={`/admin/categories`} element={<AddCategory />} />
           <Route path={`/admin/subcategories`} element={<AddSubcategory />} />
           <Route path={`/admin/offers`} element={<AddOffer />} />
