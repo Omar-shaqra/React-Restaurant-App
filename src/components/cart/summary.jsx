@@ -128,7 +128,7 @@ function Summary() {
       }
     };
 
-    if (payment === "Cash On Delivery") {
+    if (payment === "Cash or Visa On Delivery") {
       setIsModalOpen(false);
       await cashOrder();
     }

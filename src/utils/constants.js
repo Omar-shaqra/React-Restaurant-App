@@ -54,7 +54,7 @@ export const addProductsToData = (productItems, productData) => {
       productid: item.id,
       title: item.title,
       doughType:
-        item.category.name.toLowerCase() === "pizza"
+        item.category?.name.toLowerCase() == "pizza"
           ? item.selectedDough
           : null,
       scale: item.selectedSize,

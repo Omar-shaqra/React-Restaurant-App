@@ -28,12 +28,12 @@ function ProductCartItem({ data }) {
       : "/logo.png";
 
   return (
-    <li className="flex flex-wrap justify-center min-w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <li className="flex flex-wrap justify-center w-full p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
-      <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
+      <div className="flex items-center justify-center overflow-hidden max-h-44 max-w-64 rounded-xl">
         {imgURL && (
           <img
-            className="object-contain object-center bg-white rounded-md aspect-square"
+            className="bg-white rounded-md aspect-square"
             loading="lazy"
             src={imgURL}
             alt="combos images"
@@ -41,13 +41,24 @@ function ProductCartItem({ data }) {
         )}
       </div>
 
-      <div className="relative flex flex-col self-center flex-1 gap-2 space-y-2 sm:ml-6">
-        {/* Title, Size */}
-        <div className="flex justify-between gap-2">
+      <div className="relative flex flex-col self-center flex-1 w-full h-full gap-2 space-y-2 sm:ml-6">
+        {/* Title & Info */}
+        <div className="flex flex-col justify-between gap-2">
+          {/* Title & Remove Button */}
+          <div className="flex items-start justify-between">
+            {data.title && (
+              <p className="text-3xl font-semibold capitalize">{data.title}</p>
+            )}
+
+            {/* X Button */}
+            <IconButton
+              className="self-center text-white border-2 rounded-full hover:bg-red-600 h-fit"
+              onClick={onRemove}
+              icon={<X size={15} />}
+            />
+          </div>
+          {/* Other Info */}
           <div className="flex items-center gap-2">
-            <p className="text-3xl font-semibold capitalize">
-              {data ? data.title : "product name"}
-            </p>
             <p className="p-1 rounded bg-orange-800/90">{data.selectedSize}</p>
             {data.selectedDough && (
               <p className="p-1 rounded bg-orange-800/70">
@@ -56,18 +67,14 @@ function ProductCartItem({ data }) {
             )}
             <p className="p-1 rounded bg-orange-800/50">x{data.quantity}</p>
           </div>
-          {/* X Button */}
-          <IconButton
-            className="self-center text-white border-2 rounded-full hover:bg-red-600 h-fit"
-            onClick={onRemove}
-            icon={<X size={15} />}
-          />
         </div>
 
         {/* Description */}
-        <p className="p-1 font-semibold text-justify rounded line-clamp-4 text-wrap text-md text-neutral-300 bg-white/40 w-fit ">
-          {data ? data.description : "product name"}
-        </p>
+        <div className="w-full p-1 font-semibold rounded text-md text-neutral-300 bg-white/40">
+          <p className="overflow-hidden">
+            {data ? data.description : "product description"}
+          </p>
+        </div>
 
         {/* Price & Quantity */}
         <div className="flex justify-between gap-2">

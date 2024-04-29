@@ -18,6 +18,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const onEdit = () => {
     navigate(`/admin/products/${data.id}`);
   };
+
   const onDelete = () => {
     deleteItem({ id: data._id, routeName: "products" }).then(() => {
       refetch();
@@ -38,7 +39,7 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
     <section
       className="flex justify-center m-1 text-white capitalize"
       onClick={onPreview}>
-      <div className="w-9/12 p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
+      <div className="w-full p-1 border border-orange-200 border-opacity-50 rounded-lg cursor-pointer bg-white/30 group">
         {image == "visible" && (
           <img
             src={imgURL}
@@ -58,21 +59,8 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
                 {data.category?.name}
               </p>
             )}
-            {button == "add" ? (
+            {button == "add" && (
               <ShoppingBag className="block p-1 overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:hidden size-auto hover:border-orange-600 hover:scale-105" />
-            ) : (
-              <div className="flex gap-1">
-                <IconButton
-                  className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                  onClick={onEdit}
-                  icon={<SquarePen size={15} />}
-                />
-                <IconButton
-                  className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                  onClick={onDelete}
-                  icon={<Trash2 size={15} />}
-                />
-              </div>
             )}
           </div>
         </div>
@@ -99,8 +87,22 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
               </div>
             )}
           </div>
-          {button == "add" && (
+          {/* Admin or User View */}
+          {button == "add" ? (
             <ShoppingBag className="hidden overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:block size-auto lg:p-2 md:p-1 hover:border-orange-600 hover:scale-105" />
+          ) : (
+            <div className="flex gap-px">
+              <IconButton
+                className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                onClick={onEdit}
+                icon={<SquarePen size={15} />}
+              />
+              <IconButton
+                className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                onClick={onDelete}
+                icon={<Trash2 size={15} />}
+              />
+            </div>
           )}
         </div>
       </div>

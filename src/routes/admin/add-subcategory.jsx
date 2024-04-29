@@ -17,11 +17,11 @@ const AddSubcategory = () => {
   }, []);
 
   const { refetch } = GetSubCategories({
-    setSubcategories: setSubcategories,
+    setSubcategories,
   });
 
   GetCategories({
-    setCategories: setCategories,
+    setCategories,
   });
 
   if (!isMounted) {

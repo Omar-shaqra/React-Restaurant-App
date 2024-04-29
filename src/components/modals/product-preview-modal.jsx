@@ -27,7 +27,7 @@ const ProductPreviewModal = () => {
           src={imgURL}
           className="self-center bg-white rounded aspect-square max-h-44"
         />
-        <div className="w-full mt-5">
+        <div className="w-full">
           <ProductPreviewInfo data={product} />
         </div>
       </div>

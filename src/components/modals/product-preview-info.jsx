@@ -67,7 +67,7 @@ const ProductPreviewInfo = ({ data }) => {
 
   return (
     <section className="flex flex-col w-full gap-2">
-      <div className="flex items-center justify-between my-3">
+      <div className="flex items-center gap-4 my-3">
         <p className="text-2xl">{data.title}</p>
         <span className="self-center p-1 rounded shadow-sm w-fit bg-white/30 shadow-orange-400">
           <Currency
@@ -79,40 +79,42 @@ const ProductPreviewInfo = ({ data }) => {
         </span>
       </div>
       {/* Description */}
-      <p className="w-5/6 text-sm text-gray-300 text-wrap">
-        {data.description}
-      </p>
+      <p className="flex flex-wrap text-sm text-gray-300">{data.description}</p>
       <hr className="my-2" />
 
       {/* Bottom section */}
       <div className="flex flex-col items-center justify-between md:flex-row md:justify-between gap-y-3">
         {/* Size & Dough */}
-        <div className="flex justify-between gap-6 md:flex-col">
+        <div className="flex justify-between gap-6">
           {/* Sizes */}
-          {data.price[0]?.size && (
-            <div className="flex-wrap items-center gap-x-2">
-              <h3 className="font-semibold ">Size:</h3>
-              <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">
-                {data.price
-                  .slice(0, 3)
-                  .map(
-                    (price, index) => price.size && renderSizes(price, index)
-                  )}
+          <>
+            {data.price[0]?.size && (
+              <div className="flex-wrap items-center gap-x-2">
+                <h3 className="font-semibold ">Size:</h3>
+                <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">
+                  {data.price
+                    .slice(0, 3)
+                    .map(
+                      (price, index) => price.size && renderSizes(price, index)
+                    )}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </>
 
-          {/* Dough Type */}
-          {data.category?.name.toLowerCase() === "pizza" && (
-            <div className="flex-wrap items-center gap-x-2">
-              <h3 className="font-semibold">Dough:</h3>
-              <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">
-                {["Classic", "Crust", "Thin"].map((doughType, index) =>
-                  renderDoughType(doughType, index)
-                )}
+          {/* Dough Types */}
+          <>
+            {data.category?.name.toLowerCase() === "pizza" && (
+              <div className="flex-wrap items-center gap-x-2">
+                <h3 className="font-semibold">Dough:</h3>
+                <div className="flex flex-col items-center gap-1 font-mono font-semibold text-center sm:gap-4 sm:flex-row">
+                  {["Classic", "Crust", "Thin"].map((doughType, index) =>
+                    renderDoughType(doughType, index)
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </>
         </div>
 
         {/* Add Button */}

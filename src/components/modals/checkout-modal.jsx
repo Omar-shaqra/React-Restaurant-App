@@ -246,7 +246,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             </div>
 
             <div className="flex items-center gap-6 text-white text-nowrap">
-              <label className="font-bold text-center">Payment Method:</label>
+              <label className="font-bold text-center">Payment:</label>
               <select
                 name="payment"
                 className="input-field"
@@ -258,8 +258,10 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                   className="text-gray-300">
                   Select Payment Method
                 </option>
-                <option value="Cash On Delivery">Cash on Delivery</option>
-                <option value="Online Payment">Online Payment</option>
+                <option value="Cash or Visa On Delivery">
+                  Cash or Visa on Delivery
+                </option>
+                {/* <option value="Online Payment">Online Payment</option> */}
               </select>
             </div>
 

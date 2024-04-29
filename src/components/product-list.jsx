@@ -69,7 +69,7 @@ const ProductList = () => {
         />
       </div>
 
-      <div className="z-0 grid flex-row items-center justify-center pt-5 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 xs:pt-1">
+      <div className="z-0 grid flex-row items-center justify-center pt-5 2xl:grid-cols-5 xl:grid-cols-3 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 md:gap-3 xs:gap-0 xs:pt-1">
         {productList}
       </div>
     </section>
