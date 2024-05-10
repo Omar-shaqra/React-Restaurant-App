@@ -261,7 +261,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                 <option value="Cash or Visa On Delivery">
                   Cash or Visa on Delivery
                 </option>
-                {/* <option value="Online Payment">Online Payment</option> */}
+                <option value="Online Payment">Online Payment</option>
               </select>
             </div>
 
