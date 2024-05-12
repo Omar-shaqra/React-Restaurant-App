@@ -114,7 +114,7 @@ function Summary() {
             TotalPrice: totalPrice,
           }
         );
-        // toast.success("Order Sent Successfully.");
+        toast.success("Order Sent Successfully.");
         const redirectURL = res.data;
         if (redirectURL) {
           window.location.href = redirectURL;
