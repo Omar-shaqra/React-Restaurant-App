@@ -29,7 +29,7 @@ function Summary() {
 
   const productsPrice = productsTotalPrice(productItems);
   const offersPrice = offersTotalPrice(offerItems);
-  const totalPrice = productsPrice + offersPrice;
+  const totalPrice = (productsPrice + offersPrice).toFixed(2);
 
   addProductsToData(productItems, productData);
   addOffersToData(offerItems, productData);

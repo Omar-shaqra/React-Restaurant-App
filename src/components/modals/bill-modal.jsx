@@ -40,7 +40,7 @@ const BillModal = ({ data, isOpen, onClose }) => {
 
         <div className="w-full overflow-hidden border border-gray-300 rounded-lg">
           {/* Table Head */}
-          <div className="flex justify-between px-2 py-2 space-x-8 font-semibold text-black bg-gray-200">
+          <div className="flex justify-between gap-8 px-2 py-2 font-semibold text-black bg-gray-200">
             <p>Item</p>
             <p>Dough</p>
             <p>Quantity</p>
@@ -50,8 +50,10 @@ const BillModal = ({ data, isOpen, onClose }) => {
           {/* Table Body */}
           <div className="divide-y divide-gray-300">
             {data.productData.map((item) => (
-              <div key={item._id} className="flex justify-between px-3 py-2">
-                <p>{item.title}</p>
+              <div
+                key={item._id}
+                className="flex items-center justify-between gap-8 px-1 py-2">
+                <p className="w-8">{item.title}</p>
                 <p>{item.doughType ? item.doughType : "----"}</p>
                 <p>{item.quantity}</p>
                 <p>{item.scale}</p>
