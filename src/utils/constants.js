@@ -22,11 +22,14 @@ export function checkUserRole(session) {
 }
 
 // Find current data
-const date = new Date();
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
-export const currentDate = `${day}-${month}-${year}`;
+function getCurrentDate() {
+  const date = new Date();
+  let day = String(date.getDate()).padStart(2, "0");
+  let month = String(date.getMonth() + 1).padStart(2, "0");
+  let year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+export const currentDate = getCurrentDate();
 
 // Summary products price
 export const productsTotalPrice = (productItems) => {
