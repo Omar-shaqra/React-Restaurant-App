@@ -1,4 +1,3 @@
-// import { loadStripe } from "@stripe/stripe-js";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { FilePen, Wallet } from "lucide-react";
@@ -41,6 +40,7 @@ function Summary() {
   const [state, setState] = useState();
   const [governate, setGovernate] = useState();
   const [orderType, setOrderType] = useState();
+  const [branch, setBranch] = useState();
 
   useEffect(() => {
     let paymentCompleted = false;
@@ -52,15 +52,17 @@ function Summary() {
         try {
           await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
             userID: user?.id,
-            productData: productData,
+            productData,
             TypeOfPayment: payment,
-            userPhone,
+            userphone: userPhone,
             governate,
             state,
             address,
             orderType,
             TotalPrice: totalPrice,
+            BranchID: branch,
             statue: "Paid",
+            Date: currentDate,
           });
           toast.success("Payment Completed.");
           removeAll();
@@ -94,6 +96,7 @@ function Summary() {
           address,
           orderType,
           TotalPrice: totalPrice,
+          BranchID: branch,
           statue: "Not Paid",
           Date: currentDate,
         });
@@ -146,6 +149,7 @@ function Summary() {
     setUserPhone(value.phone);
     setGovernate(value.governate);
     setOrderType(value.orderType);
+    setBranch(value.branch);
   };
 
   return (

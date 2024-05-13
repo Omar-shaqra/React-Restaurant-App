@@ -87,10 +87,12 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
     state: "",
     address: "",
     orderType: "Select Order Type",
+    branch: "Select Nearest Branch",
     payment: "Select Payment Method",
   });
 
   useEffect(() => {
+    // To add user name and email automatically
     if (user) {
       setFormData((prevData) => ({
         ...prevData,
@@ -224,6 +226,32 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                 value={formData.address}
                 onChange={handleInputChange}
               />
+            </div>
+
+            <div className="flex items-center gap-6 text-white text-nowrap">
+              <label htmlFor="branch" className="font-bold text-center">
+                Nearest Branch:
+              </label>
+              <select
+                id="branch"
+                name="branch"
+                className="input-field"
+                value={formData.branch}
+                onChange={handleInputChange}>
+                <option
+                  value="Select Nearest Branch"
+                  disabled
+                  className="text-gray-300">
+                  Select Nearest Branch
+                </option>
+                <option value="Al Khuwair - الخوير">Al Khuwair - الخوير</option>
+                <option value="AL Amrat - العامرات">AL Amrat - العامرات</option>
+                <option value="Al-Watiya - الوطية">Al-Watiya - الوطية</option>
+                <option value="Al Khawd - الخوض">Al Khawd - الخوض</option>
+                <option value="Al Ma`abilah - المعبيلة">
+                  Al Ma`abilah - المعبيلة
+                </option>
+              </select>
             </div>
 
             <div className="flex items-center gap-6 text-white text-nowrap">

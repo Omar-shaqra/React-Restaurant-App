@@ -18,6 +18,11 @@ const columns = [
     sortable: false,
   },
   {
+    label: "Branch",
+    accessor: "BranchID",
+    sortable: true,
+  },
+  {
     label: "Phone",
     accessor: "userphone",
     sortable: false,
@@ -43,7 +48,7 @@ const columns = [
     sortable: false,
   },
   {
-    label: "Payment Method",
+    label: "Payment",
     accessor: "TypeOfPayment",
     sortable: true,
   },
@@ -82,12 +87,12 @@ const OrderTable = () => {
     <table className="table border-4 table-fixed">
       <caption className="py-5 text-2xl font-extrabold tracking-wider">
         Orders
-        <span className="flex justify-end">
+        {/* <span className="flex justify-end">
           <Button
             text={"Update Table"}
             onClick={() => toast.error("Not working yet")}
           />
-        </span>
+        </span> */}
       </caption>
       {orders && (
         <>
