@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { GetCategories } from "../../actions/get-categories";
-import { GetProducts } from "../../actions/get-products";
+import { GetProductsForAdmin } from "../../actions/get-products";
 import { GetSubCategories } from "../../actions/get-subcategories";
 import ProductForm from "../../components/admin/product-form";
 import ProductList from "../../components/admin/product-list";
@@ -19,7 +19,7 @@ const AddProduct = () => {
     setCategories,
   });
 
-  const { refetch } = GetProducts({ setProducts });
+  const { refetch } = GetProductsForAdmin({ setProducts });
 
   return (
     <section className="flex flex-col items-center px-4 my-5 text-2xl font-semibold text-white">

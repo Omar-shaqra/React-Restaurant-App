@@ -12,6 +12,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
   const [categoryId, setCategoryId] = useState("");
   const [subcategoryId, setSubcategoryId] = useState("");
   const [imageCover, setImageCover] = useState(null);
+  const [active, setActive] = useState(true);
 
   const [price_basic, setPrice_basic] = useState("");
   const [price_md, setPrice_md] = useState("");
@@ -34,6 +35,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
       formdata.append("title", title);
       formdata.append("description", description);
       formdata.append("category", categoryId);
+      formdata.append("Active", active);
       if (subcategoryId.length > 0) {
         formdata.append("subcategories", subcategoryId);
       }
@@ -231,7 +233,30 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
           />
         </div>
         {/* Submit button */}
-        <Button text={"Create"} type={"submit"} />
+        <div className="flex flex-col items-center gap-6">
+          <label className="relative inline-flex items-center cursor-pointer select-none themeSwitcherTwo">
+            <input
+              type="checkbox"
+              checked={active}
+              onChange={() => setActive(!active)}
+              className="sr-only"
+            />
+            <span
+              className={` mx-2 flex h-6 w-[50px] items-center rounded-full p-1 duration-200 ${
+                !active ? "bg-[#c77e3a]" : "bg-[#CCCCCE]"
+              }`}>
+              <span
+                className={` h-5 w-5 rounded-full bg-white duration-200 ${
+                  !active ? "translate-x-[23px]" : ""
+                }`}></span>
+            </span>
+            <span className="flex items-center text-sm font-medium text-white label">
+              Hide Product
+            </span>
+          </label>
+
+          <Button text={"Create"} type={"submit"} />
+        </div>
       </div>
     </form>
   );

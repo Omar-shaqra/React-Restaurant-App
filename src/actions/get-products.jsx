@@ -6,6 +6,21 @@ export const GetProducts = ({ setProducts }) => {
     queryKey: [setProducts, "products"],
     queryFn: async () => {
       const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_REACT_API_URL
+        }/products?sort=category&Active=true`
+      );
+      setProducts(data);
+      return data;
+    },
+  });
+};
+
+export const GetProductsForAdmin = ({ setProducts }) => {
+  return useQuery({
+    queryKey: [setProducts, "products"],
+    queryFn: async () => {
+      const { data } = await axios.get(
         `${import.meta.env.VITE_REACT_API_URL}/products?sort=category`
       );
       setProducts(data);
@@ -32,7 +47,9 @@ export const GetProductsWithCategoryId = ({ setProducts, id }) => {
     queryKey: [id, setProducts, "category"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_REACT_API_URL}/products?category=${id}`
+        `${
+          import.meta.env.VITE_REACT_API_URL
+        }/products?category=${id}&Active=true`
       );
       setProducts(data);
       return data;
