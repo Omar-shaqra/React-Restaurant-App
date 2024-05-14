@@ -1,6 +1,5 @@
 import "./App.css";
 
-// import { useEffect, useState } from "react";
 import { SignIn } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

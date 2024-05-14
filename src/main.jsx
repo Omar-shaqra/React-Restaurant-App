@@ -1,6 +1,4 @@
 import App from "./App.jsx";
-
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -13,11 +11,9 @@ if (!PUBLISHABLE_KEY) {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.Fragment>
-    <QueryClientProvider client={queryClient}>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <App />
-      </ClerkProvider>
-    </QueryClientProvider>
-  </React.Fragment>
+  <QueryClientProvider client={queryClient}>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <App />
+    </ClerkProvider>
+  </QueryClientProvider>
 );

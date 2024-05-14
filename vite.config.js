@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   build: {
     commonjsOptions: {
-      strictRequires: true,
+      strictRequires: false,
     },
   },
   plugins: [react()],
