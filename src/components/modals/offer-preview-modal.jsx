@@ -11,7 +11,10 @@ const OfferPreviewModal = () => {
   }
 
   return (
-    <Modal open={previewModal.isOpen} onClose={previewModal.onClose}>
+    <Modal
+      open={previewModal.isOpen}
+      onClose={previewModal.onClose}
+      bgColor={"bg-black"}>
       <div className="container flex flex-col gap-4 md:flex-row xs:flex-col">
         <img
           src={offer.image.replace(

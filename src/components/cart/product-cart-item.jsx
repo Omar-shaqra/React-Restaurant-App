@@ -30,7 +30,7 @@ function ProductCartItem({ data }) {
   return (
     <li className="flex flex-wrap justify-center w-full p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
-      <div className="flex items-center justify-center overflow-hidden max-h-44 max-w-64 rounded-xl">
+      <div className="flex items-center self-center justify-center overflow-hidden max-h-44 max-w-64 rounded-xl">
         {imgURL && (
           <img
             className="bg-white rounded-md aspect-square"

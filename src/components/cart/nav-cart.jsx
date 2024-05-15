@@ -18,16 +18,19 @@ const NavCart = () => {
   }
 
   return (
-    <div className="container flex items-center ml-auto gap-x-4">
-      <Link
-        to={"/cart"}
-        className="flex items-center p-[5px] font-semibold text-white transition bg-black border-transparent rounded-full md:p-2 hover:opacity-75">
-        <ShoppingCart size={18} />
-        <span className="text-sm font-medium text-white md:ml-2 xs:ml-1">
+    <Link
+      to={"/cart"}
+      className="flex items-center ml-auto text-white gap-x-3 group">
+      <p className="hidden font-serif text-base font-semibold tracking-wide transition sm:flex group-hover:text-orange-300 group-hover:translate-x-3 text-nowrap">
+        Go to your cart &gt;
+      </p>
+      <div className="flex items-center p-[5px] font-semibold transition bg-black border-transparent rounded-full md:p-2 group-hover:opacity-75">
+        <ShoppingCart size={18} className="group-hover:text-orange-300" />
+        <span className="text-sm font-medium md:ml-2 xs:ml-1 group-hover:text-orange-300">
           {cart.productItems?.length + cart.offerItems?.length}
         </span>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

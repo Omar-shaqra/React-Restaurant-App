@@ -1,11 +1,10 @@
-import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 import useCart from "../../hooks/use-cart";
 import Currency from "../ui/currency";
 import Button from "../ui/button";
 
-const ProductPreviewInfo = ({ data }) => {
+const ProductPreviewInfo = ({ data, onCloseModal }) => {
   const [selectedSize, setSelectedSize] = useState(data.price[0]?.size);
   const [selectedDough, setSelectedDough] = useState("Classic");
 
@@ -65,6 +64,11 @@ const ProductPreviewInfo = ({ data }) => {
     );
   };
 
+  const onClick = () => {
+    addProductItem(data, selectedSize, selectedDough);
+    onCloseModal();
+  };
+
   return (
     <section className="flex flex-col w-full gap-2">
       <div className="flex items-center gap-4 my-3">
@@ -119,11 +123,7 @@ const ProductPreviewInfo = ({ data }) => {
 
         {/* Add Button */}
         <div className="text-nowrap max-w-60 self-center sm:self-end mx-2 justify-between items-center h-fit bg-white/20 hover:bg-white/40 p-1 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-xl ">
-          <Button
-            text={"Add To Cart"}
-            type={"button"}
-            onClick={() => addProductItem(data, selectedSize, selectedDough)}
-          />
+          <Button text={"Add To Cart"} type={"button"} onClick={onClick} />
         </div>
       </div>
     </section>

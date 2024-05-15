@@ -7,6 +7,10 @@ const ProductPreviewModal = () => {
 
   const product = previewModal.productData;
 
+  const handleCloseModal = () => {
+    previewModal.onClose();
+  };
+
   if (!product) {
     return null;
   }
@@ -21,14 +25,17 @@ const ProductPreviewModal = () => {
       : "/logo.png";
 
   return (
-    <Modal open={previewModal.isOpen} onClose={previewModal.onClose}>
+    <Modal
+      open={previewModal.isOpen}
+      onClose={previewModal.onClose}
+      bgColor={"bg-black"}>
       <div className="flex flex-col max-w-full gap-4 md:flex-row xs:flex-col">
         <img
           src={imgURL}
           className="self-center bg-white rounded aspect-square max-h-44"
         />
         <div className="w-full">
-          <ProductPreviewInfo data={product} />
+          <ProductPreviewInfo data={product} onCloseModal={handleCloseModal} />
         </div>
       </div>
     </Modal>

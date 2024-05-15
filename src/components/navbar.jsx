@@ -45,11 +45,6 @@ function Navbar() {
             className="transition hover:scale-110 hover:text-red-300">
             Contact
           </a>
-          {/* <Link
-            to={"/our-new"}
-            className="p-1 transition hover:scale-110 hover:text-red-300">
-            Our New
-          </Link> */}
         </div>
         <div className="flex items-center px-1 space-x-4">
           <NavCart />

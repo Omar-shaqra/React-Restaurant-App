@@ -56,7 +56,7 @@ const ContactModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal open={isOpen} onClose={onClose}>
+    <Modal open={isOpen} onClose={onClose} bgColor={"bg-black"}>
       <form
         onSubmit={handleFormSubmit}
         className="flex flex-col items-center gap-5 p-5 text-black">
