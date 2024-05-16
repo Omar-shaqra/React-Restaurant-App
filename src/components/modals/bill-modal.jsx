@@ -3,7 +3,6 @@ import Currency from "../../components/ui/currency";
 import Button from "../ui/button";
 
 const BillModal = ({ data, isOpen, onClose }) => {
-  console.log(data);
   return (
     <Modal open={isOpen} onClose={onClose} bgColor={"bg-white"}>
       <div className="flex flex-col items-end p-3 text-black">

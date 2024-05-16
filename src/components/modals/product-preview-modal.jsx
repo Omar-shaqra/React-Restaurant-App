@@ -29,12 +29,12 @@ const ProductPreviewModal = () => {
       open={previewModal.isOpen}
       onClose={previewModal.onClose}
       bgColor={"bg-black"}>
-      <div className="flex flex-col max-w-full gap-4 md:flex-row xs:flex-col">
+      <div className="flex flex-col max-w-full gap-3 pt-5 md:flex-row xs:flex-col">
         <img
           src={imgURL}
           className="self-center bg-white rounded aspect-square max-h-44"
         />
-        <div className="w-full">
+        <div className="w-full ">
           <ProductPreviewInfo data={product} onCloseModal={handleCloseModal} />
         </div>
       </div>

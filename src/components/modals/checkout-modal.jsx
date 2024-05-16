@@ -133,7 +133,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
     <Modal open={isOpen} onClose={onClose} bgColor={"bg-black"}>
       <form
         onSubmit={handleFormSubmit}
-        className="flex flex-col items-center gap-5 p-5 text-black ">
+        className="flex flex-col items-center gap-5 p-2 text-black">
         <p className="text-2xl font-semibold tracking-wider text-white">
           Order Information
         </p>
@@ -230,7 +230,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
 
             <div className="flex items-center gap-6 text-white text-nowrap">
               <label htmlFor="branch" className="font-bold text-center">
-                Nearest Branch:
+                Branch:
               </label>
               <select
                 id="branch"
@@ -292,7 +292,19 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                 <option value="Online Payment">Online Payment</option>
               </select>
             </div>
+          </div>
+        </div>
 
+        {/* Third Column */}
+        <div className="flex flex-col items-center self-start justify-between w-full gap-6 sm:flex-row">
+          {formData.orderType === "Delivery" && (
+            <div className="flex items-center gap-6 font-bold text-white text-nowrap">
+              <label className="text-center">Delivery Fees:</label>
+              <p className="border-b border-b-orange-400">Free Delivery</p>
+            </div>
+          )}
+
+          <div className="self-end">
             <Button
               text={"Continue"}
               type={"submit"}

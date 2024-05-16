@@ -8,7 +8,7 @@ export const GetProducts = ({ setProducts }) => {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_REACT_API_URL
-        }/products?sort=category&Active=true`
+        }/products?sort=category&Active=true&limit=300`
       );
       setProducts(data);
       return data;
@@ -21,7 +21,7 @@ export const GetProductsForAdmin = ({ setProducts }) => {
     queryKey: [setProducts, "products"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_REACT_API_URL}/products?sort=category`
+        `${import.meta.env.VITE_REACT_API_URL}/products?sort=category&limit=300`
       );
       setProducts(data);
       return data;
