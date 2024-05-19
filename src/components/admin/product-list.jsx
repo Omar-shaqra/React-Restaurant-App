@@ -1,3 +1,5 @@
+import { Delete } from "lucide-react";
+import { useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "../../components/ui/product-card";
@@ -26,9 +28,15 @@ const responsive = {
 };
 
 const ProductList = ({ products, refetch }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProducts = products.data?.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase().trim())
+  );
+
   const productList =
-    products.data?.length > 0 ? (
-      products.data.map((product, index) => (
+    filteredProducts?.length > 0 ? (
+      filteredProducts.map((product, index) => (
         <div className="overflow-x-auto hide-scrollbar scroll-auto" key={index}>
           <ProductCard
             data={product}
@@ -42,17 +50,40 @@ const ProductList = ({ products, refetch }) => {
       <p className="p-1 text-nowrap">No Products Found</p>
     );
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
-    <Carousel
-      className="border-t-[#d46622] border-t rounded-md text-base"
-      slidesToSlide={3}
-      swipeable={false}
-      minimumTouchDrag={80}
-      keyBoardControl={true}
-      arrows
-      responsive={responsive}>
-      {productList}
-    </Carousel>
+    <>
+      {/* Search */}
+      <div className="relative flex self-end w-80">
+        <input
+          type="text"
+          placeholder="Search Products..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="font-medium input-field"
+        />
+        <Delete
+          className="absolute text-gray-300 cursor-pointer right-4 bottom-3"
+          onClick={() => setSearchQuery("")}
+          size={23}
+        />
+      </div>
+
+      <div className="my-4 bg-[#000000] bg-opacity-70 container border-t-[#d46622] border-t rounded-md text-base">
+        <Carousel
+          slidesToSlide={3}
+          swipeable={false}
+          minimumTouchDrag={80}
+          keyBoardControl={true}
+          arrows
+          responsive={responsive}>
+          {productList}
+        </Carousel>
+      </div>
+    </>
   );
 };
 export default ProductList;

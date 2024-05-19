@@ -6,6 +6,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrderRow, setSelectedOrderRow] = useState(null); // State to store selected row
 
+  // Render All Cells
   const renderCellContent = (accessor, data) => {
     if (accessor === "statue") {
       return statueCellContent(accessor, data);
@@ -16,7 +17,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     }
   };
 
-  // Paid Status
+  // Paid Status Cell
   const statueCellContent = (accessor, data) => {
     const isEditing =
       editCell && editCell.accessor === accessor && editCell.rowId === data._id;
@@ -43,7 +44,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     }
   };
 
-  // Order Products
+  // Order Products Cell
   const productsCellContent = (data) => {
     return (
       <div
@@ -57,23 +58,15 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     );
   };
 
-  // No Accessor
+  // No Accessor Cell
   const nullCellContent = (accessor, data) => {
     return data[accessor] ? data[accessor] : "——";
   };
 
+  // Edit (Paid) Cell
   const handleCellClick = (rowId, accessor) => {
     setEditCell({ rowId, accessor });
   };
-
-  // const handleChange = (e, rowId, accessor) => {
-  //   const { value } = e.target;
-  //   const newDataState = [...tableData.data];
-  //   const row = newDataState.find((row) => row._id === rowId);
-  //   row[accessor] = value;
-  //   onUpdateData({ ...tableData, data: newDataState });
-  //   console.log(`Row ${rowId}, Accessor ${accessor}, Value ${value}`);
-  // };
 
   return (
     <tbody>
@@ -85,12 +78,12 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
               className="border-t border-r border-r-gray-700 border-white px-2 py-2.5 overflow-x-auto hide-scrollbar"
               onClick={() => handleCellClick(data._id, accessor)}>
               {renderCellContent(accessor, data)}
-              {/* Pass data as selectedData */}
             </td>
           ))}
         </tr>
       ))}
 
+      {/* Pass data as selectedData */}
       {selectedOrderRow && (
         <BillModal
           data={selectedOrderRow}
