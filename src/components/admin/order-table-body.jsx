@@ -1,4 +1,8 @@
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
+
+import { getCurrentDate } from "../../utils/constants";
 import BillModal from "../modals/bill-modal";
 
 const TableBody = ({ tableData, columns, onUpdateData }) => {
@@ -12,6 +16,8 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
       return statueCellContent(accessor, data);
     } else if (accessor === "[productData]") {
       return productsCellContent(data);
+    } else if (accessor === "Date") {
+      return getCurrentDate(data[accessor]);
     } else {
       return nullCellContent(accessor, data);
     }
@@ -22,25 +28,41 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
     const isEditing =
       editCell && editCell.accessor === accessor && editCell.rowId === data._id;
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
       const { value } = e.target;
+
+      // Update local table data state
       onUpdateData({
         ...tableData,
         data: tableData.data.map((row) =>
           row._id === data._id ? { ...row, [accessor]: value } : row
         ),
       });
+
+      // Send updated data to the API
+      try {
+        await axios.put(
+          `${import.meta.env.VITE_REACT_API_URL}/sells/${data._id}`,
+          { [accessor]: value }
+        );
+        toast.success("Table updated successfully.");
+      } catch (error) {
+        toast.error("Error updating order.");
+      }
     };
 
     if (isEditing) {
       return (
-        <select value={data[accessor]} onChange={handleChange}>
+        <select
+          value={data[accessor]}
+          onChange={handleChange}
+          className="bg-gray-200 rounded cursor-pointer">
           <option value="Paid">Paid</option>
           <option value="Not Paid">Not Paid</option>
         </select>
       );
     } else {
-      return data[accessor] === true ? "Paid" : "Not Paid";
+      return <p>{data[accessor]}</p>;
     }
   };
 
@@ -48,7 +70,7 @@ const TableBody = ({ tableData, columns, onUpdateData }) => {
   const productsCellContent = (data) => {
     return (
       <div
-        className="p-px font-semibold rounded cursor-pointer bg-orange-300/60"
+        className="p-px font-semibold rounded cursor-pointer bg-orange-200/60"
         onClick={() => {
           setSelectedOrderRow(data); // Set selected row when clicked
           setIsModalOpen(true);
