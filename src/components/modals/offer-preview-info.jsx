@@ -5,11 +5,14 @@ import Currency from "../ui/currency";
 const OfferPreviewInfo = ({ data }) => {
   const { addOfferItem } = useCart();
 
-  const productsList = data.productsID?.map((product) => {
+  console.log(data.productsID[0].imageCover);
+
+  const productsList = data.productsID.map((product) => {
     const imgURL = product.imageCover.replace(
       "undefined",
       `${import.meta.env.VITE_REACT_IMAGES_URL}/`
     );
+
     <div key={product.id} className="flex flex-col pb-1 border-b-2 gap-y-2">
       <div className="flex gap-1">
         <img className="w-24 h-20 rounded" src={imgURL} />

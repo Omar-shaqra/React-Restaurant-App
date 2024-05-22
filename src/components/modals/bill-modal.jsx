@@ -1,6 +1,7 @@
-import Modal from "./modal";
 import Currency from "../../components/ui/currency";
+import { getCurrentDate } from "../../utils/constants";
 import Button from "../ui/button";
+import Modal from "./modal";
 
 const BillModal = ({ data, isOpen, onClose }) => {
   return (
@@ -18,7 +19,9 @@ const BillModal = ({ data, isOpen, onClose }) => {
             {/* Order Date */}
             <div className="flex gap-2 p-1 bg-white rounded w-fit">
               <p>Order Date:</p>
-              <p className="p-px bg-gray-200 rounded">{data.Date}</p>
+              <p className="p-px bg-gray-200 rounded">
+                {getCurrentDate(data.Date)}
+              </p>
             </div>
 
             {/* Total Price */}

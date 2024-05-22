@@ -7,10 +7,12 @@ const OfferCard = ({ data }) => {
     e.preventDefault();
     previewModal.onOpen(data);
   };
+
   const imgURL = data?.image.replace(
     "undefined",
     `${import.meta.env.VITE_REACT_IMAGES_URL}/`
   );
+
   return (
     <div
       className="container relative cursor-pointer w-fit"
@@ -22,12 +24,7 @@ const OfferCard = ({ data }) => {
         <span className="text-xs text-gray-400">OMR</span>
         {data.price}
       </h1>
-      <img
-        src={imgURL}
-        // src={data?.image}
-        alt="Offer Image"
-        className="w-64 rounded-2xl"
-      />
+      <img src={imgURL} alt="Offer Image" className="w-64 rounded-2xl" />
     </div>
   );
 };

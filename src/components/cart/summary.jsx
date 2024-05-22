@@ -9,7 +9,7 @@ import useCart from "../../hooks/use-cart";
 import {
   addOffersToData,
   addProductsToData,
-  currentDate,
+  getCurrentDate,
   offersTotalPrice,
   productsTotalPrice,
 } from "../../utils/constants";
@@ -62,7 +62,7 @@ function Summary() {
             TotalPrice: totalPrice,
             BranchID: branch,
             statue: "Paid",
-            Date: currentDate,
+            Date: getCurrentDate(Date.now()),
           });
           toast.success("Payment Completed.");
           removeAll();
@@ -98,12 +98,11 @@ function Summary() {
           TotalPrice: totalPrice,
           BranchID: branch,
           statue: "Not Paid",
-          Date: currentDate,
+          Date: getCurrentDate(Date.now()),
         });
         toast.success("Order sent successfully.");
         removeAll();
       } catch (error) {
-        console.error("Error sending order:", error);
         toast.error("Error sending order.");
       }
     };

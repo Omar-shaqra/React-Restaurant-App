@@ -122,7 +122,7 @@ const ProductPreviewInfo = ({ data, onCloseModal }) => {
         </div>
 
         {/* Add Button */}
-        <div className="text-nowrap max-w-60 self-center sm:self-end mx-2 justify-between items-center h-fit bg-white/20 hover:bg-white/40 p-1 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-xl ">
+        <div className="text-nowrap max-w-60 self-center sm:self-end mx-2 justify-between items-center h-fit bg-white/20 hover:bg-white/40 p-1 hover:shadow-[0_2px_5px_rgba(211,_84,0,_.8)] transition-all duration-500 rounded-md hover:rounded-xl">
           <Button text={"Add To Cart"} type={"button"} onClick={onClick} />
         </div>
       </div>

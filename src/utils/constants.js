@@ -21,15 +21,16 @@ export function checkUserRole(session) {
   return null; // Return null if no role is found in the memberships
 }
 
-// Find current data
-function getCurrentDate() {
-  const date = new Date();
+// Find current date
+export function getCurrentDate(dateString) {
+  if (!dateString) dateString = Date.now();
+
+  const date = new Date(dateString);
   let day = String(date.getDate()).padStart(2, "0");
   let month = String(date.getMonth() + 1).padStart(2, "0");
   let year = date.getFullYear();
-  return `${day}-${month}-${year}`;
+  return `${year}-${month}-${day}`;
 }
-export const currentDate = getCurrentDate();
 
 // Summary products price
 export const productsTotalPrice = (productItems) => {
@@ -43,6 +44,7 @@ export const productsTotalPrice = (productItems) => {
     );
   }, 0);
 };
+
 // Summary offers price
 export const offersTotalPrice = (offerItems) => {
   return offerItems.reduce((total, item) => {

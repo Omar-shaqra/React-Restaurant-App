@@ -147,15 +147,14 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
               required
               name="title"
               value={title}
-              className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+              className="pr-8 input-field"
               placeholder={"Enter Title..."}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <div className="relative">
-              <span className="absolute text-gray-300 right-4 bottom-3">
-                <Tag />
-              </span>
-            </div>
+
+            <span className="absolute text-gray-300 transform -translate-y-1/2 right-2 top-1/2">
+              <Tag />
+            </span>
           </div>
           {/* Description */}
           <textarea

@@ -30,7 +30,7 @@ const EditCategory = () => {
 
       setImagePreview(
         category.result?.image.replace(
-          "undefined",
+          "undefined/",
           `${import.meta.env.VITE_REACT_IMAGES_URL}/`
         )
       );
@@ -44,8 +44,9 @@ const EditCategory = () => {
     // Handling Form Data
     const formdata = new FormData();
     formdata.append("name", formData.name);
-
-    formdata.append("image", formData.image);
+    if (formData.image) {
+      formdata.append("image", formData.image);
+    }
 
     // API Request
     try {
@@ -109,11 +110,7 @@ const EditCategory = () => {
             onChange={handleInputChange}
           />
           {/* Submit button */}
-          <Button
-            text="Update"
-            type="submit"
-            disabled={formData.title === "" || formData.description === ""}
-          />
+          <Button text="Update" type="submit" disabled={formData.name === ""} />
         </div>
 
         {/* Image */}
