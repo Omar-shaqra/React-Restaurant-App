@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Delete } from "lucide-react";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import * as XLSX from "xlsx";
 
@@ -172,7 +172,7 @@ const OrderTable = () => {
             {/* Date */}
             <div className="flex gap-3">
               {/* Start Date */}
-              <div className="relative text-white">
+              {/* <div className="relative text-white">
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -181,9 +181,9 @@ const OrderTable = () => {
                 <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   Start Date
                 </p>
-              </div>
+              </div> */}
               {/* End Date */}
-              <div className="relative text-white">
+              {/* <div className="relative text-white">
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -192,7 +192,7 @@ const OrderTable = () => {
                 <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   End Date
                 </p>
-              </div>
+              </div> */}
               {/* Filter Button */}
               <Button text="Filter" onClick={onDateFilter} />
             </div>
