@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { Delete } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -11,6 +11,13 @@ import TableBody from "./order-table-body";
 import TableHead from "./order-table-head";
 import { useSortableTable } from "./useSortableTable";
 import { playNotificationSound } from "../../utils/constants";
+
+// const formatDate = (date) => {
+//   const year = date.getFullYear();
+//   const month = String(date.getMonth() + 1).padStart(2, "0");
+//   const day = String(date.getDate()).padStart(2, "0");
+//   return `${year}-${month}-${day}`;
+// };
 
 const columns = [
   {
@@ -70,17 +77,10 @@ const columns = [
   },
 ];
 
-// const formatDate = (date) => {
-//   const year = date.getFullYear();
-//   const month = String(date.getMonth() + 1).padStart(2, "0");
-//   const day = String(date.getDate()).padStart(2, "0");
-//   return `${year}-${month}-${day}`;
-// };
-
 const OrderTable = () => {
   const [orders, setOrders, handleSorting] = useSortableTable();
 
-  const previousOrderCountRef = useRef(0);
+  const previousOrderCountRef = useRef();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -92,8 +92,9 @@ const OrderTable = () => {
       const newOrderCount = orders.results;
       const previousOrderCount = previousOrderCountRef.current;
 
-      // Play Notification sound if new order is fetced
+      // Play Notification sound if new order is fetched
       if (newOrderCount > previousOrderCount) {
+        toast("New Order!");
         playNotificationSound();
       }
 
@@ -101,6 +102,7 @@ const OrderTable = () => {
       previousOrderCountRef.current = newOrderCount;
     }
   }, [orders]);
+
   const onExportToExcel = () => {
     const dataToExport = filteredData.map((row) =>
       columns

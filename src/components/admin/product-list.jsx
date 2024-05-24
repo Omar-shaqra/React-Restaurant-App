@@ -1,31 +1,7 @@
-import { Delete } from "lucide-react";
+import { ArrowBigDownDash, Delete } from "lucide-react";
 import { useState } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "../../components/ui/product-card";
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1324 },
-    items: 5,
-    slidesToSlide: 3,
-  },
-  smallDesktop: {
-    breakpoint: { max: 1324, min: 1024 },
-    items: 4,
-    slidesToSlide: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 3,
-    slidesToSlide: 2,
-  },
-  mobile: {
-    breakpoint: { max: 637, min: 0 },
-    items: 2,
-    slidesToSlide: 1,
-  },
-};
 
 const ProductList = ({ products, refetch }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -55,35 +31,38 @@ const ProductList = ({ products, refetch }) => {
   };
 
   return (
-    <>
-      {/* Search */}
-      <div className="relative flex self-end w-80">
-        <input
-          type="text"
-          placeholder="Search Products..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className="font-medium input-field"
-        />
-        <Delete
-          className="absolute text-gray-300 cursor-pointer right-4 bottom-3"
-          onClick={() => setSearchQuery("")}
-          size={23}
-        />
+    <section>
+      {/* Top bar */}
+      <div className="sticky flex items-center justify-between w-full pr-2 bg-black border-[.5px] rounded-lg top-1">
+        {/* Search */}
+        <div className="relative flex self-end rounded-md w-80">
+          <input
+            type="text"
+            placeholder="Search Products..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="font-medium input-field"
+          />
+          <Delete
+            className="absolute text-gray-300 cursor-pointer right-4 bottom-3"
+            onClick={() => setSearchQuery("")}
+            size={23}
+          />
+        </div>
+        {/* Go down button */}
+        <a
+          href="#add-product"
+          className="flex gap-2 transition-all duration-300 hover:text-orange-400 group">
+          <p className="text-base">Add Product</p>
+          <ArrowBigDownDash className="group-hover:animate-bounce" />
+        </a>
       </div>
 
-      <div className="my-4 bg-[#000000] bg-opacity-70 container border-t-[#d46622] border-t rounded-md text-base">
-        <Carousel
-          slidesToSlide={3}
-          swipeable={false}
-          minimumTouchDrag={80}
-          keyBoardControl={true}
-          arrows
-          responsive={responsive}>
-          {productList}
-        </Carousel>
+      {/* Products */}
+      <div className="my-4 bg-[#000000] bg-opacity-80 border-t-[#d46622] border-t rounded-md text-base">
+        {productList}
       </div>
-    </>
+    </section>
   );
 };
 export default ProductList;

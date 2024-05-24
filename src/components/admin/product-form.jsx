@@ -103,6 +103,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
 
   return (
     <form
+      id="add-product"
       onSubmit={onSubmit}
       className="flex flex-col items-center gap-4 mx-10 mt-4 ml-auto">
       <h1 className="font-extrabold tracking-wider ">Add Product</h1>

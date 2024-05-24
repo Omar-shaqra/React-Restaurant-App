@@ -26,7 +26,7 @@ const AddProduct = () => {
       <h1 className="self-center font-extrabold tracking-wider">
         All Products
       </h1>
-      <div className="w-full">
+      <div className="w-4/5 ">
         <ProductList products={products} refetch={refetch} />
       </div>
 
