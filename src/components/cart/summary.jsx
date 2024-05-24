@@ -19,7 +19,7 @@ import Currency from "../ui/currency";
 
 function Summary() {
   const { user } = useUser();
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   const productData = [];
 
   const productItems = useCart((state) => state.productItems);
@@ -42,43 +42,44 @@ function Summary() {
   const [orderType, setOrderType] = useState();
   const [branch, setBranch] = useState();
 
-  useEffect(() => {
-    let paymentCompleted = false;
+  //! This useEffect was used to send order to sells api if the order was paid online
+  // useEffect(() => {
+  //   let paymentCompleted = false;
 
-    const handlePaymentSuccess = async () => {
-      if (!user) return; // User not logged in
+  //   const handlePaymentSuccess = async () => {
+  //     if (!user) return; // User not logged in
 
-      if (searchParams.get("success") && !paymentCompleted) {
-        try {
-          await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
-            userID: user?.id,
-            productData,
-            TypeOfPayment: payment,
-            userphone: userPhone,
-            governate,
-            state,
-            address,
-            orderType,
-            TotalPrice: totalPrice,
-            BranchID: branch,
-            statue: "Paid",
-            Date: getCurrentDate(Date.now()),
-          });
-          toast.success("Payment Completed.");
-          removeAll();
-          paymentCompleted = true;
-        } catch (error) {
-          console.error("Error completing payment:", error);
-          toast.error("Error completing payment.");
-        }
-      }
+  //     if (searchParams.get("success") && !paymentCompleted) {
+  //       try {
+  //         await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
+  //           userID: user?.id,
+  //           productData,
+  //           TypeOfPayment: payment,
+  //           userphone: userPhone,
+  //           governate,
+  //           state,
+  //           address,
+  //           orderType,
+  //           TotalPrice: totalPrice,
+  //           BranchID: branch,
+  //           statue: "Paid",
+  //           Date: getCurrentDate(Date.now()),
+  //         });
+  //         toast.success("Payment Completed.");
+  //         removeAll();
+  //         paymentCompleted = true;
+  //       } catch (error) {
+  //         console.error("Error completing payment:", error);
+  //         toast.error("Error completing payment.");
+  //       }
+  //     }
 
-      if (searchParams.get("canceled")) {
-        toast.error("Payment Was Canceld.");
-      }
-    };
-    handlePaymentSuccess();
-  });
+  //     if (searchParams.get("canceled")) {
+  //       toast.error("Payment Was Canceld.");
+  //     }
+  //   };
+  //   handlePaymentSuccess();
+  // });
 
   const onCheckout = async () => {
     if (!payment) setIsModalOpen(true);
@@ -109,6 +110,7 @@ function Summary() {
 
     // Onlined Payment
     const onlineOrder = async () => {
+      // Redirect to Checkout Page
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_REACT_API_URL}/paymob/${totalPrice}`,
@@ -116,17 +118,37 @@ function Summary() {
             TotalPrice: totalPrice,
           }
         );
-        toast.success("Order Sent Successfully.");
+
+        //Todo: still under review => (Send Order to Sells API after online payment)
+        try {
+          await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
+            userID: user?.id,
+            productData,
+            TypeOfPayment: payment,
+            userphone: userPhone,
+            governate,
+            state,
+            address,
+            orderType,
+            TotalPrice: totalPrice,
+            BranchID: branch,
+            statue: "Paid",
+            Date: getCurrentDate(Date.now()),
+          });
+          toast.success("Order Sent Successfully.");
+        } catch {
+          toast.error("Error Sending Order.");
+        }
+
+        // Redirect to Home page
         const redirectURL = res.data;
         if (redirectURL) {
           window.location.href = redirectURL;
         } else {
-          console.error("Payment Error Please try again later");
           toast.error("Error redirecting to payment.");
         }
       } catch (error) {
-        console.error("Error sending order:", error);
-        toast.error("Error sending order.");
+        toast.error("Error Sending Order.");
       }
     };
 

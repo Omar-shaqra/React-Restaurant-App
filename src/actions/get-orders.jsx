@@ -11,5 +11,6 @@ export const GetOrders = ({ setOrders }) => {
       setOrders(data);
       return data;
     },
+    refetchInterval: 10000,
   });
 };

@@ -21,6 +21,16 @@ export function checkUserRole(session) {
   return null; // Return null if no role is found in the memberships
 }
 
+// Play Notification Sound
+
+export const playNotificationSound = () => {
+  // Create an audio element for the notification sound
+  const notificationSound = new Audio("/order-sound.mp4");
+
+  // Play the notification sound
+  notificationSound.play();
+};
+
 // Find current date
 export function getCurrentDate(dateString) {
   if (!dateString) dateString = Date.now();
