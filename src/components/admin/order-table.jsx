@@ -2,7 +2,7 @@ import axios from "axios";
 import { Delete } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 // import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 // import * as XLSX from "xlsx";
 
