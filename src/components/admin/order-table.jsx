@@ -1,15 +1,16 @@
 import axios from "axios";
 import { Delete } from "lucide-react";
-import { useState } from "react";
-import DatePicker from "react-datepicker";
+import { useEffect, useRef, useState } from "react";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 
 import Button from "../../components/ui/button";
 import TableBody from "./order-table-body";
 import TableHead from "./order-table-head";
 import { useSortableTable } from "./useSortableTable";
+import { playNotificationSound } from "../../utils/constants";
 
 const columns = [
   {
@@ -69,21 +70,37 @@ const columns = [
   },
 ];
 
-const formatDate = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
+// const formatDate = (date) => {
+//   const year = date.getFullYear();
+//   const month = String(date.getMonth() + 1).padStart(2, "0");
+//   const day = String(date.getDate()).padStart(2, "0");
+//   return `${year}-${month}-${day}`;
+// };
 
 const OrderTable = () => {
   const [orders, setOrders, handleSorting] = useSortableTable();
+
+  const previousOrderCountRef = useRef(0);
 
   const [searchQuery, setSearchQuery] = useState("");
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  useEffect(() => {
+    if (orders && orders.results) {
+      const newOrderCount = orders.results;
+      const previousOrderCount = previousOrderCountRef.current;
+
+      // Play Notification sound if new order is fetced
+      if (newOrderCount > previousOrderCount) {
+        playNotificationSound();
+      }
+
+      // Update the previous order count
+      previousOrderCountRef.current = newOrderCount;
+    }
+  }, [orders]);
   const onExportToExcel = () => {
     const dataToExport = filteredData.map((row) =>
       columns
@@ -94,11 +111,11 @@ const OrderTable = () => {
         }, {})
     );
 
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Orders");
+    // const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    // const workbook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(workbook, worksheet, "Orders");
 
-    XLSX.writeFile(workbook, "orders.xlsx");
+    // XLSX.writeFile(workbook, "orders.xlsx");
   };
 
   const onDateFilter = async () => {
@@ -148,7 +165,7 @@ const OrderTable = () => {
         All Orders
       </h1>
       {/* Search & Date & Update button */}
-      <div className="sticky top-0 w-full py-3 mt-5 text-2xl font-extrabold tracking-wider">
+      <div className="sticky top-0 w-full py-3 mt-5 text-2xl font-extrabold tracking-wider ">
         <div className="flex justify-between pt-2">
           <div className="relative flex self-end gap-2">
             {/* Search Bar */}
@@ -172,7 +189,7 @@ const OrderTable = () => {
             {/* Date */}
             <div className="flex gap-3">
               {/* Start Date */}
-              <div className="relative text-white">
+              {/* <div className="relative text-white">
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -181,9 +198,9 @@ const OrderTable = () => {
                 <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   Start Date
                 </p>
-              </div>
+              </div> */}
               {/* End Date */}
-              <div className="relative text-white">
+              {/* <div className="relative text-white">
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -192,7 +209,7 @@ const OrderTable = () => {
                 <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   End Date
                 </p>
-              </div>
+              </div> */}
               {/* Filter Button */}
               <Button text="Filter" onClick={onDateFilter} />
             </div>
