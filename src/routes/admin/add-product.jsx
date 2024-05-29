@@ -26,15 +26,18 @@ const AddProduct = () => {
       <h1 className="self-center font-extrabold tracking-wider">
         All Products
       </h1>
-      <div className="w-4/5 ">
-        <ProductList products={products} refetch={refetch} />
-      </div>
+
+      <ProductList
+        products={products}
+        categories={categories.data}
+        refetch={refetch}
+      />
 
       <ProductForm
         categories={categories.data}
         subcategories={subcategories.data}
-        refetch={refetch}
         isLoading={isLoading}
+        refetch={refetch}
       />
     </section>
   );

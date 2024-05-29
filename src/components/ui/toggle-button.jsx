@@ -8,11 +8,11 @@ const ToggleButton = ({ active, onChange }) => {
         className="sr-only"
       />
       <span
-        className={` mx-2 flex h-6 w-[50px] items-center rounded-full p-1 duration-200 ${
+        className={`mx-2 flex h-6 w-[50px] items-center rounded-full p-1 duration-200 ${
           !active ? "bg-[#c77e3a]" : "bg-[#CCCCCE]"
         }`}>
         <span
-          className={` h-5 w-5 rounded-full bg-white duration-200 ${
+          className={`h-5 w-5 rounded-full bg-white duration-200 ${
             !active ? "translate-x-[23px]" : ""
           }`}></span>
       </span>

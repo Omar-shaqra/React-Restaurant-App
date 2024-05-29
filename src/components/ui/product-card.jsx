@@ -1,10 +1,11 @@
-import { ShoppingBag, SquarePen, Trash2 } from "lucide-react";
+import { Eye, EyeOff, ShoppingBag, SquarePen, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import { deleteItem } from "../../actions/delete-item";
 import { useProductPreviewModal } from "../../hooks/use-preview-modal";
 import Currency from "./currency";
 import IconButton from "./icon-button";
+import { hideItem } from "../../actions/hide-item";
 
 const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const previewModal = useProductPreviewModal();
@@ -13,6 +14,12 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
   const onPreview = (e) => {
     e.preventDefault();
     previewModal.onOpen(data);
+  };
+
+  const onHide = () => {
+    hideItem({ id: data._id, active: data.Active }).then(() => {
+      refetch();
+    });
   };
 
   const onEdit = () => {
@@ -91,17 +98,48 @@ const ProductCard = ({ data, image = "visible", button = "add", refetch }) => {
           {button == "add" ? (
             <ShoppingBag className="hidden overflow-visible text-black transition bg-orange-300 border-2 border-red-300 rounded-full md:block size-auto lg:p-2 md:p-1 hover:border-orange-600 hover:scale-105" />
           ) : (
-            <div className="flex gap-px">
-              <IconButton
-                className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                onClick={onEdit}
-                icon={<SquarePen size={15} />}
-              />
-              <IconButton
-                className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
-                onClick={onDelete}
-                icon={<Trash2 size={15} />}
-              />
+            <div className="z-10 flex gap-1">
+              {/* Eye Icon */}
+              {data.Active == true ? (
+                <div className="flex flex-col items-center">
+                  <p className="text-xs">VISIBLE</p>
+                  <IconButton
+                    className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                    onClick={onHide}
+                    icon={<Eye size={15} />}
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center ">
+                  <p className="text-xs">HIDDEN</p>
+                  <IconButton
+                    className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                    onClick={onHide}
+                    icon={<EyeOff size={15} />}
+                  />
+                </div>
+              )}
+
+              {/* Edit Icon */}
+              <span className="flex flex-col items-center">
+                <p className="text-xs">EDIT</p>
+                <IconButton
+                  className="p-1 px-2 transition border border-orange-300 rounded-full group bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={onEdit}
+                  icon={<SquarePen size={15} />}
+                />
+              </span>
+
+              {/* Delete Icon */}
+              <span className="flex flex-col items-center">
+                <p className="text-xs">DELETE</p>
+
+                <IconButton
+                  className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+                  onClick={onDelete}
+                  icon={<Trash2 size={15} />}
+                />
+              </span>
             </div>
           )}
         </div>

@@ -105,7 +105,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
     <form
       id="add-product"
       onSubmit={onSubmit}
-      className="flex flex-col items-center gap-4 mx-10 mt-4 ml-auto">
+      className="flex flex-col items-center gap-4 mx-10 mt-4">
       <h1 className="font-extrabold tracking-wider ">Add Product</h1>
       <div className="flex flex-row items-end gap-6">
         {/* First Column (Category) */}

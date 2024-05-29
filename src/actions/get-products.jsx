@@ -57,6 +57,21 @@ export const GetProductsWithCategoryId = ({ setProducts, id }) => {
   });
 };
 
+export const GetProductsWithCategoryIdForAdmin = ({ setProducts, id }) => {
+  return useQuery({
+    queryKey: [id, setProducts, "category"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_REACT_API_URL
+        }/products?category=${id}&limit=300`
+      );
+      setProducts(data);
+      return data;
+    },
+  });
+};
+
 export const GetProductsWithSubcategoryId = ({ setProducts, id }) => {
   return useQuery({
     queryKey: [id, setProducts, "subcategory"],
