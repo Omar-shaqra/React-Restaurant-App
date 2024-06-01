@@ -1,5 +1,5 @@
-// import axios from "axios";
-import { Delete } from "lucide-react";
+import axios from "axios";
+import { BadgeX, Delete } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,17 +7,18 @@ import toast from "react-hot-toast";
 import * as XLSX from "xlsx";
 
 import Button from "../../components/ui/button";
+import { playNotificationSound } from "../../utils/constants";
 import TableBody from "./order-table-body";
 import TableHead from "./order-table-head";
 import { useSortableTable } from "./useSortableTable";
-import { playNotificationSound } from "../../utils/constants";
+import IconButton from "../ui/icon-button";
 
-// const formatDate = (date) => {
-//   const year = date.getFullYear();
-//   const month = String(date.getMonth() + 1).padStart(2, "0");
-//   const day = String(date.getDate()).padStart(2, "0");
-//   return `${year}-${month}-${day}`;
-// };
+const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 
 const columns = [
   {
@@ -78,11 +79,13 @@ const columns = [
 ];
 
 const OrderTable = () => {
+  const previousOrderCountRef = useRef();
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [orders, setOrders, handleSorting] = useSortableTable();
 
-  const previousOrderCountRef = useRef();
-
-  const [searchQuery, setSearchQuery] = useState("");
+  const [dateFilteredOrders, setFilteredOrders] = useState([]);
+  const [isDateFiltered, setIsDateFiltered] = useState(false);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -103,8 +106,28 @@ const OrderTable = () => {
     }
   }, [orders]);
 
+  // Filter Table by Date
+  const onDateFilter = async () => {
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_API_URL}/sells/search/date`,
+        { start: formattedStartDate, end: formattedEndDate }
+      );
+      setFilteredOrders(response.data);
+      setIsDateFiltered(true);
+
+      // Handle response as needed
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // Export to Excel Sheet
   const onExportToExcel = () => {
-    const dataToExport = filteredData.map((row) =>
+    const dataToExport = searchFilteredOrders.map((row) =>
       columns
         .filter((column) => column.label !== "Order") // Filter out columns with label "Order"
         .reduce((acc, column) => {
@@ -120,29 +143,7 @@ const OrderTable = () => {
     XLSX.writeFile(workbook, "orders.xlsx");
   };
 
-  const onDateFilter = async () => {
-    toast.error("Search not working yet");
-    // const formattedStartDate = formatDate(startDate);
-    // const formattedEndDate = formatDate(endDate);
-
-    // const requestBody = {
-    //   start: formattedStartDate,
-    //   end: formattedEndDate,
-    // };
-
-    // console.log("Request Body:", requestBody);
-
-    // try {
-    //   await axios.get(
-    //     `${import.meta.env.VITE_REACT_API_URL}/sells/search/date`,
-    //     requestBody
-    //   );
-    //   // Handle response as needed
-    // } catch (error) {
-    //   console.error("Error fetching data:", error);
-    // }
-  };
-
+  // Filter By Search
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -152,14 +153,36 @@ const OrderTable = () => {
     setOrders(newData);
   };
 
-  // View filterd data on search
-  const filteredData = orders?.data.filter((data) => {
+  // Reset all filters
+  const clearFilters = () => {
+    setFilteredOrders([]);
+    setEndDate(new Date());
+    setStartDate(new Date());
+    setIsDateFiltered(false);
+  };
+
+  // View filterd Data by Search
+  const searchFilteredOrders = orders?.data.filter((data) => {
     return columns.some(({ accessor }) => {
       const cellValue = data[accessor]?.toString().toLowerCase().trim();
       const searchValue = searchQuery.toLowerCase().trim();
       return cellValue && cellValue.includes(searchValue);
     });
   });
+
+  // View filterd Data by Search & Date
+  const searchAndDateFilterdOrders = dateFilteredOrders.filter((data) => {
+    return columns.some(({ accessor }) => {
+      const cellValue = data[accessor]?.toString().toLowerCase().trim();
+      const searchValue = searchQuery.toLowerCase().trim();
+      return cellValue && cellValue.includes(searchValue);
+    });
+  });
+
+  // Determine which data to display
+  const displayData = isDateFiltered
+    ? searchAndDateFilterdOrders
+    : searchFilteredOrders;
 
   return (
     <section className="flex flex-col items-center px-4 my-5">
@@ -182,7 +205,7 @@ const OrderTable = () => {
               />
 
               <Delete
-                className="absolute text-gray-300 transform -translate-y-1/2 cursor-pointer right-2 top-1/2"
+                className="absolute text-gray-300 transition transform -translate-y-1/2 cursor-pointer hover:scale-110 right-2 top-1/2"
                 onClick={() => setSearchQuery("")}
                 size={23}
               />
@@ -195,30 +218,37 @@ const OrderTable = () => {
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  className="relative font-medium input-field"
+                  className="font-medium w-28 input-field"
                 />
-                <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
+                <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-2 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   Start Date
                 </p>
               </div>
               {/* End Date */}
-              <div className="relative text-white">
+              <div className="relative flex text-white">
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
-                  className="font-medium input-field"
+                  className="font-medium w-36 input-field"
+                />
+                <IconButton
+                  className="absolute right-0 p-1 px-2 transition border-0 top-[6px] hover:scale-110"
+                  onClick={clearFilters}
+                  icon={<BadgeX size={20} />}
                 />
                 <p className="absolute text-sm from-black bg-gradient-to-t -top-[11px] left-3 border-l-[0.5px] px-1 border-r-[0.5px] border-[#fca5a5]">
                   End Date
                 </p>
               </div>
               {/* Filter Button */}
-              <Button text="Filter" onClick={onDateFilter} />
+              <div className="self-center mx-1 transition-all duration-300 border rounded-md hover:border-orange-400 hover:scale-105">
+                <Button text="Filter" onClick={onDateFilter} />
+              </div>
             </div>
           </div>
 
           {/* Export to Excel Button */}
-          <div className="self-center mx-2 transition-all duration-300 border rounded-md hover:border-green-400 hover:scale-110">
+          <div className="self-center mx-2 transition-all duration-300 border rounded-md hover:border-green-400 hover:scale-105">
             <Button text="Export to Excel Sheet" onClick={onExportToExcel} />
           </div>
         </div>
@@ -226,13 +256,13 @@ const OrderTable = () => {
 
       {/* Table */}
       <table className="table text-black border-4 table-fixed">
-        {orders && (
+        {displayData && (
           <>
             <TableHead {...{ columns, handleSorting }} />
             <TableBody
               onUpdateData={updateOrderDataCallback}
               columns={columns}
-              tableData={{ data: filteredData }}
+              tableData={{ data: displayData }}
             />
           </>
         )}
