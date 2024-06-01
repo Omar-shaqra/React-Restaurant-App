@@ -74,17 +74,17 @@ const ProductList = ({ products, categories, refetch }) => {
       {/* Top bar */}
       <div className="sticky z-20 flex items-center justify-between w-full pr-2 bg-black border-r border-red-300 rounded-lg top-1">
         {/* Search */}
-        <div className="relative flex self-end rounded-md w-80">
+        <div className="relative flex self-end w-64 rounded-md">
           <input
             type="text"
             placeholder="Search Products..."
             value={searchQuery}
             autoFocus
             onChange={handleSearch}
-            className="font-medium input-field"
+            className="w-64 pr-8 font-medium input-field"
           />
           <Delete
-            className="absolute text-gray-300 cursor-pointer right-4 bottom-3"
+            className="absolute text-gray-300 transition transform -translate-y-1/2 cursor-pointer hover:scale-110 right-2 top-1/2"
             onClick={() => setSearchQuery("")}
             size={23}
           />
