@@ -91,6 +91,17 @@ const AdminLayout = () => {
               }`}>
               Offers
             </Link>
+
+            {/* Reports */}
+            <Link
+              to="/admin/reports"
+              className={`${
+                pathname === "/admin/Reports"
+                  ? "h-full bg-red-800 bg-opacity-70 px-2 py-1 border border-red-900 font-bold rounded-2xl text-white"
+                  : "font-bold hover:bg-red-900 bg-slate-100 bg-opacity-70 px-2 py-1 rounded-2xl transition hover:text-white text-neutral-600"
+              }`}>
+              Reports
+            </Link>
           </ul>
           <div className="ml-auto">
             <UserButton />
