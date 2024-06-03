@@ -9,7 +9,7 @@ function CategoryItem({ item, deleteItem, refetch }) {
   const navigate = useNavigate();
 
   const onEdit = () => {
-    navigate(`/admin/categories/${item._id}`);
+    navigate(`/admin/category/${item._id}`);
   };
 
   const onDelete = () => {

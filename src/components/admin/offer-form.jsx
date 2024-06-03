@@ -5,12 +5,18 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Button from "../ui/button";
 
-const OfferForm = ({ products, refetch }) => {
+const OfferForm = ({ products, categories, refetch }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [productId, setProductId] = useState([]);
+
+  const [count, setCount] = useState("");
+
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState();
+
+  const [categoryId, setCategoryId] = useState("");
+
+  const [productId, setProductId] = useState([]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +57,17 @@ const OfferForm = ({ products, refetch }) => {
     }
   };
 
+  const categoriesOptions =
+    categories &&
+    categories.map((item, index) => (
+      <option
+        className="font-semibold text-center capitalize bg-black"
+        key={categories[index]._id}
+        value={categories[index]._id}>
+        {categories[index].name}
+      </option>
+    ));
+
   return (
     <form
       onSubmit={onSubmit}
@@ -62,12 +79,57 @@ const OfferForm = ({ products, refetch }) => {
           {/* Name */}
           <input
             required
-            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
+            className="input-field"
             placeholder={"Enter Offer Name"}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
+          {/* Categories */}
+          <select
+            value={categoryId}
+            onChange={(e) => {
+              setCategoryId(e.target.value);
+            }}
+            className="w-full input-field">
+            <option
+              value=""
+              disabled
+              className="bg-neutral-400 text-neutral-800">
+              Select Category
+            </option>
+            {categoriesOptions}
+          </select>
+          {/* Count */}
+          <input
+            required
+            name="count"
+            type="number"
+            value={count}
+            placeholder="Number of Items..."
+            onChange={(e) => setCount(e.target.value)}
+            className="input-field"
+          />
+
+          {/* Price */}
+          <div className="relative flex self-end gap-2">
+            <input
+              required
+              type="number"
+              min={1}
+              step={0.01}
+              value={price}
+              placeholder="Enter Price..."
+              onChange={(e) => setPrice(e.target.value)}
+              className="h-12 pl-3 text-base bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
+            />
+            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
+          </div>
+          <Button text="Create" type={"submit"} />
+        </div>
+
+        {/* Second Column */}
+        <div className="flex flex-col items-center gap-5">
           {/* Products */}
           <Multiselect
             onSelect={(selectedList) => {
@@ -91,27 +153,11 @@ const OfferForm = ({ products, refetch }) => {
             }}
             placeholder="Select Products"
             showArrow
-            className="pt-2 text-base text-black capitalize bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
+            className="h-full pt-2 text-base text-black capitalize bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
           />
-
-          {/* Price */}
-          <div className="relative flex self-end gap-2">
-            <input
-              required
-              type="number"
-              min={1}
-              step={0.01}
-              value={price}
-              placeholder="Enter Price..."
-              onChange={(e) => setPrice(e.target.value)}
-              className="h-12 pl-3 text-base bg-black border border-red-300 rounded-lg w-fit focus:border-white bg-opacity-70"
-            />
-            <DollarSign className="absolute text-gray-300 right-4 bottom-3" />
-          </div>
-          <Button text={"Create"} type={"submit"} />
         </div>
 
-        {/* Second Column (Image) */}
+        {/* Third Column (Image) */}
         <div className="flex flex-col items-center gap-6">
           <div
             className="flex items-center justify-start px-2 text-base text-gray-300 bg-black border border-red-300 rounded-lg cursor-pointer min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-opacity-70 group"
@@ -133,8 +179,8 @@ const OfferForm = ({ products, refetch }) => {
                 <ImagePlus />
               </span>
             ) : (
-              <div className="flex items-center justify-between w-full gap-2 truncate max-w-52">
-                <p className="items-start py-1 overflow-hidden text-blue-500 text-ellipsis">
+              <div className="flex items-center justify-between w-full gap-2 truncate max-w-40">
+                <p className="items-start py-1 overflow-hidden text-sm text-blue-500 text-ellipsis">
                   {image.name !== "" && image.name}
                 </p>
                 <Trash2
@@ -149,6 +195,7 @@ const OfferForm = ({ products, refetch }) => {
               </div>
             )}
           </div>
+          {/* Image Preview */}
           <img
             src={imagePreview ? imagePreview : "/No_Preview.png"}
             alt="image preview"

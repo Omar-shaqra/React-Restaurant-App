@@ -25,7 +25,7 @@ const BillModal = ({ data, isOpen, onClose }) => {
             </div>
 
             {/* Total Price */}
-            <div className="flex gap-2 p-1 bg-white rounded w-fit">
+            <div className="flex items-center gap-2 p-1 bg-white rounded w-fit">
               <p>Total Price:</p>
               <span className="p-px bg-gray-200 rounded">
                 <Currency value={data.TotalPrice} />

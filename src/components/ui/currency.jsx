@@ -16,9 +16,9 @@ const Currency = ({ value }) => {
   if (!isMounted) return null;
 
   return (
-    <div className="font-semibold text-[14x]">
+    <p className="font-semibold text-[9px] sm:text-[10px] md:text-[11px]">
       {formatter.format(Number(value))}
-    </div>
+    </p>
   );
 };
 export default Currency;

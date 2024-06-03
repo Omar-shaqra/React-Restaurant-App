@@ -9,7 +9,7 @@ function SubcategoryItem({ item, deleteItem, refetch }) {
   const navigate = useNavigate();
 
   const onEdit = () => {
-    navigate(`/admin/subcategories/${item._id}`);
+    navigate(`/admin/subcategory/${item._id}`);
   };
   const onDelete = () => {
     deleteItem({ id: item._id, routeName: "subcategories" }).then(() => {

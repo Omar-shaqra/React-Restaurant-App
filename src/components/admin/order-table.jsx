@@ -229,7 +229,7 @@ const OrderTable = () => {
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
-                  className="font-medium w-36 input-field"
+                  className="font-medium w-[135px] input-field"
                 />
                 <IconButton
                   className="absolute right-0 p-1 px-2 transition border-0 top-[6px] hover:scale-110"
