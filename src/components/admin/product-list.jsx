@@ -11,6 +11,7 @@ const ProductList = ({ products, categories, refetch }) => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  // When Admin select a category
   GetProductsWithCategoryIdForAdmin({
     setProducts: setProductsWithCategory,
     id: categoryId,
@@ -44,7 +45,7 @@ const ProductList = ({ products, categories, refetch }) => {
         <div className="overflow-x-auto hide-scrollbar scroll-auto" key={index}>
           <ProductCard
             data={product}
-            image="hidden"
+            image="admin"
             button="delete"
             refetch={refetch}
           />
@@ -70,7 +71,7 @@ const ProductList = ({ products, categories, refetch }) => {
   };
 
   return (
-    <section className="w-[90%]">
+    <section className="w-[75%]">
       {/* Top bar */}
       <div className="sticky z-20 flex items-center justify-between w-full pr-2 bg-black border-r border-red-300 rounded-lg top-1">
         {/* Search */}
@@ -122,7 +123,7 @@ const ProductList = ({ products, categories, refetch }) => {
         </a>
       </div>
 
-      {/* Products */}
+      {/* Products List */}
       <div className="my-4 bg-[#000000] bg-opacity-80 border-t-[#d46622] border-t rounded-md text-base">
         {productList}
       </div>

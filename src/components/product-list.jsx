@@ -51,7 +51,7 @@ const ProductList = () => {
   const productList =
     products.data?.length > 0 &&
     products.data.map((product, index) => (
-      <ProductCard key={index} data={product} image="visible" button="add" />
+      <ProductCard key={index} data={product} image="user" button="add" />
     ));
 
   return (
@@ -63,6 +63,7 @@ const ProductList = () => {
       </h4>
       <div className="sticky top-0 z-10 flex flex-col bg-black gap-x-2">
         <CategoryList categoryFilter={categoryFilter} />
+
         <SubcategoryList
           subcategoryFilter={subcategoryFilter}
           selected_Category={selected_Category}

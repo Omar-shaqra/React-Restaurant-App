@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { GetProductWithId } from "../../actions/get-products";
+import { GetCategories } from "../../actions/get-categories";
 import SizeFields from "../../components/admin/size-fields";
 import Button from "../../components/ui/button";
 import { ImagePlus, Trash2 } from "lucide-react";
@@ -15,6 +16,9 @@ const EditProduct = () => {
 
   const [product, setProduct] = useState(null);
 
+  const [categories, setCategories] = useState(null);
+  const [categoryId, setCategoryId] = useState("");
+
   const [price_basic, setPrice_basic] = useState("");
   const [price_md, setPrice_md] = useState("");
   const [price_lg, setPrice_lg] = useState("");
@@ -23,10 +27,12 @@ const EditProduct = () => {
   const [imagePreview, setImagePreview] = useState();
 
   GetProductWithId({ setProduct, id });
+  GetCategories({ setCategories });
 
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    category: "",
     imageCover: null,
     price: [],
     Active: true,
@@ -48,6 +54,7 @@ const EditProduct = () => {
         ...prevData,
         title: product.result.title || "",
         description: product.result.description || "",
+        category: product.result.category || "No Category",
         price: product.result.price || [],
         Active: product.result.Active || false,
       }));
@@ -79,6 +86,9 @@ const EditProduct = () => {
     formdata.append("Active", formData.Active);
     if (formData.imageCover) {
       formdata.append("imageCover", formData.imageCover);
+    }
+    if (formData.category) {
+      formdata.append("category", categoryId);
     }
     formdata.append("price.0.pr", price_basic);
     formdata.append("price.0.size", "basic");
@@ -129,6 +139,18 @@ const EditProduct = () => {
       Active: !formData.Active,
     }));
   };
+
+  const categoriesOptions =
+    categories &&
+    categories?.data.map((item) => (
+      <option
+        className="font-semibold text-center capitalize bg-black"
+        key={item._id}
+        value={item._id}>
+        {item.name}
+      </option>
+    ));
+
   if (!product)
     return (
       <div className="overflow-hidden text-3xl text-white">Loading....</div>
@@ -138,15 +160,18 @@ const EditProduct = () => {
     <form
       className="flex flex-col items-center gap-4 mx-10 ml-auto text-white mt-14"
       onSubmit={onSubmit}>
-      <p className="text-3xl font-semibold tracking-wider text-white">
+      <span className="flex items-center text-3xl font-semibold tracking-wider text-white gap-x-5">
         Edit:
-        <span className="p-1 font-bold rounded bg-white/20">
+        <p className="p-1 font-bold rounded bg-white/20">
           {product.result.title}
-        </span>
-      </p>
+        </p>
+        <p className="p-1 text-lg font-semibold rounded bg-orange-300/50">
+          {product.result.category?.name}
+        </p>
+      </span>
       <div className="flex flex-row gap-6">
         {/* Title & Description & Active */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
           <label htmlFor="Title" className="text-xl font-bold">
             Title
           </label>
@@ -159,12 +184,31 @@ const EditProduct = () => {
             onChange={handleInputChange}
           />
 
+          {/* Categories */}
+          <label htmlFor="Category" className="text-xl font-bold">
+            Category
+          </label>
+          <select
+            value={categoryId}
+            onChange={(e) => {
+              setCategoryId(e.target.value);
+            }}
+            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+            <option
+              value=""
+              disabled
+              className="bg-neutral-400 text-neutral-800">
+              Select Category
+            </option>
+            {categoriesOptions}
+          </select>
+
           <label htmlFor="description" className="text-xl font-bold">
             Description
           </label>
           <textarea
             required
-            className="pt-3 pl-3 m-0 overflow-y-auto text-base bg-black border border-red-300 rounded-lg hide-scrollbar min-h-[78px] max-h-[78px] focus:border-white bg-opacity-70"
+            className="pt-3 mb-2 pl-3 m-0 overflow-y-auto text-base bg-black border border-red-300 rounded-lg hide-scrollbar min-h-[78px] max-h-[78px] focus:border-white bg-opacity-70"
             placeholder="Enter Description"
             name="description"
             value={formData.description}
@@ -256,6 +300,7 @@ const EditProduct = () => {
             price_lg={price_lg}
             setPrice_lg={setPrice_lg}
           />
+
           {/* Submit button */}
           <Button
             text="Update"

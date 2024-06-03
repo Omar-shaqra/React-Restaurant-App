@@ -8,7 +8,7 @@ export const GetProducts = ({ setProducts }) => {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_REACT_API_URL
-        }/products?sort=category&Active=true&limit=300`
+        }/products?sort=category=pizza&Active=true&limit=300`
       );
       setProducts(data);
       return data;
@@ -59,7 +59,8 @@ export const GetProductsWithCategoryId = ({ setProducts, id }) => {
 
 export const GetProductsWithCategoryIdForAdmin = ({ setProducts, id }) => {
   return useQuery({
-    queryKey: [id, setProducts, "category"],
+    queryKey: [id, setProducts, "ProductWithCategoryId"],
+    enabled: id !== "" && id !== "all",
     queryFn: async () => {
       const { data } = await axios.get(
         `${
