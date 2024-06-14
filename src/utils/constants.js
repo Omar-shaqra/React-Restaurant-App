@@ -22,7 +22,6 @@ export function checkUserRole(session) {
 }
 
 // Play Notification Sound
-
 export const playNotificationSound = () => {
   // Create an audio element for the notification sound
   const notificationSound = new Audio("/order-sound.mp4");
@@ -84,9 +83,81 @@ export const addOffersToData = (offerItems, productData) => {
   offerItems.forEach((item) => {
     const offerObj = {
       offersid: item._id,
-      title: item.title,
+      items: item.items.map((item) => item.title),
+      name: item.name,
       quantity: item.quantity,
     };
     productData.push(offerObj);
   });
+};
+
+export const governates = {
+  "محافظة الداخلية": {
+    state: [
+      "نزوى",
+      "بهلا",
+      "منح",
+      "الحمراء",
+      "أدم",
+      "إزكي",
+      "سمائل",
+      "بدبد",
+      "الجبل الأخضر",
+    ],
+  },
+  "محافظة الظاهرة": {
+    state: ["عبري", "ينقل", "ضنك"],
+  },
+  "محافظة شمال الباطنة": {
+    state: ["صحار", "شناص", "لوى", "صحم", "الخابورة", "السويق	"],
+  },
+  "محافظة جنوب الباطنة": {
+    state: ["نخل", "وادي المعاول", "العوابي", "المصنعة", "بركاء", "الرستاق"],
+  },
+  "محافظة البريمي": {
+    state: ["البريمي", "محضة", "السنينة"],
+  },
+  "محافظة الوسطى": {
+    state: ["هيما", "الدقم", "محوت", "الجازر"],
+  },
+  "محافظة شمال الشرقية": {
+    state: [
+      "إبراء",
+      "المضيبي",
+      "بدية",
+      "وادي بني خالد",
+      "دماء والطائيين",
+      "القابل",
+      "سناو",
+    ],
+  },
+  "محافظة جنوب الشرقية": {
+    state: [
+      "مصيرة",
+      "صور",
+      "جعلان بني بو حسن",
+      "جعلان بني بو علي",
+      "الكامل والوافي",
+    ],
+  },
+  "محافظة ظفار": {
+    state: [
+      "صلالة",
+      "طاقة",
+      "مرباط",
+      "ثمريت",
+      "سدح",
+      "رخيوت",
+      "ضلكوت",
+      "مقشن",
+      "شليم وجزر الحلانيات",
+      "المزيونة",
+    ],
+  },
+  "محافظة مسقط": {
+    state: ["مسقط", "مطرح", "بوشر", "السيب", "العامرات", "قريات"],
+  },
+  "محافظة مسندم": {
+    state: ["خصب", "بخا", "دباء", "مدحاء"],
+  },
 };

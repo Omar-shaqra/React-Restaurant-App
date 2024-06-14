@@ -103,7 +103,7 @@ const EditCategory = () => {
           </label>
           <input
             required
-            className="w-full h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg xl:h-12 focus:border-white bg-opacity-70"
+            className="w-full capitalize input-field"
             placeholder="Enter Name"
             name="name"
             value={formData.name}

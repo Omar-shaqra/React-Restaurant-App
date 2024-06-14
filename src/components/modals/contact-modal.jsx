@@ -80,19 +80,6 @@ const ContactModal = ({ isOpen, onClose }) => {
               />
             </div>
 
-            <div className="flex items-center gap-6 text-white ">
-              <label className="font-bold ">Email:</label>
-              <input
-                placeholder="Enter your email"
-                required
-                className="input-field"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </div>
-
             <div className="flex items-center gap-4 text-white">
               <label className="font-bold ">Phone:</label>
               <input
@@ -107,6 +94,19 @@ const ContactModal = ({ isOpen, onClose }) => {
                 onChange={handleInputChange}
               />
             </div>
+
+            <div className="flex items-center gap-6 text-white ">
+              <label className="font-bold ">Email:</label>
+              <input
+                placeholder="Enter your email"
+                required
+                className="w-full input-field"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
 
           {/* Second Column */}
@@ -116,7 +116,7 @@ const ContactModal = ({ isOpen, onClose }) => {
               <textarea
                 required
                 placeholder="Enter Your Message"
-                className="w-full pt-3 pl-3 overflow-hidden text-base bg-black border border-red-300 rounded-lg max-h-28 min-h-28 focus:border-white bg-opacity-70"
+                className="w-full overflow-hidden text-base input-field max-h-28 min-h-28"
                 name="text"
                 min={10}
                 value={formData.text}

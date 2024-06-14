@@ -7,7 +7,7 @@ import IconButton from "../ui/icon-button";
 const Modal = ({ open, onClose, children, bgColor }) => {
   return (
     <Transition show={open} appear as={Fragment}>
-      <Dialog as="div" onClose={onClose} className="relative z-20 ">
+      <Dialog as="div" onClose={onClose} className="relative z-20">
         <div className="fixed inset-0 transition bg-black/70" />
         <div className="fixed inset-0 overflow-y-auto text-white">
           <div className="flex justify-center min-h-full text-center sm:items-center xs:items-start xs:mt-8">
@@ -19,7 +19,7 @@ const Modal = ({ open, onClose, children, bgColor }) => {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <Dialog.Panel className="max-w-4xl text-left align-middle ">
+              <Dialog.Panel className="max-w-4xl text-left align-middle">
                 <div
                   className={` ${bgColor} relative flex items-center px-4 pt-4 pb-2 m-2 border border-orange-300 rounded-md shadow-2xl text-wrap border-opacity-40`}>
                   <div className="absolute z-10 right-3 top-2">

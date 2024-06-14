@@ -156,6 +156,7 @@ body,
     /* Firefox */
   }
 
+
   .table_container {
     max-width: max-content;
     margin: 0 auto;
@@ -225,6 +226,7 @@ body,
   .input-field {
     /* width: 100%; */
     height: 48px;
+    align-content: center;
     padding-left: 12px;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -232,5 +234,10 @@ body,
     border-width: 1px;
     border-color: rgb(252 165 165);
     border-radius: 0.5rem;
+
+  }
+
+  .input-field:focus {
+    background-color: #202020;
   }
 }

@@ -162,7 +162,7 @@ const OrderTable = () => {
   };
 
   // View filterd Data by Search
-  const searchFilteredOrders = orders?.data.filter((data) => {
+  const searchFilteredOrders = orders.data?.filter((data) => {
     return columns.some(({ accessor }) => {
       const cellValue = data[accessor]?.toString().toLowerCase().trim();
       const searchValue = searchQuery.toLowerCase().trim();
@@ -260,9 +260,9 @@ const OrderTable = () => {
           <>
             <TableHead {...{ columns, handleSorting }} />
             <TableBody
-              onUpdateData={updateOrderDataCallback}
-              columns={columns}
+              {...{ columns }}
               tableData={{ data: displayData }}
+              onUpdateData={updateOrderDataCallback}
             />
           </>
         )}

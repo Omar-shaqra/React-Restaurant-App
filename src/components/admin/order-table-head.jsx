@@ -11,6 +11,7 @@ const TableHead = ({ columns, handleSorting }) => {
     setOrder(sortOrder);
     handleSorting(accessor, sortOrder);
   };
+
   return (
     <thead className="w-full border">
       <tr>

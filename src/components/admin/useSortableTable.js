@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { GetOrders } from "../../actions/get-orders";
 
-export const useSortableTable = (data) => {
-  const [orders, setOrders] = useState(data);
+export const useSortableTable = () => {
+  const [orders, setOrders] = useState([]);
+
   GetOrders({ setOrders: setOrders });
 
   const handleSorting = (sortField, sortOrder) => {

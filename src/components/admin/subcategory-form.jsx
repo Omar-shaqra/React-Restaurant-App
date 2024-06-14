@@ -65,7 +65,7 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
       <div className="flex flex-col items-center gap-y-3">
         <input
           required
-          className="w-full h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+          className="w-full input-field"
           placeholder={"Enter Sub Category Name"}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -73,7 +73,7 @@ const SubcategoryForm = ({ categories, subcategories, refetch }) => {
         <select
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
-          className="w-4/6 h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+          className="w-4/6 input-field">
           {/* Add default "Select Category" option */}
           <option
             value=""

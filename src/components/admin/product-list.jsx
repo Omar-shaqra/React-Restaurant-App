@@ -90,7 +90,10 @@ const ProductList = ({ products, categories, refetch }) => {
             size={23}
           />
         </div>
-
+        <span className="flex flex-col items-center">
+          <p className="text-sm text-orange-400">{filteredProducts?.length}</p>
+          <p className="text-sm">Product</p>
+        </span>
         {/* Categories & No. Of Products */}
         <div className="flex items-center gap-1">
           <select
@@ -98,7 +101,7 @@ const ProductList = ({ products, categories, refetch }) => {
             onChange={(e) => {
               setCategoryId(e.target.value);
             }}
-            className="h-12 pl-3 text-base text-center capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+            className="input-field">
             <option
               value="all"
               className="font-semibold bg-white text-neutral-800">
@@ -106,12 +109,6 @@ const ProductList = ({ products, categories, refetch }) => {
             </option>
             {categoriesOptions}
           </select>
-          <span className="flex flex-col items-center">
-            <p className="text-sm text-orange-400">
-              {filteredProducts?.length}
-            </p>
-            <p className="text-sm">Product</p>
-          </span>
         </div>
 
         {/* Go down button */}

@@ -52,12 +52,13 @@ const CategoryForm = ({ categories, refetch }) => {
       <div className="flex flex-col items-center gap-y-3">
         <input
           required
-          className="w-full h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg xl:h-12 focus:border-white bg-opacity-70"
+          className="w-full input-field"
           placeholder={"Enter Category Name"}
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        {/* Image */}
         <div
           className="flex items-center justify-start px-2 text-base text-gray-300 bg-black border border-red-300 rounded-lg cursor-pointer min-h-12 max-h-fit text-clip focus:border-white hover:cursor-pointer bg-opacity-70 group"
           onClick={() => document.querySelector(".image").click()}>

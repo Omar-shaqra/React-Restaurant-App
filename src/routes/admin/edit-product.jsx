@@ -177,7 +177,7 @@ const EditProduct = () => {
           </label>
           <input
             required
-            className="w-full h-10 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg xl:h-12 focus:border-white bg-opacity-70"
+            className="w-full capitalize input-field"
             placeholder="Enter Description"
             name="title"
             value={formData.title}
@@ -193,7 +193,7 @@ const EditProduct = () => {
             onChange={(e) => {
               setCategoryId(e.target.value);
             }}
-            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+            className="h-12 input-field">
             <option
               value=""
               disabled
@@ -208,7 +208,7 @@ const EditProduct = () => {
           </label>
           <textarea
             required
-            className="pt-3 mb-2 pl-3 m-0 overflow-y-auto text-base bg-black border border-red-300 rounded-lg hide-scrollbar min-h-[78px] max-h-[78px] focus:border-white bg-opacity-70"
+            className="input-field overflow-y-auto hide-scrollbar min-h-[78px] max-h-[78px]"
             placeholder="Enter Description"
             name="description"
             value={formData.description}

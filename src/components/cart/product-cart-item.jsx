@@ -28,20 +28,18 @@ function ProductCartItem({ data }) {
       : "/logo.png";
 
   return (
-    <li className="flex flex-wrap justify-center w-full p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <li className="flex flex-wrap justify-center w-full py-3 px-2 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
-      <div className="flex items-center self-center justify-center overflow-hidden max-h-44 max-w-64 rounded-xl">
-        {imgURL && (
-          <img
-            className="bg-white rounded-md aspect-square"
-            loading="lazy"
-            src={imgURL}
-            alt="combos images"
-          />
-        )}
-      </div>
+      {imgURL && (
+        <img
+          src={imgURL}
+          loading="lazy"
+          alt="Product Image"
+          className="object-fill w-full rounded aspect-square max-w-[220px] max-h-[190px]"
+        />
+      )}
 
-      <div className="relative flex flex-col self-center flex-1 w-full h-full gap-2 space-y-2 sm:ml-6">
+      <div className="relative flex flex-col self-center flex-1 w-full h-full gap-1 space-y-3 sm:ml-6">
         {/* Title & Info */}
         <div className="flex flex-col justify-between gap-2">
           {/* Title & Remove Button */}
@@ -70,7 +68,7 @@ function ProductCartItem({ data }) {
         </div>
 
         {/* Description */}
-        <div className="w-full p-1 font-semibold rounded text-md text-neutral-300 bg-white/40">
+        <div className="p-1 font-semibold rounded w-fit text-md text-neutral-300 bg-white/40">
           <p className="overflow-hidden">
             {data ? data.description : "product description"}
           </p>

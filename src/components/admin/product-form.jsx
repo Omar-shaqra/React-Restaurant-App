@@ -117,7 +117,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
               setCategoryId(e.target.value);
               setSubcategoryId(""); // Reset subcategory when category changes
             }}
-            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+            className="input-field">
             <option
               value=""
               disabled
@@ -131,7 +131,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
           <select
             value={subcategoryId}
             onChange={(e) => setSubcategoryId(e.target.value)}
-            className="h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70">
+            className="input-field">
             <option
               value=""
               disabled
@@ -164,7 +164,7 @@ const ProductForm = ({ categories, subcategories, refetch }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter Description..."
-            className="pt-3 pl-3 m-0 overflow-hidden text-base bg-black border border-red-300 rounded-lg min-h-12 max-h-12 focus:border-white bg-opacity-70"
+            className="overflow-hidden  input-field min-h-12 max-h-12"
           />
         </div>
         {/* Second Column (Sizes) */}

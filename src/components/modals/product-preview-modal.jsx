@@ -14,6 +14,7 @@ const ProductPreviewModal = () => {
   if (!product) {
     return null;
   }
+
   const imgURL =
     product.imageCover !=
     // Handle No Image Case

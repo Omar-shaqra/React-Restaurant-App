@@ -7,7 +7,7 @@ import BillModal from "../modals/bill-modal";
 
 const TableBody = ({ tableData, columns, onUpdateData }) => {
   const [editCell, setEditCell] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to open or close Bill Modal
   const [selectedOrderRow, setSelectedOrderRow] = useState(null); // State to store selected row
 
   // Render All Cells
