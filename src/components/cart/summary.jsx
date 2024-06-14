@@ -22,8 +22,6 @@ function Summary() {
   // const [searchParams] = useSearchParams();
   const productData = [];
 
-  console.log("productData:  ", productData);
-
   const productItems = useCart((state) => state.productItems);
   const offerItems = useCart((state) => state.offerItems);
   const removeAll = useCart((state) => state.removeAll);

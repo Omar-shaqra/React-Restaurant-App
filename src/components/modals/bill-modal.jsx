@@ -92,6 +92,15 @@ const BillModal = ({ data, isOpen, onClose }) => {
             ))}
           </div>
         </div>
+
+        {data.notes && (
+          <div className="flex self-start gap-2 mt-3 bg-white rounded w-fit">
+            <p>Notes:</p>
+            <p className="p-px bg-gray-200 border rounded border-black/30">
+              {data.notes}
+            </p>
+          </div>
+        )}
       </div>
     </Modal>
   );

@@ -4,77 +4,7 @@ import { useUser } from "@clerk/clerk-react";
 import Modal from "./modal";
 import { useEffect } from "react";
 import Button from "../ui/button";
-
-const governates = {
-  "محافظة الداخلية": {
-    state: [
-      "نزوى",
-      "بهلا",
-      "منح",
-      "الحمراء",
-      "أدم",
-      "إزكي",
-      "سمائل",
-      "بدبد",
-      "الجبل الأخضر",
-    ],
-  },
-  "محافظة الظاهرة": {
-    state: ["عبري", "ينقل", "ضنك"],
-  },
-  "محافظة شمال الباطنة": {
-    state: ["صحار", "شناص", "لوى", "صحم", "الخابورة", "السويق	"],
-  },
-  "محافظة جنوب الباطنة": {
-    state: ["نخل", "وادي المعاول", "العوابي", "المصنعة", "بركاء", "الرستاق"],
-  },
-  "محافظة البريمي": {
-    state: ["البريمي", "محضة", "السنينة"],
-  },
-  "محافظة الوسطى": {
-    state: ["هيما", "الدقم", "محوت", "الجازر"],
-  },
-  "محافظة شمال الشرقية": {
-    state: [
-      "إبراء",
-      "المضيبي",
-      "بدية",
-      "وادي بني خالد",
-      "دماء والطائيين",
-      "القابل",
-      "سناو",
-    ],
-  },
-  "محافظة جنوب الشرقية": {
-    state: [
-      "مصيرة",
-      "صور",
-      "جعلان بني بو حسن",
-      "جعلان بني بو علي",
-      "الكامل والوافي",
-    ],
-  },
-  "محافظة ظفار": {
-    state: [
-      "صلالة",
-      "طاقة",
-      "مرباط",
-      "ثمريت",
-      "سدح",
-      "رخيوت",
-      "ضلكوت",
-      "مقشن",
-      "شليم وجزر الحلانيات",
-      "المزيونة",
-    ],
-  },
-  "محافظة مسقط": {
-    state: ["مسقط", "مطرح", "بوشر", "السيب", "العامرات", "قريات"],
-  },
-  "محافظة مسندم": {
-    state: ["خصب", "بخا", "دباء", "مدحاء"],
-  },
-};
+import { governates } from "../../utils/constants";
 
 const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
   const { user } = useUser();
@@ -86,6 +16,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
     governate: "",
     state: "",
     address: "",
+    notes: "",
     orderType: "Select Order Type",
     branch: "Select Nearest Branch",
     payment: "Select Payment Method",
@@ -187,7 +118,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
               <select
                 required
                 placeholder="Select your state"
-                className="w-full h-12 pl-3 text-base capitalize bg-black border border-red-300 rounded-lg focus:border-white bg-opacity-70"
+                className="w-full input-field"
                 name="state"
                 value={formData.state}
                 onChange={handleInputChange}>
@@ -304,7 +235,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             </div>
           )}
 
-          <div className="self-end">
+          <div className="flex justify-between w-full gap-1">
             <Button
               text={"Continue"}
               type={"submit"}
@@ -315,6 +246,15 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                 formData.orderType == "Select Order Type" ||
                 formData.payment == "Select Payment Method"
               }
+            />
+            {/* Notes */}
+            <textarea
+              required
+              name="notes"
+              value={formData.notes}
+              onChange={handleInputChange}
+              placeholder="Add Notes"
+              className="content-center w-full text-white input-field min-h-12 max-h-16"
             />
           </div>
         </div>

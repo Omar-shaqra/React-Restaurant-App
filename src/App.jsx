@@ -22,6 +22,7 @@ import Reports from "./routes/admin/reports";
 import Cart from "./routes/cart";
 import Home from "./routes/home";
 
+import EditOffer from "./routes/admin/edit-offer";
 import NotFound from "./routes/not-found";
 // import OurNew from "./routes/ourNew";
 
@@ -59,6 +60,7 @@ function App() {
             path={`/admin/subcategory/:id`}
             element={<EditSubcategory />}
           />
+          {/* <Route path={`/admin/offer/:id`} element={<EditOffer />} /> */}
         </Route>
       </Routes>
       <Toaster />
