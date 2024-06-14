@@ -1,8 +1,17 @@
-import { Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { deleteItem } from "../../actions/delete-item";
 import IconButton from "../ui/icon-button";
+import { useState } from "react";
 
 function OfferItem({ item, refetch }) {
+  const [hoverd, setIsHoverd] = useState(false);
+  const navigate = useNavigate();
+
+  const onEdit = () => {
+    navigate(`/admin/offer/${item._id}`);
+  };
+
   const onDelete = () => {
     deleteItem({ id: item._id, routeName: "offers" }).then(() => {
       refetch();
@@ -11,16 +20,26 @@ function OfferItem({ item, refetch }) {
 
   return (
     <div
-      className="relative flex items-center justify-center p-2 capitalize transition duration-300 rounded-full cursor-default bg-red-800/70 whitespace-nowrap hover:scale-110 group"
-      key={item.id}>
-      {item.name}
-      <div className="absolute text-sm opacity-0 top-full group-hover:opacity-100">
-        <IconButton
-          onClick={onDelete}
-          icon={<Trash2 size={16} />}
-          className="p-1 px-2 mt-3 text-center text-white transition border border-red-300 rounded-full whitespace-nowrap text-md bg-black/70 hover:border-red-800 hover:border-2"
-        />
-      </div>
+      className="relative flex items-center justify-center h-10 p-2 capitalize transition duration-300 rounded-full cursor-default bg-red-800/70 whitespace-nowrap hover:scale-110 group"
+      key={item.id}
+      onMouseEnter={() => setIsHoverd(true)}
+      onMouseLeave={() => setIsHoverd(false)}>
+      {hoverd ? (
+        <div className="flex items-center gap-1">
+          {/* <IconButton
+            className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+            onClick={onEdit}
+            icon={<SquarePen size={14} />}
+          /> */}
+          <IconButton
+            onClick={onDelete}
+            icon={<Trash2 size={14} />}
+            className="p-1 px-2 transition border border-orange-300 rounded-full bg-black/70 hover:border-red-800 hover:scale-105"
+          />
+        </div>
+      ) : (
+        <p>{item.name}</p>
+      )}
     </div>
   );
 }

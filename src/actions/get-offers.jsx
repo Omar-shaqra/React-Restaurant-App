@@ -13,3 +13,16 @@ export const GetOffers = ({ setOffers }) => {
     },
   });
 };
+
+export const GetOfferWithId = ({ setOffer, id }) => {
+  return useQuery({
+    queryKey: [setOffer, "offer"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_REACT_API_URL}/offers/${id}`
+      );
+      setOffer(data);
+      return data;
+    },
+  });
+};

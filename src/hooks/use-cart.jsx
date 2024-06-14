@@ -120,24 +120,37 @@ const useCart = create(
       },
 
       //! OFFERS
-      addOfferItem: (offer) => {
+      addOfferItem: (offer, items) => {
         const currentItems = get().offerItems;
-        const existingItem = currentItems.find(
-          (item) => item._id === offer._id
-        );
 
-        if (existingItem) {
-          // Offer already exists in the cart
-          return toast.dismiss(), toast("Offer already in cart!");
+        // Check if the offer with the same items already exists
+        const offerExists = currentItems.some((existingOffer) => {
+          // Check if the offer ID matches and all items match
+          return (
+            existingOffer.id === offer.id &&
+            existingOffer.items.every((item) =>
+              items.some(
+                (newItem) =>
+                  item._id === newItem._id &&
+                  item.productId === newItem.productId
+              )
+            )
+          );
+        });
+
+        if (!offerExists) {
+          const newItem = {
+            ...offer,
+            items,
+            quantity: 1,
+          };
+          set((state) => ({
+            offerItems: [...state.offerItems, newItem],
+          }));
+          toast.success(`${offer.name} Added to Cart.`);
+        } else {
+          toast("Offer With The Same Items Already Added.");
         }
-        const newItem = {
-          ...offer,
-          quantity: 1,
-        };
-        set((state) => ({
-          offerItems: [...state.offerItems, newItem],
-        }));
-        toast.success(`${offer.name} Added to Cart.`);
       },
 
       increaseOfferQuantity: (offerId) => {
@@ -161,9 +174,26 @@ const useCart = create(
       },
 
       // Remove an offer from the cart
-      removeOfferItem: (offerId) => {
+      removeOfferItem: (offerId, itemsToRemove) => {
         set((state) => ({
-          offerItems: state.offerItems.filter((item) => item.id !== offerId),
+          offerItems: state.offerItems.filter((offer) => {
+            // Check if the offer ID matches
+            if (offer.id !== offerId) {
+              return true;
+            }
+
+            // Check if the items array matches
+            const isSameItems = itemsToRemove.every((itemToRemove) =>
+              offer.items.some(
+                (item) =>
+                  item._id === itemToRemove._id &&
+                  item.productId === itemToRemove.productId
+              )
+            );
+
+            // Return false to remove the offer if both conditions are met
+            return !isSameItems;
+          }),
         }));
       },
 

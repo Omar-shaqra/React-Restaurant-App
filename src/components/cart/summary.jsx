@@ -22,6 +22,8 @@ function Summary() {
   // const [searchParams] = useSearchParams();
   const productData = [];
 
+  console.log("productData:  ", productData);
+
   const productItems = useCart((state) => state.productItems);
   const offerItems = useCart((state) => state.offerItems);
   const removeAll = useCart((state) => state.removeAll);
@@ -34,6 +36,7 @@ function Summary() {
   addOffersToData(offerItems, productData);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [payment, setPayment] = useState();
   const [address, setAddress] = useState();
   const [userPhone, setUserPhone] = useState();
@@ -41,6 +44,7 @@ function Summary() {
   const [governate, setGovernate] = useState();
   const [orderType, setOrderType] = useState();
   const [branch, setBranch] = useState();
+  const [notes, setNotes] = useState();
 
   //! This useEffect was used to send order to sells api if the order was paid online
   // useEffect(() => {
@@ -96,6 +100,7 @@ function Summary() {
           state,
           address,
           orderType,
+          notes,
           TotalPrice: totalPrice,
           BranchID: branch,
           statue: "Not Paid",
@@ -130,6 +135,7 @@ function Summary() {
             state,
             address,
             orderType,
+            notes,
             TotalPrice: totalPrice,
             BranchID: branch,
             statue: "Paid",
@@ -171,7 +177,22 @@ function Summary() {
     setGovernate(value.governate);
     setOrderType(value.orderType);
     setBranch(value.branch);
+    setNotes(value.notes);
   };
+
+  const accumulatedOffers = offerItems.reduce((acc, item) => {
+    const existingItem = acc.find(
+      (i) => i._id === item._id || i.name === item.name
+    );
+
+    if (existingItem) {
+      existingItem.quantity += item.quantity;
+    } else {
+      acc.push({ ...item });
+    }
+
+    return acc;
+  }, []);
 
   return (
     <div className="min-w-full mt-5 rounded-xl bg-black/90 px-4 py-4 text-white self-center border-y border-opacity-50 border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
@@ -197,7 +218,7 @@ function Summary() {
       ))}
 
       {/* Offers Summary */}
-      {offerItems?.map((item) => (
+      {accumulatedOffers.map((item) => (
         <div key={item._id} className="flex items-center gap-1 mb-1">
           <p className="p-1 font-bold tracking-widest">{item.name}</p>
           <p className="p-1 text-sm rounded-full bg-white/10">
@@ -218,7 +239,9 @@ function Summary() {
           <button
             onClick={onCheckout}
             type="submit"
-            disabled={productItems.length === 0 && offerItems.length === 0}
+            disabled={
+              productItems.length === 0 && accumulatedOffers.length === 0
+            }
             className="flex items-center justify-center w-full gap-2 p-2 font-semibold text-white transition duration-500 rounded-md bg-neutral-500 hover:bg-green-600 disabled:cursor-not-allowed group">
             <CheckoutModal
               handleDeliveryInfo={handleDeliveryInfo}

@@ -9,12 +9,13 @@ function OfferCartItem({ data }) {
     useCart();
 
   const onRemove = () => {
-    removeOfferItem(data.id);
+    removeOfferItem(data.id, data.items);
   };
 
   const onIncrease = () => {
     increaseOfferQuantity(data.id);
   };
+
   const onDecrease = () => {
     decreaseOfferQuantity(data.id);
   };
@@ -25,23 +26,33 @@ function OfferCartItem({ data }) {
   );
 
   return (
-    <li className="flex flex-wrap w-full items-center p-3 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
+    <li className="flex flex-wrap items-center justify-center w-full py-3 px-2 text-white bg-black/90 rounded-lg border-y border-y-[#d4662297] shadow-sm shadow-[#d4662290]">
       {/* Image */}
-      <div className="flex items-center justify-center overflow-hidden max-h-48 max-w-64 rounded-xl">
-        {imgURL && (
-          <img
-            className="object-contain object-center w-full rounded-md aspect-square"
-            loading="lazy"
-            src={imgURL}
-            alt="combos images"
-          />
-        )}
-      </div>
+      {imgURL && (
+        <img
+          src={imgURL}
+          loading="lazy"
+          alt="Offer Image"
+          className="object-fill w-full rounded aspect-square max-w-[220px] max-h-40"
+        />
+      )}
 
-      <div className="relative flex flex-col self-center flex-1 w-full gap-2 space-y-2 sm:ml-6">
-        {/* Title */}
-        <div className="flex justify-between gap-2">
+      <div className="relative flex flex-col self-center flex-1 w-full space-y-3 sm:ml-6">
+        <div className="flex items-center justify-between w-full gap-x-2">
+          {/* Title */}
           <p className="text-3xl font-semibold capitalize">{data?.name}</p>
+
+          {/* Group names */}
+          <div className="flex flex-wrap items-center justify-center gap-1">
+            {data.GroupsID.map((group) => (
+              <p
+                key={group._id}
+                className="p-1 text-sm text-center rounded bg-orange-800/90">
+                {group.name}
+              </p>
+            ))}
+          </div>
+
           {/* Remove Button */}
           <IconButton
             className="self-center text-white border-2 rounded-full hover:bg-red-600 h-fit"
@@ -51,12 +62,12 @@ function OfferCartItem({ data }) {
         </div>
 
         {/* Products Title */}
-        <div className="flex flex-wrap gap-2">
-          {data.productsID.map((product) => (
+        <div className="flex flex-wrap items-center justify-center w-full gap-2">
+          {data.items.map((item) => (
             <span
-              key={product._id}
-              className="p-1 font-semibold text-justify rounded line-clamp-4 text-md text-neutral-300 bg-white/40 w-fit">
-              {product.title}
+              key={item._id}
+              className="p-1 font-semibold text-center rounded line-clamp-4 text-md text-neutral-300 bg-white/40 w-fit">
+              {item.title}
             </span>
           ))}
         </div>
