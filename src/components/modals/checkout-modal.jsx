@@ -6,6 +6,19 @@ import { useEffect } from "react";
 import Button from "../ui/button";
 import { governates } from "../../utils/constants";
 
+const branches = [
+  "Al Khuwair - الخوير",
+  "Al-Watiya - الوطية",
+  "Al Ma`abilah - المعبيلة",
+  "AL Amrat - العامرات",
+  "Al Khawd - الخوض",
+];
+const deliveryBranches = [
+  "Al Khuwair - الخوير",
+  "Al-Watiya - الوطية",
+  "Al Ma`abilah - المعبيلة",
+];
+
 const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
   const { user } = useUser();
 
@@ -159,32 +172,7 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
               />
             </div>
 
-            <div className="flex items-center gap-6 text-white text-nowrap">
-              <label htmlFor="branch" className="font-bold text-center">
-                Branch:
-              </label>
-              <select
-                id="branch"
-                name="branch"
-                className="input-field"
-                value={formData.branch}
-                onChange={handleInputChange}>
-                <option
-                  value="Select Nearest Branch"
-                  disabled
-                  className="text-gray-300">
-                  Select Nearest Branch
-                </option>
-                <option value="Al Khuwair - الخوير">Al Khuwair - الخوير</option>
-                <option value="AL Amrat - العامرات">AL Amrat - العامرات</option>
-                <option value="Al-Watiya - الوطية">Al-Watiya - الوطية</option>
-                <option value="Al Khawd - الخوض">Al Khawd - الخوض</option>
-                <option value="Al Ma`abilah - المعبيلة">
-                  Al Ma`abilah - المعبيلة
-                </option>
-              </select>
-            </div>
-
+            {/* Order Type */}
             <div className="flex items-center gap-6 text-white text-nowrap">
               <label className="font-bold text-center">Order Type:</label>
               <select
@@ -199,11 +187,60 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                   Select Order Type
                 </option>
                 <option value="Delivery">Delivery</option>
-                <option value="Take Away">Take Away</option>
+                <option value="Take Away or Pick Up">
+                  Take Away or Pick Up
+                </option>
                 <option value="Dine In">Dine In</option>
               </select>
             </div>
 
+            {/* Branches */}
+            <div className="flex items-center gap-6 text-white text-nowrap">
+              <label htmlFor="branch" className="font-bold text-center">
+                Branch:
+              </label>
+              {formData.orderType == "Delivery" ? (
+                <select
+                  id="branch"
+                  name="branch"
+                  className="input-field"
+                  value={formData.branch}
+                  onChange={handleInputChange}>
+                  <option
+                    value="Select Nearest Branch"
+                    disabled
+                    className="text-gray-300">
+                    Select Nearest Branch
+                  </option>
+                  {deliveryBranches.map((branch, index) => (
+                    <option key={index} value={branch}>
+                      {branch}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <select
+                  id="branch"
+                  name="branch"
+                  className="input-field"
+                  value={formData.branch}
+                  onChange={handleInputChange}>
+                  <option
+                    value="Select Nearest Branch"
+                    disabled
+                    className="text-gray-300">
+                    Select Nearest Branch
+                  </option>
+                  {branches.map((branch, index) => (
+                    <option key={index} value={branch}>
+                      {branch}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+
+            {/* Payment */}
             <div className="flex items-center gap-6 text-white text-nowrap">
               <label className="font-bold text-center">Payment:</label>
               <select
@@ -249,7 +286,6 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
             />
             {/* Notes */}
             <textarea
-              required
               name="notes"
               value={formData.notes}
               onChange={handleInputChange}

@@ -111,7 +111,7 @@ function Summary() {
       }
     };
 
-    // Onlined Payment
+    // Online Payment
     const onlineOrder = async () => {
       // Redirect to Checkout Page
       try {
