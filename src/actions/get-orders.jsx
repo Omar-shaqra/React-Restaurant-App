@@ -14,3 +14,29 @@ export const GetOrders = ({ setOrders }) => {
     refetchInterval: 10000,
   });
 };
+
+export const GetMostSold = ({ setMostSold }) => {
+  return useQuery({
+    queryKey: [setMostSold, "mostSold"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_REACT_API_URL}/sells/most/sold`
+      );
+      setMostSold(data);
+      return data;
+    },
+  });
+};
+
+export const GetDailyEarnings = ({ setDailyEarnings }) => {
+  return useQuery({
+    queryKey: [setDailyEarnings, "dailyEarnings"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_REACT_API_URL}/sells/most/sold`
+      );
+      setDailyEarnings(data);
+      return data;
+    },
+  });
+};
