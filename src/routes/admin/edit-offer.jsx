@@ -16,8 +16,6 @@ const EditOffer = () => {
 
   GetOfferWithId({ setOffer, id });
 
-  console.log("offer: ", offer);
-
   const [formData, setFormData] = useState({
     name: "",
     image: null,

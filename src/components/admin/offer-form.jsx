@@ -11,7 +11,6 @@ const OfferForm = ({ refetch, groups }) => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [GroupsID, setGroupsID] = useState([]);
-  console.log("groups Id", GroupsID);
 
   // Submit Form
   const onSubmit = async (e) => {
