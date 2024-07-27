@@ -63,10 +63,11 @@ export const offersTotalPrice = (offerItems) => {
 
 // Add products to productData
 export const addProductsToData = (productItems, productData) => {
-  productItems.forEach((item) => {
+  console.log(productItems);
+  productItems?.forEach((item) => {
     const productObj = {
-      productid: item.id,
-      title: item.title,
+      // title: item.title,
+      id: item._id,
       doughType:
         item.category?.name.toLowerCase() == "pizza"
           ? item.selectedDough
@@ -79,15 +80,15 @@ export const addProductsToData = (productItems, productData) => {
 };
 
 // Add offers to productData
-export const addOffersToData = (offerItems, productData) => {
-  offerItems.forEach((item) => {
+export const addOffersToData = (offerItems, offerData) => {
+  offerItems?.forEach((item) => {
     const offerObj = {
-      offersid: item._id,
+      id: item._id,
+      title: item.name,
       items: item.items.map((item) => item.title),
-      name: item.name,
       quantity: item.quantity,
     };
-    productData.push(offerObj);
+    offerData.push(offerObj);
   });
 };
 

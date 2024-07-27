@@ -7,8 +7,8 @@ import { useSearchParams } from "react-router-dom";
 
 import useCart from "../../hooks/use-cart";
 import {
-  addOffersToData,
   addProductsToData,
+  addOffersToData,
   getCurrentDate,
   offersTotalPrice,
   productsTotalPrice,
@@ -19,8 +19,10 @@ import Currency from "../ui/currency";
 
 function Summary() {
   const { user } = useUser();
-  // const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+
   const productData = [];
+  const offerData = [];
 
   const productItems = useCart((state) => state.productItems);
   const offerItems = useCart((state) => state.offerItems);
@@ -31,7 +33,7 @@ function Summary() {
   const totalPrice = (productsPrice + offersPrice).toFixed(2);
 
   addProductsToData(productItems, productData);
-  addOffersToData(offerItems, productData);
+  addOffersToData(offerItems, offerData);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,16 +48,49 @@ function Summary() {
 
   //! This useEffect was used to send order to sells api if the order was paid online
   // useEffect(() => {
-  //   let paymentCompleted = false;
-
   //   const handlePaymentSuccess = async () => {
   //     if (!user) return; // User not logged in
 
   //     if (searchParams.get("success") && !paymentCompleted) {
   //       try {
-  //         await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
+  //         const orderData = {
   //           userID: user?.id,
-  //           productData,
+  //           TypeOfPayment: payment,
+  //           userphone: userPhone,
+  //           governate,
+  //           state,
+  //           address,
+  //           orderType,
+  //           notes,
+  //           TotalPrice: totalPrice,
+  //           BranchID: branch,
+  //           statue: "Not Paid",
+  //           Date: getCurrentDate(Date.now()),
+  //         };
+
+  //         if (productData.length > 0) {
+  //           orderData.productData = productData;
+  //         }
+
+  //         if (offerData.length > 0) {
+  //           orderData.offers = offerData;
+  //         }
+
+  //         await axios.post(
+  //           `${import.meta.env.VITE_REACT_API_URL}/sells`,
+  //           orderData
+  //         );
+  //         toast.success("Order sent successfully.");
+  //         removeAll();
+  //       } catch (error) {
+  //         toast.error("Error sending order.");
+  //       }
+  //     }
+
+  //     const handlePaymentSuccess = async () => {
+  //       try {
+  //         const orderData = {
+  //           userID: user?.id,
   //           TypeOfPayment: payment,
   //           userphone: userPhone,
   //           governate,
@@ -66,7 +101,20 @@ function Summary() {
   //           BranchID: branch,
   //           statue: "Paid",
   //           Date: getCurrentDate(Date.now()),
-  //         });
+  //         };
+
+  //         if (productData.length > 0) {
+  //           orderData.productData = productData;
+  //         }
+
+  //         if (offerData.length > 0) {
+  //           orderData.offers = offerData;
+  //         }
+
+  //         await axios.post(
+  //           `${import.meta.env.VITE_REACT_API_URL}/sells`,
+  //           orderData
+  //         );
   //         toast.success("Payment Completed.");
   //         removeAll();
   //         paymentCompleted = true;
@@ -74,24 +122,43 @@ function Summary() {
   //         console.error("Error completing payment:", error);
   //         toast.error("Error completing payment.");
   //       }
-  //     }
+  //     };
 
   //     if (searchParams.get("canceled")) {
-  //       toast.error("Payment Was Canceld.");
+  //       toast.error("Payment Was Canceled.");
   //     }
   //   };
+
   //   handlePaymentSuccess();
-  // });
+  // }, [
+  //   searchParams,
+  //   user,
+  //   productData,
+  //   offerData,
+  //   payment,
+  //   userPhone,
+  //   governate,
+  //   state,
+  //   address,
+  //   orderType,
+  //   totalPrice,
+  //   branch,
+  //   removeAll,
+  //   getCurrentDate,
+  // ]);
 
   const onCheckout = async () => {
-    if (!payment) setIsModalOpen(true);
+    if (!payment) {
+      setIsModalOpen(true);
+      return;
+    }
 
     // Cash Payment
     const cashOrder = async () => {
       try {
-        await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
+        // Create the order object conditionally
+        const orderData = {
           userID: user?.id,
-          productData,
           TypeOfPayment: payment,
           userphone: userPhone,
           governate,
@@ -103,7 +170,24 @@ function Summary() {
           BranchID: branch,
           statue: "Not Paid",
           Date: getCurrentDate(Date.now()),
-        });
+        };
+
+        // Conditionally add productData if not empty
+        if (productData.length > 0) {
+          orderData.productData = productData;
+        }
+
+        // Conditionally add offerData if not empty
+        if (offerData.length > 0) {
+          orderData.offers = offerData;
+        }
+
+        // Make the API request
+        await axios.post(
+          `${import.meta.env.VITE_REACT_API_URL}/sells`,
+          orderData
+        );
+
         toast.success("Order sent successfully.");
         removeAll();
       } catch (error) {
@@ -113,7 +197,6 @@ function Summary() {
 
     // Online Payment
     const onlineOrder = async () => {
-      // Redirect to Checkout Page
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_REACT_API_URL}/paymob/${totalPrice}`,
@@ -122,29 +205,6 @@ function Summary() {
           }
         );
 
-        //Todo: still under review => (Send Order to Sells API after online payment)
-        try {
-          await axios.post(`${import.meta.env.VITE_REACT_API_URL}/sells`, {
-            userID: user?.id,
-            productData,
-            TypeOfPayment: payment,
-            userphone: userPhone,
-            governate,
-            state,
-            address,
-            orderType,
-            notes,
-            TotalPrice: totalPrice,
-            BranchID: branch,
-            statue: "Paid",
-            Date: getCurrentDate(Date.now()),
-          });
-          toast.success("Order Sent Successfully.");
-        } catch {
-          toast.error("Error Sending Order.");
-        }
-
-        // Redirect to Home page
         const redirectURL = res.data;
         if (redirectURL) {
           window.location.href = redirectURL;

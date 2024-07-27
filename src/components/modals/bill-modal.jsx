@@ -68,15 +68,15 @@ const BillModal = ({ data, isOpen, onClose }) => {
         {/* Order Items */}
         <div className="w-full overflow-hidden border border-gray-300 rounded-lg">
           {/* Table Head */}
-          <div className="flex justify-between px-2 py-2 bg-gray-200 ">
+          <div className="flex justify-between w-[600px] px-2 py-2 bg-gray-200 ">
             <p className="text-left">Item</p>
-            <p className="text-center">Quantity</p>
+            <p className="pl-12 text-center">Quantity</p>
             <p>Size</p>
           </div>
 
           {/* Table Body */}
           <div className="divide-y-2 ">
-            {data.productData.map((item) => (
+            {data.productData?.map((item) => (
               <div
                 key={item._id}
                 className="flex items-center justify-between w-full gap-8 px-1 py-2 ">
@@ -88,6 +88,26 @@ const BillModal = ({ data, isOpen, onClose }) => {
                 </span>
                 <p className="w-20">x{item.quantity}</p>
                 <p>{item.scale}</p>
+              </div>
+            ))}
+            {data.offers?.map((item) => (
+              <div
+                key={item._id}
+                className="flex items-center justify-between w-full px-1 py-2">
+                <div className="w-fit">
+                  <p className="items-center px-1 text-center bg-gray-200 rounded-full w-fit">
+                    {item.title}
+                  </p>
+                  <div className="pl-3">
+                    {item.items.map((i) => (
+                      <p className="w-[230px]" key={i}>
+                        -{i}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+                <p className="w-40">x{item.quantity}</p>
+                <p>-----</p>
               </div>
             ))}
           </div>

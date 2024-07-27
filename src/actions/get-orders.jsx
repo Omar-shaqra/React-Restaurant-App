@@ -33,7 +33,7 @@ export const GetDailyEarnings = ({ setDailyEarnings }) => {
     queryKey: [setDailyEarnings, "dailyEarnings"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_REACT_API_URL}/sells/most/sold`
+        `${import.meta.env.VITE_REACT_API_URL}/sells/daily/earnings`
       );
       setDailyEarnings(data);
       return data;
