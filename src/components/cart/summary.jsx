@@ -46,106 +46,81 @@ function Summary() {
   const [branch, setBranch] = useState();
   const [notes, setNotes] = useState();
 
+  const [paymentId, setPaymentId] = useState(null);
+
   //! This useEffect was used to send order to sells api if the order was paid online
-  // useEffect(() => {
-  //   const handlePaymentSuccess = async () => {
-  //     if (!user) return; // User not logged in
+  useEffect(() => {
+    const pollPaymentStatus = async () => {
+      if (!user || !paymentId) return;
 
-  //     if (searchParams.get("success") && !paymentCompleted) {
-  //       try {
-  //         const orderData = {
-  //           userID: user?.id,
-  //           TypeOfPayment: payment,
-  //           userphone: userPhone,
-  //           governate,
-  //           state,
-  //           address,
-  //           orderType,
-  //           notes,
-  //           TotalPrice: totalPrice,
-  //           BranchID: branch,
-  //           statue: "Not Paid",
-  //           Date: getCurrentDate(Date.now()),
-  //         };
+      try {
+        const response = await axios.get(
+          `https://oman.paymob.com/api/acceptance/payments/pay/${paymentId}`
+        );
 
-  //         if (productData.length > 0) {
-  //           orderData.productData = productData;
-  //         }
+        const { success } = response.data;
 
-  //         if (offerData.length > 0) {
-  //           orderData.offers = offerData;
-  //         }
+        if (success) {
+          const orderData = {
+            userID: user?.id,
+            TypeOfPayment: payment,
+            userphone: userPhone,
+            governate,
+            state,
+            address,
+            orderType,
+            notes,
+            TotalPrice: totalPrice,
+            BranchID: branch,
+            statue: "Paid",
+            Date: getCurrentDate(Date.now()),
+          };
 
-  //         await axios.post(
-  //           `${import.meta.env.VITE_REACT_API_URL}/sells`,
-  //           orderData
-  //         );
-  //         toast.success("Order sent successfully.");
-  //         removeAll();
-  //       } catch (error) {
-  //         toast.error("Error sending order.");
-  //       }
-  //     }
+          if (productData.length > 0) {
+            orderData.productData = productData;
+          }
 
-  //     const handlePaymentSuccess = async () => {
-  //       try {
-  //         const orderData = {
-  //           userID: user?.id,
-  //           TypeOfPayment: payment,
-  //           userphone: userPhone,
-  //           governate,
-  //           state,
-  //           address,
-  //           orderType,
-  //           TotalPrice: totalPrice,
-  //           BranchID: branch,
-  //           statue: "Paid",
-  //           Date: getCurrentDate(Date.now()),
-  //         };
+          if (offerData.length > 0) {
+            orderData.offers = offerData;
+          }
 
-  //         if (productData.length > 0) {
-  //           orderData.productData = productData;
-  //         }
+          await axios.post(
+            `${import.meta.env.VITE_REACT_API_URL}/sells`,
+            orderData
+          );
+          toast.success("Order Paid & sent successfully.");
+          removeAll();
+          clearInterval(pollingInterval);
+        } else {
+          toast.error("Payment Was Canceled.");
+          clearInterval(pollingInterval);
+        }
+      } catch (error) {
+        console.error("Error checking payment status:", error);
+        toast.error("Error checking payment status.");
+      }
+    };
 
-  //         if (offerData.length > 0) {
-  //           orderData.offers = offerData;
-  //         }
+    const pollingInterval = setInterval(pollPaymentStatus, 5000);
 
-  //         await axios.post(
-  //           `${import.meta.env.VITE_REACT_API_URL}/sells`,
-  //           orderData
-  //         );
-  //         toast.success("Payment Completed.");
-  //         removeAll();
-  //         paymentCompleted = true;
-  //       } catch (error) {
-  //         console.error("Error completing payment:", error);
-  //         toast.error("Error completing payment.");
-  //       }
-  //     };
-
-  //     if (searchParams.get("canceled")) {
-  //       toast.error("Payment Was Canceled.");
-  //     }
-  //   };
-
-  //   handlePaymentSuccess();
-  // }, [
-  //   searchParams,
-  //   user,
-  //   productData,
-  //   offerData,
-  //   payment,
-  //   userPhone,
-  //   governate,
-  //   state,
-  //   address,
-  //   orderType,
-  //   totalPrice,
-  //   branch,
-  //   removeAll,
-  //   getCurrentDate,
-  // ]);
+    return () => clearInterval(pollingInterval);
+  }, [
+    user,
+    paymentId,
+    productData,
+    offerData,
+    payment,
+    userPhone,
+    governate,
+    state,
+    address,
+    orderType,
+    notes,
+    totalPrice,
+    branch,
+    removeAll,
+    getCurrentDate,
+  ]);
 
   const onCheckout = async () => {
     if (!payment) {
@@ -224,6 +199,7 @@ function Summary() {
     if (payment === "Online Payment") {
       setIsModalOpen(false);
       await onlineOrder();
+      s;
     }
   };
 
