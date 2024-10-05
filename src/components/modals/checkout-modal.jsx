@@ -186,7 +186,8 @@ const CheckoutModal = ({ isOpen, onClose, handleDeliveryInfo }) => {
                   className="text-gray-300">
                   Select Order Type
                 </option>
-                <option value="Delivery">Delivery</option>
+                //! {/* DELIVERY DISABLED HERE */}
+                {/* <option value="Delivery">Delivery</option> */}
                 <option value="Take Away or Pick Up">
                   Take Away or Pick Up
                 </option>
