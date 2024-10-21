@@ -75,6 +75,13 @@ const Footer = () => {
               <MapPin />
               <p className="rounded-lg ">Al Ma`abilah - المعبيلة</p>
             </Link>
+            <Link
+              to="https://maps.app.goo.gl/zzMnpSALFrzVRCzC6?g_st=com.google.maps.preview.copy"
+              target="_blank"
+              className="flex items-center gap-2 p-2 transition-colors duration-300 rounded-lg text-nowrap hover:text-orange-400">
+              <MapPin />
+              <p className="rounded-lg ">Alazibah - العزيبة</p>
+            </Link>
           </div>
 
           {/* Links */}
