@@ -30,7 +30,7 @@ export const playNotificationSound = () => {
   notificationSound.play();
 };
 
-// Find current date
+// Get current date & Format (For the API Request)
 export function getCurrentDate(dateString) {
   if (!dateString) dateString = Date.now();
 
@@ -92,6 +92,7 @@ export const addOffersToData = (offerItems, offerData) => {
   });
 };
 
+// All of the governates
 export const governates = {
   // "محافظة الداخلية": {
   //   state: [
@@ -162,3 +163,62 @@ export const governates = {
   //   state: ["خصب", "بخا", "دباء", "مدحاء"],
   // },
 };
+
+// Headers of the Orders Table (Admin)
+export const OrdersTablecolumns = [
+  {
+    label: "Order",
+    accessor: "[productData]",
+    sortable: false,
+  },
+  {
+    label: "Order ID",
+    accessor: "_id",
+    sortable: false,
+  },
+  {
+    label: "Branch",
+    accessor: "BranchID",
+    sortable: true,
+  },
+  {
+    label: "Phone",
+    accessor: "userphone",
+    sortable: false,
+  },
+  {
+    label: "Date",
+    accessor: "Date",
+    sortable: true,
+  },
+  {
+    label: "Governate",
+    accessor: "governate",
+    sortable: true,
+  },
+  {
+    label: "State",
+    accessor: "state",
+    sortable: true,
+  },
+  {
+    label: "Address",
+    accessor: "address",
+    sortable: false,
+  },
+  {
+    label: "Payment",
+    accessor: "TypeOfPayment",
+    sortable: true,
+  },
+  {
+    label: "Price",
+    accessor: "TotalPrice",
+    sortable: false,
+  },
+  {
+    label: "Paid",
+    accessor: "statue",
+    sortable: true,
+  },
+];

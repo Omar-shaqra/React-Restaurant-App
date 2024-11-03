@@ -7,79 +7,19 @@ import toast from "react-hot-toast";
 import * as XLSX from "xlsx";
 
 import Button from "../../components/ui/button";
-import { playNotificationSound } from "../../utils/constants";
+import {
+  getCurrentDate,
+  OrdersTablecolumns,
+  playNotificationSound,
+} from "../../utils/constants";
 import IconButton from "../ui/icon-button";
 import TableBody from "./order-table-body";
 import TableHead from "./order-table-head";
 import { useSortableTable } from "./useSortableTable";
 
-const formatDate = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
-
-const columns = [
-  {
-    label: "Order",
-    accessor: "[productData]",
-    sortable: false,
-  },
-  {
-    label: "Order ID",
-    accessor: "_id",
-    sortable: false,
-  },
-  {
-    label: "Branch",
-    accessor: "BranchID",
-    sortable: true,
-  },
-  {
-    label: "Phone",
-    accessor: "userphone",
-    sortable: false,
-  },
-  {
-    label: "Date",
-    accessor: "Date",
-    sortable: true,
-  },
-  {
-    label: "Governate",
-    accessor: "governate",
-    sortable: true,
-  },
-  {
-    label: "State",
-    accessor: "state",
-    sortable: true,
-  },
-  {
-    label: "Address",
-    accessor: "address",
-    sortable: false,
-  },
-  {
-    label: "Payment",
-    accessor: "TypeOfPayment",
-    sortable: true,
-  },
-  {
-    label: "Price",
-    accessor: "TotalPrice",
-    sortable: false,
-  },
-  {
-    label: "Paid",
-    accessor: "statue",
-    sortable: true,
-  },
-];
-
 const OrderTable = () => {
   const previousOrderCountRef = useRef();
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const [orders, setOrders, handleSorting] = useSortableTable();
@@ -90,6 +30,7 @@ const OrderTable = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  // To Play notification when there is a new order
   useEffect(() => {
     if (orders && orders.results) {
       const newOrderCount = orders.results;
@@ -108,9 +49,10 @@ const OrderTable = () => {
 
   // Filter Table by Date
   const onDateFilter = async () => {
-    const formattedStartDate = formatDate(startDate);
-    const formattedEndDate = formatDate(endDate);
+    const formattedStartDate = getCurrentDate(startDate);
+    const formattedEndDate = getCurrentDate(endDate);
 
+    // API Request
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_API_URL}/sells/search/date`,
@@ -118,8 +60,6 @@ const OrderTable = () => {
       );
       setFilteredOrders(response.data);
       setIsDateFiltered(true);
-
-      // Handle response as needed
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -128,8 +68,7 @@ const OrderTable = () => {
   // Export to Excel Sheet
   const onExportToExcel = () => {
     const dataToExport = searchFilteredOrders.map((row) =>
-      columns
-        .filter((column) => column.label !== "Order") // Filter out columns with label "Order"
+      OrdersTablecolumns.filter((column) => column.label !== "Order") // Filter out columns with label "Order"
         .reduce((acc, column) => {
           acc[column.label] = row[column.accessor];
           return acc;
@@ -163,7 +102,7 @@ const OrderTable = () => {
 
   // View filterd Data by Search
   const searchFilteredOrders = orders.data?.filter((data) => {
-    return columns.some(({ accessor }) => {
+    return OrdersTablecolumns.some(({ accessor }) => {
       const cellValue = data[accessor]?.toString().toLowerCase().trim();
       const searchValue = searchQuery.toLowerCase().trim();
       return cellValue && cellValue.includes(searchValue);
@@ -172,7 +111,7 @@ const OrderTable = () => {
 
   // View filterd Data by Search & Date
   const searchAndDateFilterdOrders = dateFilteredOrders.filter((data) => {
-    return columns.some(({ accessor }) => {
+    return OrdersTablecolumns.some(({ accessor }) => {
       const cellValue = data[accessor]?.toString().toLowerCase().trim();
       const searchValue = searchQuery.toLowerCase().trim();
       return cellValue && cellValue.includes(searchValue);
@@ -258,9 +197,9 @@ const OrderTable = () => {
       <table className="table text-black border-4 table-fixed">
         {displayData && (
           <>
-            <TableHead {...{ columns, handleSorting }} />
+            <TableHead {...{ columns: OrdersTablecolumns, handleSorting }} />
             <TableBody
-              {...{ columns }}
+              {...{ columns: OrdersTablecolumns }}
               tableData={{ data: displayData }}
               onUpdateData={updateOrderDataCallback}
             />

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import { GetMostSold } from "../../actions/get-orders";
+import Button from "../ui/button";
 
 const MostSoldReport = () => {
   const [mostSold, setMostSold] = useState([]);
@@ -28,53 +30,44 @@ const MostSoldReport = () => {
   // Number of MOST SOLD pages
   const totalMostSoldPages = Math.ceil(mostSold.length / itemsPerPage);
 
+  // Next & Previous Buttons
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
-
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalMostSoldPages));
   };
 
   return (
-    <>
-      {/* Most Sold */}
-      <div className="flex flex-col w-5/6">
-        <h4 className="p-2 mb-4 text-xl font-semibold bg-black rounded-full w-fit">
-          Most Sold Items:
-        </h4>
-        <div className="table w-full border-collapse">
-          <div className="table-header-group">
-            <div className="table-row">
-              <div className="table-cell p-2 font-bold text-center bg-black border">
-                Item
-              </div>
-              <div className="table-cell p-2 font-bold text-center bg-black border">
-                Total Sold
-              </div>
+    <div className="flex flex-col w-5/6">
+      <h4 className="p-2 mb-4 text-xl font-semibold border border-[#fca5a5] bg-black rounded-full w-fit">
+        Most Sold Items:
+      </h4>
+      <div className="table w-full border-collapse">
+        <div className="table-header-group">
+          <div className="table-row">
+            <div className="table-cell p-2 font-bold text-center bg-black border">
+              Item
+            </div>
+            <div className="table-cell p-2 font-bold text-center bg-black border">
+              Total Sold
             </div>
           </div>
-          <div className="table-row-group">{mostSoldItems}</div>
         </div>
-        <div className="flex justify-between w-full mt-4">
-          <button
-            onClick={handlePreviousPage}
-            disabled={currentPage === 1}
-            className="px-3 py-1 bg-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105">
-            Previous
-          </button>
-          <span>
-            Page {currentPage} of {totalMostSoldPages}
-          </span>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalMostSoldPages}
-            className="px-3 py-1 bg-gray-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105">
-            Next
-          </button>
+        <div className="table-row-group">{mostSoldItems}</div>
+      </div>
+      <div className="flex justify-between w-full mt-4">
+        <div className="transition-all duration-300 border rounded-md h-fit hover:border-orange-400 hover:scale-105">
+          <Button text="Previous" onClick={handlePreviousPage} />
+        </div>
+        <span>
+          Page {currentPage} of {totalMostSoldPages}
+        </span>
+        <div className="transition-all duration-300 border rounded-md h-fit hover:border-orange-400 hover:scale-105">
+          <Button text="Next" onClick={handleNextPage} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
